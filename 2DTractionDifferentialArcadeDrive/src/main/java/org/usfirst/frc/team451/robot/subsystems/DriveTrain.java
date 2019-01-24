@@ -20,10 +20,10 @@ public class DriveTrain extends Subsystem {
 
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public double pGain = 1.0;
-	public double iGain = 1.0;
-	public double dGain = 1.0;
-	public double fGain = 1.0;
+	// public double pGain = 1.0;
+	// public double iGain = 1.0;
+	// public double dGain = 1.0;
+	// public double fGain = 1.0;
 	
     public static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(1);
     //public static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(3);
