@@ -26,6 +26,7 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
 	Thread m_visionThread;
+	
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -51,6 +53,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		gyro = new ADXRS450_Gyro();
 		oi = new OI();
+		
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -172,8 +175,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		if (RobotMap.test.get()) {
+			RobotMap.baaa.set(true);
+			System.out.println("WOLOLOLOLOLOLOL");
+		}
 		Scheduler.getInstance().run();
-		
+
 	}
 
 	/**

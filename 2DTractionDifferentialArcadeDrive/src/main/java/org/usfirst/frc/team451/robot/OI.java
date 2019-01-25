@@ -8,6 +8,8 @@
 
 package org.usfirst.frc.team451.robot;
 
+import org.opencv.imgproc.LineSegmentDetector;
+
 import edu.wpi.first.wpilibj.Joystick;
 
 /**

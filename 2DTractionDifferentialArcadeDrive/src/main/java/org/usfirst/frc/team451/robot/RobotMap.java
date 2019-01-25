@@ -8,12 +8,17 @@
 
 package org.usfirst.frc.team451.robot;
 import com.ctre.phoenix.sensors.*;
+
+import org.opencv.imgproc.LineSegmentDetector;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 public class RobotMap {
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
@@ -24,6 +29,8 @@ public class RobotMap {
 	public static int backLeftMotor = 2;
 	public static int backRightMotor = 3;
 	public static PigeonIMU gyro = new PigeonIMU(4);
+	public static DigitalInput test = new DigitalInput(0);
+	public static DigitalOutput baaa = new DigitalOutput(1);
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
