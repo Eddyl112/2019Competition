@@ -4,7 +4,6 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/** 
 package org.usfirst.frc.team451.robot.commands;
 
 import org.usfirst.frc.team451.robot.OI;
@@ -56,4 +55,3 @@ public class CameraMove extends Command {
   protected void interrupted() {
   }
 }
-*/

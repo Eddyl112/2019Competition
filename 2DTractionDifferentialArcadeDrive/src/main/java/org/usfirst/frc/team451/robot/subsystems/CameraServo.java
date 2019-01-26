@@ -8,8 +8,9 @@
 package org.usfirst.frc.team451.robot.subsystems;
 
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.commands.CameraMove;
 
-import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,13 +19,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class CameraServo extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static PWM cameraPitch = new PWM(0);
-  public static PWM cameraYaw = new PWM(1);
+  public static Servo cameraPitch = new Servo(0);
+  public static Servo cameraYaw = new Servo(1);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(Robot.CameraMove);
+    setDefaultCommand(new CameraMove());
   }
 }
