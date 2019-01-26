@@ -34,6 +34,7 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         // DriveTrain.diffDrive.arcadeDrive(OI.driveStick.getY(), OI.driveStick.getZ());
+        //Keeps the robot from driving when the stick in in the deadzone
         if (OI.driveStick.getY() < deadzone && OI.driveStick.getY() > -deadzone) {
             DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0, DemandType.ArbitraryFeedForward,
                     OI.driveStick.getZ());
