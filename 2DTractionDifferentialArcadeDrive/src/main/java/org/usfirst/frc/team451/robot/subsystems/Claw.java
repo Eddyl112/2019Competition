@@ -20,10 +20,12 @@ public class Claw extends Subsystem {
 //creates buttons, joystick and solinoide
 
   public void TurnPneumaticsOn() {
+  System.out.print("claw on");
   OI.Solenoid1.set(true);
   }
 
   public void TurnPneumaticsOff(){
+    System.out.print("claw off");
     OI.Solenoid1.set(false);
   }
 

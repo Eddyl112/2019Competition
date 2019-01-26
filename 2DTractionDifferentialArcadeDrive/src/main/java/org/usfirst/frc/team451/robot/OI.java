@@ -31,6 +31,8 @@ public class OI {
 	public static Solenoid Solenoid1 = new Solenoid(1);
 	public static boolean active = false;
 	
+
+	
 //	public double x = driveStick.getX();
 //	public double y = driveStick.getY();
 //	public double z = driveStick.getZ();

@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
-
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -27,6 +26,7 @@ public class OpenClaw extends Command {
  //Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.oi.button3.whenPressed(new OpenClaw());
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -26,6 +26,7 @@ public class CloseClaw extends Command {
  //Called just before this Command runs the first time
   @Override
   protected void initialize() {
+   Robot.oi.button5.whenPressed(new CloseClaw());
   }
 
   // Called repeatedly when this Command is scheduled to run
