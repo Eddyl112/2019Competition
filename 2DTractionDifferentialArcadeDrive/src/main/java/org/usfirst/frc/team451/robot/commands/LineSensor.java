@@ -28,11 +28,14 @@ public class LineSensor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    /*Outputs the current status of the line sensors on SmartDashboard. Green = white detected,
+    /* Outputs the current status of the line sensors on SmartDashboard. Green = white detected,
     brown = white not detected */
-    for(int i = 0; i<Sensor.Sensors.length;i++){
-      SmartDashboard.putBoolean(Sensor.SensorLabels[i]+" Line Sensor", Sensor.Sensors[i].get());
+    for(int i = 0; i<Sensor.Sensors.length; i++) {
+      SmartDashboard.putBoolean(Sensor.SensorLabels[i]+ " Line Sensor", Sensor.Sensors[i].get());
     }
+
+    
+
     }
 
   // Make this return true when this Command no longer needs to run execute()
