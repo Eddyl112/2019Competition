@@ -19,6 +19,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team451.robot.subsystems.Sensor;
 
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
@@ -37,6 +38,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
  */
 public class Robot extends TimedRobot {
 	public static DriveTrain DriveTrain = new DriveTrain();
+	public static Sensor Sensor = new Sensor();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
 	Thread m_visionThread;
@@ -175,10 +177,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		if (RobotMap.test.get()) {
-			RobotMap.baaa.set(true);
-			System.out.println("WOLOLOLOLOLOLOL");
-		}
 		Scheduler.getInstance().run();
 
 	}
