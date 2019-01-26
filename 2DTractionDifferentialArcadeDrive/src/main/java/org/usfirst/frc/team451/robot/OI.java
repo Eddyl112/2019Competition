@@ -11,7 +11,13 @@ package org.usfirst.frc.team451.robot;
 import org.opencv.imgproc.LineSegmentDetector;
 
 import edu.wpi.first.wpilibj.Joystick;
+//package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Solenoid;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -19,7 +25,11 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
 	
 	public static Joystick driveStick = new Joystick(0);
-	
+	//public static  Joystick joystick = new Joystick(1);
+	public static Button button3 = new JoystickButton(driveStick, 3);
+	public static Button button5 = new JoystickButton(driveStick, 5);
+	public static Solenoid Solenoid1 = new Solenoid(1);
+	public static boolean active = false;
 	
 //	public double x = driveStick.getX();
 //	public double y = driveStick.getY();

@@ -19,6 +19,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Sensor;
 
 import edu.wpi.cscore.AxisCamera;
@@ -38,6 +39,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
  */
 public class Robot extends TimedRobot {
 	public static DriveTrain DriveTrain = new DriveTrain();
+	public static Claw Claw = new Claw();
 	public static Sensor Sensor = new Sensor();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
