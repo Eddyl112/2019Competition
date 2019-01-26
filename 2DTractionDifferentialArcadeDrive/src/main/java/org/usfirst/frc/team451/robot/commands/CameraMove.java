@@ -37,7 +37,6 @@ public class CameraMove extends Command {
     } else if(OI.driveStick.getPOV() == 270) {
       CameraServo.cameraYaw.setSpeed(-1.0);
     }
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
