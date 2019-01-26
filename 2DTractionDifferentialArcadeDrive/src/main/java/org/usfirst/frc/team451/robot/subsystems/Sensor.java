@@ -16,12 +16,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Add your docs here.
  */
 public class Sensor extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  /* These are all of the Line Sensors. They use the DigitalInputs because they are
+  not actually normal line sensors, but more like on/off switches. centerLineSensor 
+  is the sensor in the center, rightLineSensor is the sensor toward the right of the
+  bot, and leftLineSensor is the sensor toward the left of the bot. */
+
   
   public static DigitalInput centerLineSensor = new DigitalInput(0);
-  //public static DigitalInput rightLineSensor = new DigitalInput(1);
-  //public static DigitalInput leftLineSensor = new DigitalInput(2);
+  public static DigitalInput rightLineSensor = new DigitalInput(1);
+  public static DigitalInput leftLineSensor = new DigitalInput(2);
+
+  
 
   @Override
   public void initDefaultCommand() {

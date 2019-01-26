@@ -8,13 +8,15 @@
 package org.usfirst.frc.team451.robot.commands;
 
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.Sensor;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LineSensor extends Command {
   public LineSensor() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    /* Use requires() here to declare subsystem dependencies; in this case,
+    we need the Sensor subsystem*/
     requires(Robot.Sensor);
   }
 
@@ -26,7 +28,12 @@ public class LineSensor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  }
+    /*Outputs the current status of the line sensors on SmartDashboard. Green = white detected,
+    brown = white not detected */
+    SmartDashboard.putBoolean("Center Line Sensor", Sensor.centerLineSensor.get());
+    SmartDashboard.putBoolean("Right Line Sensor", Sensor.rightLineSensor.get());
+    SmartDashboard.putBoolean("Left Line Sensor", Sensor.leftLineSensor.get());
+    }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
