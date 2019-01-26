@@ -19,7 +19,11 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
+//<<<<<<< HEAD
+import org.usfirst.frc.team451.robot.subsystems.Claw;
+//=======
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
+//>>>>>>> 3959b70847ecc1f12466c800e804b80681625fff
 import org.usfirst.frc.team451.robot.subsystems.Sensor;
 
 import edu.wpi.cscore.AxisCamera;
@@ -40,6 +44,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Robot extends TimedRobot {
 	public static final Command CameraMove = null;
 	public static DriveTrain DriveTrain = new DriveTrain();
+	public static Claw Claw = new Claw();
 	public static Sensor Sensor = new Sensor();
 	public static CameraServo CameraServo = new CameraServo();
 	public static OI oi;

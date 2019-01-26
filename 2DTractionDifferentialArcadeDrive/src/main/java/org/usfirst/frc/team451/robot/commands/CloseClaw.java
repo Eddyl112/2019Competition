@@ -1,42 +1,38 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/** 
+
 package org.usfirst.frc.team451.robot.commands;
 
-import org.usfirst.frc.team451.robot.OI;
-import org.usfirst.frc.team451.robot.Robot;
-import org.usfirst.frc.team451.robot.subsystems.CameraServo;
-
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
-
-public class CameraMove extends Command {
-  public CameraMove() {
+import org.usfirst.frc.team451.robot.Robot;
+/**
+ * An example command.  You can replace me with your own command.
+ */
+//extends command class with close claw
+public class CloseClaw extends Command {
+  public CloseClaw() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.CameraServo);
+    requires(Robot.Claw);
   }
 
-  // Called just before this Command runs the first time
+ //Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
+  //turns off solenoid
   protected void execute() {
-    if (OI.driveStick.getPOV() == 0) {
-      CameraServo.cameraPitch.setSpeed(1.0);
-    } else if(OI.driveStick.getPOV() == 180){
-      CameraServo.cameraPitch.setSpeed(-1.0);
-    } else if(OI.driveStick.getPOV() == 90 ) {
-      CameraServo.cameraYaw.setSpeed(1.0);
-    } else if(OI.driveStick.getPOV() == 270) {
-      CameraServo.cameraYaw.setSpeed(-1.0);
-    }
+    Robot.Claw.TurnPneumaticsOff();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -54,6 +50,5 @@ public class CameraMove extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  }
+  };
 }
-*/
