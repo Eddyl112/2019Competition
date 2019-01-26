@@ -34,6 +34,9 @@ public class DriveTrain extends Subsystem {
     static SpeedControllerGroup Right = new SpeedControllerGroup(frontRightMotor);
     
     public static DifferentialDrive diffDrive = new DifferentialDrive(Left, Right);
+
+    //Variables for a change in robot position since initial contact
+    public static float[] DeltaPosition = new float[2];
     
     
     // public DriveTrain() {

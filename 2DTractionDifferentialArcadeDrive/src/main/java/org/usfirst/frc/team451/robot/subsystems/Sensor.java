@@ -21,10 +21,12 @@ public class Sensor extends Subsystem {
   is the sensor in the center, rightLineSensor is the sensor toward the right of the
   bot, and leftLineSensor is the sensor toward the left of the bot. */
 
+  public static String[] SensorLabels = {"Left","Center","Right"};
   
-  public static DigitalInput centerLineSensor = new DigitalInput(0);
-  public static DigitalInput rightLineSensor = new DigitalInput(1);
-  public static DigitalInput leftLineSensor = new DigitalInput(2);
+  public static DigitalInput[] Sensors = {new DigitalInput(0),new DigitalInput(1),new DigitalInput(2)};
+
+  public static boolean[] tripped = new boolean[2];
+  public static boolean[] active = new boolean[2];
 
   
 

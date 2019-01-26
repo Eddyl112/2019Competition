@@ -30,9 +30,9 @@ public class LineSensor extends Command {
   protected void execute() {
     /*Outputs the current status of the line sensors on SmartDashboard. Green = white detected,
     brown = white not detected */
-    SmartDashboard.putBoolean("Center Line Sensor", Sensor.centerLineSensor.get());
-    SmartDashboard.putBoolean("Right Line Sensor", Sensor.rightLineSensor.get());
-    SmartDashboard.putBoolean("Left Line Sensor", Sensor.leftLineSensor.get());
+    for(int i = 0; i<Sensor.Sensors.length;i++){
+      SmartDashboard.putBoolean(Sensor.SensorLabels[i]+" Line Sensor", Sensor.Sensors[i].get());
+    }
     }
 
   // Make this return true when this Command no longer needs to run execute()
