@@ -7,13 +7,8 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
+import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
-import org.usfirst.frc.team451.robot.subsystems.Claw;
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 /**
  * An example command.  You can replace me with your own command.
@@ -33,7 +28,7 @@ public class OpenClaw extends Command {
   @Override
   //turns pneumatics on 
   protected void execute() {
-    Claw.clawSolenoid.set(true);
+    OI.clawActive = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()

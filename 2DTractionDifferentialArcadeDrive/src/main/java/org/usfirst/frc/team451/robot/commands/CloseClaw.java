@@ -7,13 +7,10 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
-import org.usfirst.frc.team451.robot.subsystems.Claw;
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -33,7 +30,7 @@ public class CloseClaw extends Command {
   @Override
   //turns off solenoid
   protected void execute() {
-    Claw.clawSolenoid.set(false);
+    OI.clawActive = false;
   }
 
   // Make this return true when this Command no longer needs to run execute()

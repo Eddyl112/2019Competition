@@ -21,6 +21,14 @@ public class Claw extends Subsystem {
 //creates buttons, joystick and solinoide
 public static Solenoid clawSolenoid = new Solenoid(1);
 
+public Claw() {
+  if (OI.clawActive == true ) {
+    clawSolenoid.set(true);
+  } else if (OI.clawActive == false) {
+    clawSolenoid.set(false);
+  }
+}
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
