@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team451.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team451.robot.OI;
@@ -18,16 +19,7 @@ public class Claw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 //creates buttons, joystick and solinoide
-
-  public void TurnPneumaticsOn() {
-  System.out.print("claw on");
-  OI.Solenoid1.set(true);
-  }
-
-  public void TurnPneumaticsOff(){
-    System.out.print("claw off");
-    OI.Solenoid1.set(false);
-  }
+public static Solenoid clawSolenoid = new Solenoid(1);
 
   @Override
   public void initDefaultCommand() {

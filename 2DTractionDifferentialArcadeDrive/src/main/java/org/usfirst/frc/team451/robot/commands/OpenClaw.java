@@ -8,6 +8,7 @@
 package org.usfirst.frc.team451.robot.commands;
 
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.Claw;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -26,14 +27,13 @@ public class OpenClaw extends Command {
  //Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.oi.button3.whenPressed(new OpenClaw());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   //turns pneumatics on 
   protected void execute() {
-    Robot.Claw.TurnPneumaticsOn();
+    Claw.clawSolenoid.set(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()

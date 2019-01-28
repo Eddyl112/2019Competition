@@ -22,20 +22,22 @@ public class CameraMove extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    CameraServo.cameraPitch.set(0.5);
+    CameraServo.cameraYaw.set(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if (OI.driveStick.getPOV() == 0) {
-      CameraServo.cameraPitch.setSpeed(1.0);
+      CameraServo.cameraPitch.set(1.0);
     } else if(OI.driveStick.getPOV() == 180){
-      CameraServo.cameraPitch.setSpeed(-1.0);
+      CameraServo.cameraPitch.set(0);
     } else if(OI.driveStick.getPOV() == 90 ) {
-      CameraServo.cameraYaw.setSpeed(1.0);
+      CameraServo.cameraYaw.set(1.0);
     } else if(OI.driveStick.getPOV() == 270) {
-      CameraServo.cameraYaw.setSpeed(-1.0);
-    }
+      CameraServo.cameraYaw.set(0);
+    } //Change around, 0 is full left and 1 is full right
   }
 
   // Make this return true when this Command no longer needs to run execute()

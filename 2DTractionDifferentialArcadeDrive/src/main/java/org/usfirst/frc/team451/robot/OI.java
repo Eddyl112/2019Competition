@@ -8,13 +8,17 @@
 
 package org.usfirst.frc.team451.robot;
 
-import org.opencv.imgproc.LineSegmentDetector;
 
+import org.opencv.imgproc.LineSegmentDetector;
+import org.usfirst.frc.team451.robot.commands.CloseClaw;
+import org.usfirst.frc.team451.robot.commands.OpenClaw;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.Joystick;
-//package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -24,19 +28,24 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class OI {
 	
-	public static Joystick driveStick = new Joystick(0);
-	//public static  Joystick joystick = new Joystick(1);
-	public static Button button3 = new JoystickButton(driveStick, 3);
-	public static Button button5 = new JoystickButton(driveStick, 5);
-	public static Solenoid Solenoid1 = new Solenoid(1);
-	public static boolean active = false;
+	public static Joystick driveStick;
+	public static Joystick mechStick;
+	public static Button openClawButton;
+	public static Button closeClawButton;
+	public static DigitalInput clawSwitch;
+	
+	public static boolean clawActive = false;
 	
 
-	
-//	public double x = driveStick.getX();
-//	public double y = driveStick.getY();
-//	public double z = driveStick.getZ();
-	
+	public static void init() {
+		driveStick = new Joystick(0); 
+		mechStick = new Joystick(1);
+		openClawButton = new JoystickButton(mechStick, 3);
+		closeClawButton = new JoystickButton(mechStick, 5);
+		openClawButton.whenPressed(new OpenClaw());
+		closeClawButton.whenPressed(new CloseClaw());
+		
+	}
 	
 	
 	

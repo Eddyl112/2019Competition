@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.Claw;
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -26,14 +27,13 @@ public class CloseClaw extends Command {
  //Called just before this Command runs the first time
   @Override
   protected void initialize() {
-   Robot.oi.button5.whenPressed(new CloseClaw());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   //turns off solenoid
   protected void execute() {
-    Robot.Claw.TurnPneumaticsOff();
+    Claw.clawSolenoid.set(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
