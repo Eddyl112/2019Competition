@@ -1,8 +1,2 @@
-
-2DTractionDifferentialArcadeDrive/bin/main/org/usfirst/frc/team451/robot/subsystems/Elevator.class
-2DTractionDifferentialArcadeDrive/bin/main/org/usfirst/frc/team451/robot/commands/CameraMove.class
-2DTractionDifferentialArcadeDrive/bin/main/org/usfirst/frc/team451/robot/subsystems/CameraServo.class
-2DTractionDifferentialArcadeDrive/bin/main/org/usfirst/frc/team451/robot/subsystems/CameraServo.class
-2DTractionDifferentialArcadeDrive/bin/main/org/usfirst/frc/team451/robot/subsystems/Elevator.class
-*.class
+# Compiled class file
 *.class
