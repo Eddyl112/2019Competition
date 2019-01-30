@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team451.robot.OI;
+import org.usfirst.frc.team451.robot.commands.CloseClaw;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -21,17 +22,14 @@ public class Claw extends Subsystem {
 //creates buttons, joystick and solinoide
 public static Solenoid clawSolenoid = new Solenoid(1);
 
-public Claw() {
-  if (OI.clawActive == true ) {
-    clawSolenoid.set(true);
-  } else if (OI.clawActive == false) {
-    clawSolenoid.set(false);
-  }
+
+public void claw() {
+    System.out.println("claw sub");
+    clawSolenoid.set(OI.clawActive);
 }
 
   @Override
-  public void initDefaultCommand() {
+  protected void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
   }
 }

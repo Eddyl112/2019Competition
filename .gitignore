@@ -1,3 +1,7 @@
 # Compiled class file
 *.class
 *.lock
+*.bin
+*.bin
+*.lock
+*.class

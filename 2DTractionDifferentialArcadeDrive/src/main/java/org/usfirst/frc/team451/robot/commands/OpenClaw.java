@@ -28,7 +28,9 @@ public class OpenClaw extends Command {
   @Override
   //turns pneumatics on 
   protected void execute() {
+    System.out.println("open claw");
     OI.clawActive = true;
+    Robot.Claw.claw();
   }
 
   // Make this return true when this Command no longer needs to run execute()

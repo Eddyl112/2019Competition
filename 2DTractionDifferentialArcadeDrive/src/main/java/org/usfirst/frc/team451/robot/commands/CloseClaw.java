@@ -30,7 +30,9 @@ public class CloseClaw extends Command {
   @Override
   //turns off solenoid
   protected void execute() {
+    System.out.println("close claw");
     OI.clawActive = false;
+    Robot.Claw.claw();
   }
 
   // Make this return true when this Command no longer needs to run execute()

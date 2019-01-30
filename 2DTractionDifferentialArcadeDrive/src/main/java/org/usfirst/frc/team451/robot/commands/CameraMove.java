@@ -29,13 +29,17 @@ public class CameraMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.driveStick.getPOV() == 0) {
+    if (OI.driveStick.getPOV() == 0) {  
+    System.out.println("up");
       CameraServo.cameraPitch.set(1.0);
     } else if(OI.driveStick.getPOV() == 180){
+      System.out.println("up");
       CameraServo.cameraPitch.set(0);
     } else if(OI.driveStick.getPOV() == 90 ) {
+      System.out.println("up");
       CameraServo.cameraYaw.set(1.0);
     } else if(OI.driveStick.getPOV() == 270) {
+      System.out.println("up");
       CameraServo.cameraYaw.set(0);
     } //Change around, 0 is full left and 1 is full right
   }
