@@ -30,6 +30,7 @@ public class OI {
 	
 	public static Joystick driveStick;
 	public static Joystick mechStick;
+	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button closeClawButton;
 	public static DigitalInput clawSwitch;
@@ -41,6 +42,7 @@ public class OI {
 	public static void init() {
 		driveStick = new Joystick(0); 
 		mechStick = new Joystick(1);
+		autoAlignOverrideButton = new JoystickButton(driveStick, 2);
 		openClawButton = new JoystickButton(mechStick, 3);
 		closeClawButton = new JoystickButton(mechStick, 5);
 		openClawButton.whenPressed(new OpenClaw());
