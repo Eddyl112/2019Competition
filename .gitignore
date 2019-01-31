@@ -2,6 +2,4 @@
 *.class
 *.lock
 *.bin
-*.bin
-*.lock
 *.class
