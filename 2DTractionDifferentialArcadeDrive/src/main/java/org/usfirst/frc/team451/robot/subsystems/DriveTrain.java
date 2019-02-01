@@ -35,12 +35,6 @@ public class DriveTrain extends Subsystem {
     
     public static DifferentialDrive diffDrive = new DifferentialDrive(Left, Right);
 
-    //Variables for a change in robot position since initial contact
-    public static float[] deltaPosition = new float[2];
-
-    //Variables for the approximate wheel speeds for drive chains on both sides of the robot
-    public static float[] sideSpeed = new float[1];
-
     //the rotation of the robot with respect to the player
     public static double rotation = 0;
     
