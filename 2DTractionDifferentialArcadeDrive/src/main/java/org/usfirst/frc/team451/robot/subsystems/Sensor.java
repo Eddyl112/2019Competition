@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class LineTracker extends Subsystem {
+public class Sensor extends Subsystem {
   /* This class holds one Line Sensor. They use the DigitalInputs because they are
   not actually normal line sensors, but more like on/off switches. centerLineSensor 
   is the sensor in the center, rightLineSensor is the sensor toward the right of the
