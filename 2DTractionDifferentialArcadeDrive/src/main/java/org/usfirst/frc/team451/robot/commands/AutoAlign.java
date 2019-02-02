@@ -34,7 +34,7 @@ public class AutoAlign extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    LineTracker.updateSensorFieldPositions(0);
+    LineTracker.updateSensorFieldPositions(Robot.gyro.getAngle());
     LineTracker.tripActiveSensors();
   }
 
