@@ -71,7 +71,6 @@ public class LineTracker extends Subsystem {
 
   //trips sensors if they are active
   public static void tripActiveSensors(){
-    trippedCount = 0;
     for(int i=0;i<Sensors.length;i++){
       if(Sensors[i].get()) {
         tripped[i] = true;
