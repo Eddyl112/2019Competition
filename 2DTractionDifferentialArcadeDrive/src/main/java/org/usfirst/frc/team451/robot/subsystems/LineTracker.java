@@ -51,11 +51,11 @@ public class LineTracker extends Subsystem {
   //variable storing the calculated points in space that lie on the line
   public static float[][] LinePoints = new float[1][1];
 
-  //the angle of the line relative to the robot (set in )
+  //the angle of the line relative to the robot (set in setLinePositionsAndRotation)
   public static double idealRotation;
 
   //METHODS
-  //updates the positions of the sensor, factoring in the "rotation of the robot" (theta)
+  //updates the positions of the sensor, factoring in the rotation of the robot
   public static void updateSensorFieldPositions(double botRotation){
     for(int i=0;i<Sensors.length;i++){
       fieldPos[i][0] = (float)((double) botPos[i][0]*Math.cos(botRotation)-(double) botPos[i][1]*Math.sin(botRotation));
