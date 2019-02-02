@@ -14,14 +14,19 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 
-/*public class Elevator extends Subsystem {
+public class Elevator extends Subsystem {
 
 
     public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(1);
     
     static SpeedControllerGroup Left = new SpeedControllerGroup(elevatorMotor);
+
+    @Override
+    protected void initDefaultCommand() {
+
+    }
 }
- */
+ 
 
 
 

@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.XboxController;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -30,11 +31,20 @@ public class OI {
 	
 	public static Joystick driveStick;
 	public static Joystick mechStick;
+	public static XboxController XboxController;
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button closeClawButton;
 	public static DigitalInput clawSwitch;
+	public static Button HatchOneButton;
+	public static Button HatchTwoButton;
+	public static Button HatchThreeButton;
+	public static Button BallOneButton;
+	public static Button BallTwoButton;
+	public static Button BallThreeButton;
 	
+
+
 	public static boolean clawActive = false;
 	
 	
@@ -47,6 +57,18 @@ public class OI {
 		closeClawButton = new JoystickButton(mechStick, 5);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
+		XboxController = new XboxController(2);
+		
+		//asign hatch and ball buttons 
+		HatchOneButton = new JoystickButton(mechStick, 12);
+		HatchTwoButton = new JoystickButton(mechStick, 10);
+		HatchThreeButton = new JoystickButton(mechStick,8);
+		BallOneButton = new JoystickButton(mechStick, 11);
+		BallTwoButton = new JoystickButton(mechStick, 9);
+		BallThreeButton = new JoystickButton(mechStick, 7);
+		
+
+		
 		
 	}
 	
