@@ -8,13 +8,13 @@
 package org.usfirst.frc.team451.robot.subsystems;
 
 import org.usfirst.frc.team451.robot.Robot;
-import org.usfirst.frc.team451.robot.commands.LineSensor;
+import org.usfirst.frc.team451.robot.commands.AutoAlign;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Add your docs here.
+ * INFORM ALEX BEFORE MAKING ANY CHANGES TO THIS DOCUMENT
  */
 public class LineTracker extends Subsystem {
   /* This class holds all the Line Sensors. They use the DigitalInputs because they are
@@ -91,13 +91,19 @@ public class LineTracker extends Subsystem {
     LinePoints[0][0] = 0;
 
     //point 2, x-value
-    LinePoints[1][0] = -deltaPosition[0]-fieldPos[ActiveSensorID][0];
+    LinePoints[1][0] = deltaPosition[0];
+
+    //point 2, y-value
+    LinePoints[1][1] = deltaPosition[1];
+
+    //set the necessary rotation of the robot
+    idealRotation = Math.atan2(LinePoints[1][1]-LinePoints[0][1],LinePoints[1][0]-LinePoints[0][0]);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new LineSensor());
+    setDefaultCommand(new AutoAlign());
   }
 }

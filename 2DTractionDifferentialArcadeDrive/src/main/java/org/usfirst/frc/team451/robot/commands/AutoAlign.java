@@ -12,6 +12,10 @@ import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/*
+ * INFORM ALEX BEFORE MAKING ANY CHANGES TO THIS DOCUMENT
+*/
+
 public class AutoAlign extends Command {
 
   public static String Mode = "UN-ACTIVATED";
@@ -19,7 +23,7 @@ public class AutoAlign extends Command {
   public AutoAlign() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.DriveTrain);
-    requires(Robot.Sensor);
+    requires(Robot.LineTracker);
   }
 
   // Called just before this Command runs the first time
