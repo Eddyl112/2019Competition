@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.XboxController;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -30,6 +31,8 @@ public class OI {
 	
 	public static Joystick driveStick;
 	public static Joystick mechStick;
+	public static XboxController mechBoxController;
+
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button closeClawButton;
@@ -42,6 +45,7 @@ public class OI {
 	public static void init() {
 		driveStick = new Joystick(0); 
 		mechStick = new Joystick(1);
+		mechBoxController = new XboxController(2);
 		autoAlignOverrideButton = new JoystickButton(driveStick, 2);
 		openClawButton = new JoystickButton(mechStick, 3);
 		closeClawButton = new JoystickButton(mechStick, 5);
