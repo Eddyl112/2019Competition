@@ -22,31 +22,53 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.XboxController;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
 	
-	public static Joystick driveStick;
-	public static Joystick mechStick;
+	public static Joystick driveStickLeft;
+	public static Joystick driveStickRight;
+	public static XboxController mechBox;
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button closeClawButton;
 	public static DigitalInput clawSwitch;
+	public static Button HatchOneButton;
+	public static Button HatchTwoButton;
+	public static Button HatchThreeButton;
+	public static Button BallOneButton;
+	public static Button BallTwoButton;
+	public static Button BallThreeButton;
 	
+
+
 	public static boolean clawActive = false;
 	
 	
 
 	public static void init() {
-		driveStick = new Joystick(0); 
-		mechStick = new Joystick(1);
-		autoAlignOverrideButton = new JoystickButton(driveStick, 2);
-		openClawButton = new JoystickButton(mechStick, 3);
-		closeClawButton = new JoystickButton(mechStick, 5);
+		driveStickLeft = new Joystick(0); 
+		driveStickRight = new Joystick(1);
+		mechBox = new XboxController(2);
+		autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
+		openClawButton = new JoystickButton(mechBox, 3);
+		closeClawButton = new JoystickButton(mechBox, 5);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
+		
+		//asign hatch and ball buttons 
+		HatchOneButton = new JoystickButton(mechBox, 12);
+		HatchTwoButton = new JoystickButton(mechBox, 10);
+		HatchThreeButton = new JoystickButton(mechBox,8);
+		BallOneButton = new JoystickButton(mechBox, 11);
+		BallTwoButton = new JoystickButton(mechBox, 9);
+		BallThreeButton = new JoystickButton(mechBox, 7);
+		
+
+		
 		
 	}
 	
