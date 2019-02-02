@@ -7,7 +7,10 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
+import org.usfirst.frc.team451.robot.OI;
+
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 public class ElevatorMove extends Command {
   public ElevatorMove() {
@@ -23,6 +26,13 @@ public class ElevatorMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (OI.mechBox.getY() > 0.000) {
+      Elevator.elevatorMotor.set(1);
+      System.out.println("ELevator Up");
+    } else if (OI.mechBox.getY() <0.000) {
+      Elevator.elevatorMotor.set(-1);
+      System.out.println("Elevator Down");
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

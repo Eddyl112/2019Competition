@@ -46,16 +46,10 @@ public class Drive extends Command {
         //     DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStick.getY(),
         //             DemandType.ArbitraryFeedForward, OI.driveStick.getZ());
         // }
-        if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
-            DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0);
-            System.out.println("Left: " + ControlMode.PercentOutput);
-        } else {
-            DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, OI.driveStickLeft.getY());
-        }
 
         if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
             DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0);
-            System.out.println("Right: " + ControlMode.PercentOutput);
+            System.out.println(ControlMode.PercentOutput);
         } else {
             DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStickRight.getY());
         }
