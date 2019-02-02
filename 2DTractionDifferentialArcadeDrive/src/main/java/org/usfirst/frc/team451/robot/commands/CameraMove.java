@@ -22,25 +22,25 @@ public class CameraMove extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    CameraServo.cameraPitch.set(0.5);
-    CameraServo.cameraYaw.set(0.5);
+    CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
+    CameraServo.cameraYaw.set(CameraServo.yawSpeed);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.driveStick.getPOV() == 0) {  
-    System.out.println("up");
-      CameraServo.cameraPitch.set(1.0);
+    if (OI.driveStick.getPOV() == 0) {
+      CameraServo.pitchSpeed++;  
+      CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
     } else if(OI.driveStick.getPOV() == 180){
-      System.out.println("up");
-      CameraServo.cameraPitch.set(0);
+      CameraServo.pitchSpeed--;
+      CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
     } else if(OI.driveStick.getPOV() == 90 ) {
-      System.out.println("up");
-      CameraServo.cameraYaw.set(1.0);
+      CameraServo.yawSpeed++;
+      CameraServo.cameraYaw.set(CameraServo.yawSpeed);
     } else if(OI.driveStick.getPOV() == 270) {
-      System.out.println("up");
-      CameraServo.cameraYaw.set(0);
+      CameraServo.yawSpeed--;
+      CameraServo.cameraYaw.set(CameraServo.yawSpeed);
     } //Change around, 0 is full left and 1 is full right
   }
 
