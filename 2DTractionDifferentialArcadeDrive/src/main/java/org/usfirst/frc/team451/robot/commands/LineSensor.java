@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LineSensor extends Command {
+
+  public static String Stage = "UN-ACTIVATED";
+
   public LineSensor() {
     /* Use requires() here to declare subsystem dependencies; in this case,
     we need the Sensor subsystem*/
