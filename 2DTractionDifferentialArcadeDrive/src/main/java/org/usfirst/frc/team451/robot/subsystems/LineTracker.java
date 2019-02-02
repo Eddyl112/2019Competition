@@ -23,7 +23,7 @@ public class LineTracker extends Subsystem {
   bot, and leftLineSensor is the sensor toward the left of the bot. */
 
   //VARIABLES FOR INDIVIDUAL SENSORS
-  //sensors
+  //sensors (leftLineSensor,centerLineSensor,rightLineSensor)
   public static DigitalInput[] Sensors = {new DigitalInput(0),new DigitalInput(1),new DigitalInput(2)};
 
   //labels for sensors (identification purposes only)
