@@ -41,7 +41,7 @@ public class CameraMove extends Command {
     } else if(OI.driveStickLeft.getPOV() == 270) {
       CameraServo.yawSpeed--;
       CameraServo.cameraYaw.set(CameraServo.yawSpeed);
-      
+
     } //Change around, 0 is full left and 1 is full right
   }
 
