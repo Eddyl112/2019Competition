@@ -86,13 +86,19 @@ public class LineTracker extends Subsystem {
     updateSensorFieldPositions(Robot.DriveTrain.rotation);
 
     //point 1, x-value
-    LinePoints[0][0] = 0;
+    LinePoints[0][0] = -fieldPos[ActiveSensorID][0];
 
     //point 1, y-value
-    LinePoints[0][0] = 0;
+    LinePoints[0][1] = -fieldPos[ActiveSensorID][1];
 
     //point 2, x-value
-    LinePoints[1][0] = -deltaPosition[0]-fieldPos[ActiveSensorID][0];
+    LinePoints[1][0] = deltaPosition[0];
+
+    //point 2, y-value
+    LinePoints[1][1] = deltaPosition[1];
+
+    //set the necessary rotation of the robot
+    idealRotation = Math.atan2(LinePoints[1][1]-LinePoints[0][1],LinePoints[1][0]-LinePoints[0][0]);
   }
 
   @Override
