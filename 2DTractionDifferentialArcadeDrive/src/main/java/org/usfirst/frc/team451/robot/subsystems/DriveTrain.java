@@ -5,10 +5,7 @@ package org.usfirst.frc.team451.robot.subsystems;
 
 import org.usfirst.frc.team451.robot.commands.Drive;
 
-import com.ctre.phoenix.*;
 import com.ctre.phoenix.motorcontrol.can.*;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -50,8 +47,8 @@ public class DriveTrain extends Subsystem {
     		motor.config_kD(0, dGain, 0);
             motor.config_kF(0, fGain, 0);
             
+        }
     }
- }
     
 	@Override
 	protected void initDefaultCommand() {

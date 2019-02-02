@@ -8,7 +8,6 @@
 package org.usfirst.frc.team451.robot.subsystems;
 
 import org.usfirst.frc.team451.robot.Robot;
-import org.usfirst.frc.team451.robot.commands.AutoAlign;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -30,13 +29,13 @@ public class LineTracker extends Subsystem {
   public static String[] SensorLabels = {"Left","Center","Right"};
 
   //boolean for whether or not the sensor has been tripped
-  public static boolean[] tripped = new boolean[2];
+  public static boolean[] tripped = new boolean[3];
 
   //sensor position on bot (position on the intitial position of the bot)(robot facing forward)(0=x, 1=y)
-  public static final float[][] botPos = new float[2][1];
+  public static final float[][] botPos = new float[3][2];
 
   //location of the sensor relative to the user (if the user was standing on the robot, given the robots current rotation relative to the field)(0=x,1=y)
-  public static float[][] fieldPos = new float[2][1];
+  public static float[][] fieldPos = new float[3][2];
 
   //VARIABLES FOR THE ENTIRE TRACKER
   //location in array for Sensor currently over the line
@@ -49,7 +48,7 @@ public class LineTracker extends Subsystem {
   public static float[] deltaPosition = new float[2];
 
   //variable storing the calculated points in space that lie on the line
-  public static float[][] LinePoints = new float[1][1];
+  public static float[][] LinePoints = new float[2][2];
 
   //the angle of the line relative to the robot (set in )
   public static double idealRotation = 0;
@@ -72,7 +71,7 @@ public class LineTracker extends Subsystem {
   //trips sensors if they are active
   public static void tripActiveSensors(){
     for(int i=0;i<Sensors.length;i++){
-      if(Sensors[i].get()) {
+      if(!Sensors[i].get()) {
         //only run the first time this is tripped
         if(tripped[i] == false){
           //increase the recorded number of tripped sensors
@@ -116,6 +115,6 @@ public class LineTracker extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new AutoAlign());
+    //setDefaultCommand(new AutoAlign());
   }
 }
