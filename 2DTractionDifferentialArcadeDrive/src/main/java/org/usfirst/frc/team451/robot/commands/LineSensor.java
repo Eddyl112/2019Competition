@@ -8,15 +8,12 @@
 package org.usfirst.frc.team451.robot.commands;
 
 import org.usfirst.frc.team451.robot.Robot;
-import org.usfirst.frc.team451.robot.subsystems.LineTracker;
+import org.usfirst.frc.team451.robot.subsystems.Sensor;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LineSensor extends Command {
-
-  public static String Stage = "UN-ACTIVATED";
-
   public LineSensor() {
     /* Use requires() here to declare subsystem dependencies; in this case,
     we need the Sensor subsystem*/
@@ -33,8 +30,8 @@ public class LineSensor extends Command {
   protected void execute() {
     /* Outputs the current status of the line sensors on SmartDashboard. Green = white detected,
     brown = white not detected */
-    for(int i = 0; i<LineTracker.Sensors.length; i++) {
-      SmartDashboard.putBoolean(LineTracker.SensorLabels[i]+ " Line Sensor", LineTracker.Sensors[i].get());
+    for(int i = 0; i<Sensor.Sensors.length; i++) {
+      SmartDashboard.putBoolean(Sensor.SensorLabels[i]+ " Line Sensor", Sensor.Sensors[i].get());
     }
 
     

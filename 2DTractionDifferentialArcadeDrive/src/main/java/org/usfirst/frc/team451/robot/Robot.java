@@ -21,7 +21,7 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
-import org.usfirst.frc.team451.robot.subsystems.LineTracker;
+import org.usfirst.frc.team451.robot.subsystems.Sensor;
 
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
@@ -41,7 +41,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Robot extends TimedRobot {
 	public static DriveTrain DriveTrain = new DriveTrain();
 	public static Claw Claw = new Claw();
-	public static LineTracker Sensor = new LineTracker();
+	public static Sensor Sensor = new Sensor();
 	public static CameraServo CameraServo = new CameraServo();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
@@ -60,8 +60,6 @@ public class Robot extends TimedRobot {
 		gyro = new ADXRS450_Gyro();
 		oi = new OI();
 		OI.init();
-		DriveTrain.frontLeftMotor.configFactoryDefault();
-
 		
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -69,18 +67,18 @@ public class Robot extends TimedRobot {
 		new Thread(() -> {
 			UsbCamera USBcamera = CameraServer.getInstance().startAutomaticCapture();
 			USBcamera.setResolution(640, 480);
-			//AxisCamera axisCamera = CameraServer.getInstance().addAxisCamera("axis-camera.local");
+			AxisCamera axisCamera = CameraServer.getInstance().addAxisCamera("axis-camera.local");
 			// Set the resolution
-			//axisCamera.setResolution(640, 480);
-			CvSink cvSink = CameraServer.getInstance().getVideo();
-			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640,
-			480);
+			axisCamera.setResolution(640, 480);
+			// CvSink cvSink = CameraServer.getInstance().getVideo();
+			// CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640,
+			// 480);
 			Mat source = new Mat();
 			Mat output = new Mat();
 			while(true) {
-			cvSink.grabFrame(source);
+			//cvSink.grabFrame(source);
 			Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-			outputStream.putFrame(output);
+			//outputStream.putFrame(output);
 			}
 			}).start();
 		// m_visionThread = new Thread(() -> {
