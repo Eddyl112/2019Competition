@@ -26,25 +26,31 @@ import edu.wpi.first.wpilibj.Solenoid;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+import edu.wpi.first.wpilibj.XboxController;
 public class OI {
 	
-	public static Joystick driveStick;
-	public static Joystick mechStick;
+	public static Joystick driveStickLeft;
+	public static Joystick driveStickRight;
+	public static Joystick mechBox;
+
+
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button closeClawButton;
 	public static DigitalInput clawSwitch;
+	
 	
 	public static boolean clawActive = false;
 	
 	
 
 	public static void init() {
-		driveStick = new Joystick(0); 
-		mechStick = new Joystick(1);
-		autoAlignOverrideButton = new JoystickButton(driveStick, 2);
-		openClawButton = new JoystickButton(mechStick, 3);
-		closeClawButton = new JoystickButton(mechStick, 5);
+		driveStickLeft = new Joystick(0); 
+		driveStickRight = new Joystick(1);
+		openClawButton = new JoystickButton(mechBox, 5);
+		autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
+		closeClawButton = new JoystickButton(mechBox, 6);
+		//closeClawButton = new JoystickButton(mechStick, 5);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
 		
