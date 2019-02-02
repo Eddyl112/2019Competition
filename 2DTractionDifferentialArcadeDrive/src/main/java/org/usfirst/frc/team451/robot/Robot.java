@@ -22,6 +22,7 @@ import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
 import org.usfirst.frc.team451.robot.subsystems.LineTracker;
+import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
@@ -43,6 +44,7 @@ public class Robot extends TimedRobot {
 	public static Claw Claw = new Claw();
 	public static LineTracker LineTracker = new LineTracker();
 	public static CameraServo CameraServo = new CameraServo();
+	public static Elevator Elevator = new Elevator();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
 	Thread m_visionThread;

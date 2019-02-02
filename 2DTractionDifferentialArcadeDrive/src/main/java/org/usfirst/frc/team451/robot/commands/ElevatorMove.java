@@ -7,15 +7,20 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.sun.java.swing.plaf.windows.TMSchema.Control;
+
 import org.usfirst.frc.team451.robot.OI;
+import org.usfirst.frc.team451.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 public class ElevatorMove extends Command {
-  public ElevatorMove() {
+  private static final String Elevator = null;
+
+public ElevatorMove() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.Elevator);
   }
 
   // Called just before this Command runs the first time
@@ -27,11 +32,11 @@ public class ElevatorMove extends Command {
   @Override
   protected void execute() {
     if (OI.mechBox.getY() > 0.000) {
-      Elevator.elevatorMotor.set(1);
-      System.out.println("ELevator Up");
-    } else if (OI.mechBox.getY() <0.000) {
-      Elevator.elevatorMotor.set(-1);
-      System.out.println("Elevator Down");
+     Robot.Elevator.elevatorMotor.set(-1);
+     System.out.println("Elevator UP");
+    } else if (OI.mechBox.getY() < 0.000) {
+      Robot.Elevator.elevatorMotor.set(1);
+      System.out.println("Elevator DOWN");
     }
   }
 
