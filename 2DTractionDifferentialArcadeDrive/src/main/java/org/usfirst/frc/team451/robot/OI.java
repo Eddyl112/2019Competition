@@ -29,9 +29,9 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class OI {
 	
-	public static Joystick driveStick;
-	public static Joystick mechStick;
-	public static XboxController XboxController;
+	public static Joystick driveStickLeft;
+	public static Joystick driveStickRight;
+	public static XboxController mechBox;
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button closeClawButton;
@@ -50,22 +50,22 @@ public class OI {
 	
 
 	public static void init() {
-		driveStick = new Joystick(0); 
-		mechStick = new Joystick(1);
-		autoAlignOverrideButton = new JoystickButton(driveStick, 2);
-		openClawButton = new JoystickButton(mechStick, 3);
-		closeClawButton = new JoystickButton(mechStick, 5);
+		driveStickLeft = new Joystick(0); 
+		driveStickRight = new Joystick(1);
+		mechBox = new XboxController(2);
+		autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
+		openClawButton = new JoystickButton(mechBox, 3);
+		closeClawButton = new JoystickButton(mechBox, 5);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
-		XboxController = new XboxController(2);
 		
 		//asign hatch and ball buttons 
-		HatchOneButton = new JoystickButton(mechStick, 12);
-		HatchTwoButton = new JoystickButton(mechStick, 10);
-		HatchThreeButton = new JoystickButton(mechStick,8);
-		BallOneButton = new JoystickButton(mechStick, 11);
-		BallTwoButton = new JoystickButton(mechStick, 9);
-		BallThreeButton = new JoystickButton(mechStick, 7);
+		HatchOneButton = new JoystickButton(mechBox, 12);
+		HatchTwoButton = new JoystickButton(mechBox, 10);
+		HatchThreeButton = new JoystickButton(mechBox,8);
+		BallOneButton = new JoystickButton(mechBox, 11);
+		BallTwoButton = new JoystickButton(mechBox, 9);
+		BallThreeButton = new JoystickButton(mechBox, 7);
 		
 
 		

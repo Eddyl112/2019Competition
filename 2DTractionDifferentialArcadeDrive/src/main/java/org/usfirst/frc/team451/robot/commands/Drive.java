@@ -43,6 +43,7 @@ public class Drive extends Command {
 
         if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
             DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0);
+            System.out.println(ControlMode.PercentOutput);
         } else {
             DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStickRight.getY());
         }
