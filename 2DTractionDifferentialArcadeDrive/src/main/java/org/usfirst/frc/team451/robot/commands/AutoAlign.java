@@ -19,7 +19,7 @@ public class AutoAlign extends Command {
   public AutoAlign() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.DriveTrain);
-    requires(Robot.LineTracker);
+    requires(Robot.Sensor);
   }
 
   // Called just before this Command runs the first time
