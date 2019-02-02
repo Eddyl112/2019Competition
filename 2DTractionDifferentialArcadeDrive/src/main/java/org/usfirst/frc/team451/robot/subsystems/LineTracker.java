@@ -8,13 +8,13 @@
 package org.usfirst.frc.team451.robot.subsystems;
 
 import org.usfirst.frc.team451.robot.Robot;
-import org.usfirst.frc.team451.robot.commands.LineSensor;
+import org.usfirst.frc.team451.robot.commands.AutoAlign;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Add your docs here.
+ * INFORM ALEX BEFORE MAKING ANY CHANGES TO THIS DOCUMENT
  */
 public class LineTracker extends Subsystem {
   /* This class holds all the Line Sensors. They use the DigitalInputs because they are
@@ -52,7 +52,7 @@ public class LineTracker extends Subsystem {
   public static float[][] LinePoints = new float[1][1];
 
   //the angle of the line relative to the robot (set in )
-  public static double idealRotation;
+  public static double idealRotation = 0;
 
   //METHODS
   //updates the positions of the sensor, factoring in the "rotation of the robot" (theta)
@@ -73,16 +73,28 @@ public class LineTracker extends Subsystem {
   public static void tripActiveSensors(){
     for(int i=0;i<Sensors.length;i++){
       if(Sensors[i].get()) {
+        //only run the first time this is tripped
+        if(tripped[i] == false){
+          //increase the recorded number of tripped sensors
+          trippedCount++;
+          //set the initial delta value when the first sensor is tripped
+          if(trippedCount == 1) setInitDelta(i);
+          //set the required rotation of the robot when the second sensor is tripped
+          if(trippedCount>2 && idealRotation != 0) setLinePositionsAndRotation();
+          //record that this has launched (for debugging purposes)
+          System.out.println(SensorLabels[i]+" Sensor tripped ("+trippedCount+" total sensors tripped) -- current roation: "+Math.round(Robot.gyro.getAngle()));
+        }
+        //record whether or not this specific sensor is tripped
         tripped[i] = true;
+        //set the "active sensor" to the current sensor
         ActiveSensorID = i;
-        trippedCount++;
       }
     }
   }
 
   //set the calculated points of the line in space (call this after the second sensor is tripped)
   public static void setLinePositionsAndRotation(){
-    updateSensorFieldPositions(Robot.DriveTrain.rotation);
+    updateSensorFieldPositions(Robot.gyro.getAngle());
 
     //point 1, x-value
     LinePoints[0][0] = 0;
@@ -91,13 +103,19 @@ public class LineTracker extends Subsystem {
     LinePoints[0][0] = 0;
 
     //point 2, x-value
-    LinePoints[1][0] = -deltaPosition[0]-fieldPos[ActiveSensorID][0];
+    LinePoints[1][0] = deltaPosition[0];
+
+    //point 2, y-value
+    LinePoints[1][1] = deltaPosition[1];
+
+    //set the necessary rotation of the robot
+    idealRotation = Math.atan2(LinePoints[1][1]-LinePoints[0][1],LinePoints[1][0]-LinePoints[0][0]);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new LineSensor());
+    setDefaultCommand(new AutoAlign());
   }
 }

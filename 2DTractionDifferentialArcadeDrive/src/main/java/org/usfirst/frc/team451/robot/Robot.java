@@ -41,8 +41,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Robot extends TimedRobot {
 	public static DriveTrain DriveTrain = new DriveTrain();
 	public static Claw Claw = new Claw();
-
-	public static LineTracker Sensor = new LineTracker();
+	public static LineTracker LineTracker = new LineTracker();
 	public static CameraServo CameraServo = new CameraServo();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
