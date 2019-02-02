@@ -28,7 +28,6 @@ public class RobotMap {
 	public static int frontRightMotor = 1;
 	public static int backLeftMotor = 2;
 	public static int backRightMotor = 3;
-	public static int elevatorMotor = 4;
 	public static PigeonIMU gyro = new PigeonIMU(4);
 
 	// If you are using multiple modules, make sure to define both the port

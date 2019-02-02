@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
   // Put methods for controlling this subsystem
-  // heree. Call these from Commands.
+  // here. Call these from Commands.
 
   @Override
   public void initDefaultCommand() {

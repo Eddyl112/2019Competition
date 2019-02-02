@@ -23,7 +23,7 @@ public class LineTracker extends Subsystem {
   bot, and leftLineSensor is the sensor toward the left of the bot. */
 
   //VARIABLES FOR INDIVIDUAL SENSORS
-  //sensors (leftLineSensor,centerLineSensor,rightLineSensor)
+  //sensors
   public static DigitalInput[] Sensors = {new DigitalInput(0),new DigitalInput(1),new DigitalInput(2)};
 
   //labels for sensors (identification purposes only)
@@ -51,11 +51,11 @@ public class LineTracker extends Subsystem {
   //variable storing the calculated points in space that lie on the line
   public static float[][] LinePoints = new float[1][1];
 
-  //the angle of the line relative to the robot (set in setLinePositionsAndRotation)
+  //the angle of the line relative to the robot (set in )
   public static double idealRotation;
 
   //METHODS
-  //updates the positions of the sensor, factoring in the rotation of the robot
+  //updates the positions of the sensor, factoring in the "rotation of the robot" (theta)
   public static void updateSensorFieldPositions(double botRotation){
     for(int i=0;i<Sensors.length;i++){
       fieldPos[i][0] = (float)((double) botPos[i][0]*Math.cos(botRotation)-(double) botPos[i][1]*Math.sin(botRotation));
@@ -85,19 +85,13 @@ public class LineTracker extends Subsystem {
     updateSensorFieldPositions(Robot.DriveTrain.rotation);
 
     //point 1, x-value
-    LinePoints[0][0] = -fieldPos[ActiveSensorID][0];
+    LinePoints[0][0] = 0;
 
     //point 1, y-value
-    LinePoints[0][1] = -fieldPos[ActiveSensorID][1];
+    LinePoints[0][0] = 0;
 
     //point 2, x-value
-    LinePoints[1][0] = deltaPosition[0];
-
-    //point 2, y-value
-    LinePoints[1][1] = deltaPosition[1];
-
-    //set the necessary rotation of the robot
-    idealRotation = Math.atan2(LinePoints[1][1]-LinePoints[0][1],LinePoints[1][0]-LinePoints[0][0]);
+    LinePoints[1][0] = -deltaPosition[0]-fieldPos[ActiveSensorID][0];
   }
 
   @Override
