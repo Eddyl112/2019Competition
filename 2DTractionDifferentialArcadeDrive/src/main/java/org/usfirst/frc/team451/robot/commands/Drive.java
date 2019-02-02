@@ -35,18 +35,25 @@ public class Drive extends Command {
     protected void execute() {
         // DriveTrain.diffDrive.arcadeDrive(OI.driveStick.getY(), OI.driveStick.getZ());
         //Keeps the robot from driving when the stick in in the deadzone
-        if (OI.driveStick.getY() < deadzone && OI.driveStick.getY() > -deadzone) {
-            DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0, DemandType.ArbitraryFeedForward,
-                    OI.driveStick.getZ());
-            DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0, DemandType.ArbitraryFeedForward,
-                    OI.driveStick.getZ());
+        // if (OI.driveStick.getY() < deadzone && OI.driveStick.getY() > -deadzone) {
+        //     DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0, DemandType.ArbitraryFeedForward,
+        //             OI.driveStick.getZ());
+        //     DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0, DemandType.ArbitraryFeedForward,
+        //             OI.driveStick.getZ());
+        // } else {
+        //     DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, -OI.driveStick.getY(),
+        //             DemandType.ArbitraryFeedForward, OI.driveStick.getZ());
+        //     DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStick.getY(),
+        //             DemandType.ArbitraryFeedForward, OI.driveStick.getZ());
+        // }
+        if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
+            DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0);
+            System.out.println(ControlMode.PercentOutput);
         } else {
-            DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, -OI.driveStick.getY(),
-                    DemandType.ArbitraryFeedForward, OI.driveStick.getZ());
-            DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStick.getY(),
-                    DemandType.ArbitraryFeedForward, OI.driveStick.getZ());
+            DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStickRight.getY());
         }
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

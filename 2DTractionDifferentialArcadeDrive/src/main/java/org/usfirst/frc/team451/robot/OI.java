@@ -29,9 +29,9 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class OI {
 	
-	public static Joystick driveStick;
-	public static Joystick mechStick;
-	public static XboxController mechBoxController;
+	public static Joystick driveStickLeft;
+	public static Joystick driveStickRight;
+	public static XboxController mechBox;
 
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
@@ -43,12 +43,12 @@ public class OI {
 	
 
 	public static void init() {
-		driveStick = new Joystick(0); 
-		mechStick = new Joystick(1);
-		mechBoxController = new XboxController(2);
-		autoAlignOverrideButton = new JoystickButton(driveStick, 2);
-		openClawButton = new JoystickButton(mechStick, 3);
-		closeClawButton = new JoystickButton(mechStick, 5);
+		driveStickLeft = new Joystick(0); 
+		driveStickRight = new Joystick(1);
+		mechBox = new XboxController(2);
+		autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
+		openClawButton = new JoystickButton(mechBox, 3);
+		closeClawButton = new JoystickButton(mechBox, 5);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
 		
