@@ -21,7 +21,7 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
-import org.usfirst.frc.team451.robot.subsystems.Sensor;
+import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
@@ -41,7 +41,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Robot extends TimedRobot {
 	public static DriveTrain DriveTrain = new DriveTrain();
 	public static Claw Claw = new Claw();
-	public static Sensor Sensor = new Sensor();
+	public static LineTracker Sensor = new LineTracker();
 	public static CameraServo CameraServo = new CameraServo();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
