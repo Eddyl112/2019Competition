@@ -60,8 +60,6 @@ public class Robot extends TimedRobot {
 		gyro = new ADXRS450_Gyro();
 		oi = new OI();
 		OI.init();
-		DriveTrain.frontLeftMotor.configFactoryDefault();
-
 		
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
