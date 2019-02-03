@@ -37,8 +37,9 @@ public class OI {
 	public static Button openClawButton;
 	public static Button closeClawButton;
 	public static DigitalInput clawSwitch;
+	public static boolean clawActive;
 	
-	public static boolean clawActive = false;
+//	public static boolean clawActive = false;
 	
 	
 
@@ -46,9 +47,11 @@ public class OI {
 		driveStickLeft = new Joystick(0); 
 		driveStickRight = new Joystick(1);
 		mechBox = new XboxController(2);
-		autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
+		
+		//autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
 		openClawButton = new JoystickButton(mechBox, 3);
 		closeClawButton = new JoystickButton(mechBox, 5);
+		mechBox.getRawAxis(1);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
 		

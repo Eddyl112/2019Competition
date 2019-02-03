@@ -36,6 +36,14 @@ public class AutoAlign extends Command {
   protected void execute() {
     LineTracker.updateSensorFieldPositions(Robot.gyro.getAngle());
     LineTracker.tripActiveSensors();
+
+    if(LineTracker.trippedCount == 1){
+      //change delta
+    }
+
+    if(LineTracker.trippedCount > 1){
+      //run the algorithm for moving forward & turning
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
