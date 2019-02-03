@@ -39,7 +39,7 @@ public class CameraMove extends Command {
         CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
       } 
     } else {
-      SmartDashboard.putBoolean("Camera Movement Overload", true);
+      SmartDashboard.putBoolean("Camera Movement Overload Pitch", true);
     }
   
     
@@ -50,9 +50,11 @@ public class CameraMove extends Command {
     } else if(OI.driveStickLeft.getPOV() == 270) {
       CameraServo.yawSpeed = CameraServo.yawSpeed - 0.01;
       CameraServo.cameraYaw.set(CameraServo.yawSpeed);
-    } 
+    } else {
+      SmartDashboard.putBoolean("Camera Movement Overload Yaw", true);
+    }
+  
   }
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {

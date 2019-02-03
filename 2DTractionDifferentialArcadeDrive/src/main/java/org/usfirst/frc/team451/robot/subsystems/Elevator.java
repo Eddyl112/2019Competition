@@ -4,14 +4,10 @@
 package org.usfirst.frc.team451.robot.subsystems;
 
 import org.usfirst.frc.team451.robot.commands.Drive;
+import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
-import com.ctre.phoenix.*;
 import com.ctre.phoenix.motorcontrol.can.*;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.*;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -31,7 +27,6 @@ public class Elevator extends Subsystem {
     
     
     public Elevator() {
-        //WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor};
         WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {elevatorMotor};
     	for(WPI_TalonSRX motor : motorArray) {
     		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
@@ -47,7 +42,7 @@ public class Elevator extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		
-		setDefaultCommand(new Drive());
+		setDefaultCommand(new ElevatorMove());
 		
 	}
 }
