@@ -54,6 +54,9 @@ public class LineTracker extends Subsystem {
   //the angle of the line relative to the robot (set in )
   public static double idealRotation = 0;
 
+  //the distance the encoder has traveled between startup and the last turn
+  public static double encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
+
   //METHODS
   //updates the positions of the sensor, factoring in the "rotation of the robot" (theta)
   public static void updateSensorFieldPositions(double botRotation){
@@ -67,6 +70,13 @@ public class LineTracker extends Subsystem {
   public static void setInitDelta(int sensorID){
     deltaPosition[0] = -fieldPos[sensorID][0];
     deltaPosition[1] = -fieldPos[sensorID][1];
+  }
+
+  //update the delta position (untested)
+  public static void updateDelta(){
+    deltaPosition[0]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.cos(Robot.gyro.getAngle()));
+    deltaPosition[1]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.sin(Robot.gyro.getAngle()));
+    encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
   }
 
   //trips sensors if they are active
@@ -89,6 +99,14 @@ public class LineTracker extends Subsystem {
         //set the "active sensor" to the current sensor
         ActiveSensorID = i;
       }
+    }
+  }
+
+  //resets tripped sensors (delta is reset during "setInitDelta")
+  public static void resetSensorsAndDelta(){
+    trippedCount = 0;
+    for(int i=0;i<Sensors.length;i++){
+      tripped[i] = false;
     }
   }
 

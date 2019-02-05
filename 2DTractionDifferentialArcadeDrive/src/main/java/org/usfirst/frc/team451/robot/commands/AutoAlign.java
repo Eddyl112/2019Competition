@@ -11,6 +11,7 @@ import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*
  * INFORM ALEX BEFORE MAKING ANY CHANGES TO THIS DOCUMENT
@@ -38,11 +39,22 @@ public class AutoAlign extends Command {
     LineTracker.tripActiveSensors();
 
     if(LineTracker.trippedCount == 1){
-      //change delta
+      LineTracker.updateDelta();
+      SmartDashboard.setDefaultNumber("Robot Distance", Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition());
     }
 
     if(LineTracker.trippedCount > 1){
-      //run the algorithm for moving forward & turning
+      double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle())%360;
+      if(deltaAngle > Math.PI/18 && LineTracker.idealRotation < Math.PI){
+        System.out.print("Rotating "+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians");
+        //rotate clockwise
+      } else if((LineTracker.idealRotation-Robot.gyro.getAngle())%360  < 35*Math.PI/18 && LineTracker.idealRotation > Math.PI) {
+        System.out.print("Rotating "+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians");
+        //rotate counterclockwise
+      } else {
+        System.out.print(""+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians was an insufficient rotation.");
+        //don't rotate
+      }
     }
   }
 
