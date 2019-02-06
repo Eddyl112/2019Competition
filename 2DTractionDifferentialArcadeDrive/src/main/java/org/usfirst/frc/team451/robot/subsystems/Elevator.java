@@ -21,7 +21,7 @@ public class Elevator extends Subsystem {
 	public double dGain = 1.0;
 	public double fGain = 1.0;
 	
-	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(3);
+	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(5);
     
 
     

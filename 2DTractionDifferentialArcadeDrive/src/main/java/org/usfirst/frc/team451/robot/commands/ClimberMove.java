@@ -7,20 +7,14 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.sun.java.swing.plaf.windows.TMSchema.Control;
-
 import org.usfirst.frc.team451.robot.OI;
-import org.usfirst.frc.team451.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ElevatorMove extends Command {
-  private static final String Elevator = null;
-
-public ElevatorMove() {
+public class ClimberMove extends Command {
+  public ClimberMove() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.Elevator);
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
@@ -31,13 +25,9 @@ public ElevatorMove() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.mechBox.getY() > 0.000) {
-     Robot.Elevator.elevatorMotor.set(-1);
-     //System.out.println("Elevator UP");
-    } else if (OI.mechBox.getY() < 0.000) {
-      Robot.Elevator.elevatorMotor.set(1);
-      //System.out.println("Elevator DOWN");
-    }
+    //if (OI.mechBox.getTriggerAxis()) {
+
+    //}
   }
 
   // Make this return true when this Command no longer needs to run execute()

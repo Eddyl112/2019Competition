@@ -22,7 +22,7 @@ public class AutoAlign extends Command {
 
   public AutoAlign() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.DriveTrain);
+    //requires(Robot.DriveTrain);
     requires(Robot.LineTracker);
   }
 

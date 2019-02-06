@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team451.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,6 +17,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  public static WPI_TalonSRX climber0 = new WPI_TalonSRX(6);
+  public static WPI_TalonSRX climber1 = new WPI_TalonSRX(7);
+  
+  public Climber() {
+    
+  }
 
   @Override
   public void initDefaultCommand() {

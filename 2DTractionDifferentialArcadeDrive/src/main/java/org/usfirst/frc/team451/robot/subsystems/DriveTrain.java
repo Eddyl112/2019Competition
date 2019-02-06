@@ -16,11 +16,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 
 	// Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	public double pGain = 1.0;
-	public double iGain = 1.0;
-	public double dGain = 1.0;
-	public double fGain = 1.0;
+    // // here. Call these from Commands.
+	// public double pGain = 1.0;
+	// public double iGain = 1.0;
+	// public double dGain = 1.0;
+	// public double fGain = 1.0;
 	
     public static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(1);
     //public static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(3);
@@ -36,19 +36,19 @@ public class DriveTrain extends Subsystem {
     public static double rotation = 0;
     
     
-    public DriveTrain() {
-        //WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor};
-        WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, frontRightMotor};
-    	for(WPI_TalonSRX motor : motorArray) {
-    		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-    		motor.selectProfileSlot(0, 0);
-    		motor.config_kP(0, pGain, 0);
-    		motor.config_kI(0, iGain, 0);
-    		motor.config_kD(0, dGain, 0);
-            motor.config_kF(0, fGain, 0);
+    // public DriveTrain() {
+    //     //WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor};
+    //     WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, frontRightMotor};
+    // 	for(WPI_TalonSRX motor : motorArray) {
+    // 		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+    // 		motor.selectProfileSlot(0, 0);
+    // 		motor.config_kP(0, pGain, 0);
+    // 		motor.config_kI(0, iGain, 0);
+    // 		motor.config_kD(0, dGain, 0);
+    //         motor.config_kF(0, fGain, 0);
             
-        }
-    }
+    //     }
+    // }
     
 	@Override
 	protected void initDefaultCommand() {

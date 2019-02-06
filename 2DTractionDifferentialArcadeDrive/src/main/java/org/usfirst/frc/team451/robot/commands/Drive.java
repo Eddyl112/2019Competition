@@ -31,17 +31,15 @@ public class Drive extends Command {
     protected void execute() {
 
         if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
-            DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0);
+           DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0);
         } else {
             DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, -OI.driveStickLeft.getY());
-            System.out.println(ControlMode.PercentOutput);
         }
 
         if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
-            DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0);
+           DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0);
         } else {
             DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStickRight.getY());
-            System.out.println(ControlMode.PercentOutput);
         }
     }
     

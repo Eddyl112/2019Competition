@@ -14,11 +14,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CameraMove extends Command {
+
+  
+  public double speed = 0.05;
+
   public CameraMove() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.CameraServo);
   }
+  
 
   // Called just before this Command runs the first time
   @Override
@@ -30,12 +35,13 @@ public class CameraMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
     if(CameraServo.pitchSpeed < 1 && CameraServo.pitchSpeed > -1) {
       if (OI.driveStickLeft.getPOV() == 0) {
-        CameraServo.pitchSpeed = CameraServo.pitchSpeed + 0.01;  
+        CameraServo.pitchSpeed = CameraServo.pitchSpeed + speed;  
         CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
       } else if(OI.driveStickLeft.getPOV() == 180){
-        CameraServo.pitchSpeed = CameraServo.pitchSpeed - 0.01;
+        CameraServo.pitchSpeed = CameraServo.pitchSpeed - speed;
         CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
       } 
     } else {
@@ -45,10 +51,10 @@ public class CameraMove extends Command {
     
     
     if(OI.driveStickLeft.getPOV() == 90 ) {
-      CameraServo.yawSpeed = CameraServo.yawSpeed + 0.01;
+      CameraServo.yawSpeed = CameraServo.yawSpeed + speed;
       CameraServo.cameraYaw.set(CameraServo.yawSpeed);
     } else if(OI.driveStickLeft.getPOV() == 270) {
-      CameraServo.yawSpeed = CameraServo.yawSpeed - 0.01;
+      CameraServo.yawSpeed = CameraServo.yawSpeed - speed;
       CameraServo.cameraYaw.set(CameraServo.yawSpeed);
     } else {
       SmartDashboard.putBoolean("Camera Movement Overload Yaw", true);
