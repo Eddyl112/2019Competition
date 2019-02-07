@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CameraMove extends Command {
 
-  
   public double speed = 0.05;
 
   public CameraMove() {
@@ -23,7 +22,6 @@ public class CameraMove extends Command {
     // eg. requires(chassis);
     requires(Robot.CameraServo);
   }
-  
 
   // Called just before this Command runs the first time
   @Override
@@ -35,32 +33,40 @@ public class CameraMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    if(CameraServo.pitchSpeed < 1 && CameraServo.pitchSpeed > -1) {
-      if (OI.driveStickLeft.getPOV() == 0) {
-        CameraServo.pitchSpeed = CameraServo.pitchSpeed + speed;  
+    if (OI.driveStickLeft.getPOV() == 0) {
+      CameraServo.pitchSpeed = CameraServo.pitchSpeed + speed;
+      if (CameraServo.pitchSpeed > 1) {
+        CameraServo.pitchSpeed = 1;
+      } else {
         CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
-      } else if(OI.driveStickLeft.getPOV() == 180){
-        CameraServo.pitchSpeed = CameraServo.pitchSpeed - speed;
+      }
+    } else if (OI.driveStickLeft.getPOV() == 180) {
+      CameraServo.pitchSpeed = CameraServo.pitchSpeed - speed;
+      if (CameraServo.pitchSpeed < 0) {
+        CameraServo.pitchSpeed = 0;
+      } else {
         CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
-      } 
-    } else {
-      SmartDashboard.putBoolean("Camera Movement Overload Pitch", true);
+      }
     }
-  
-    
-    
-    if(OI.driveStickLeft.getPOV() == 90 ) {
+
+    if (OI.driveStickLeft.getPOV() == 90) {
       CameraServo.yawSpeed = CameraServo.yawSpeed + speed;
-      CameraServo.cameraYaw.set(CameraServo.yawSpeed);
-    } else if(OI.driveStickLeft.getPOV() == 270) {
+      if (CameraServo.yawSpeed > 1) {
+        CameraServo.yawSpeed = 1;
+      } else {
+        CameraServo.cameraYaw.set(CameraServo.yawSpeed);
+      }
+    } else if (OI.driveStickLeft.getPOV() == 270) {
       CameraServo.yawSpeed = CameraServo.yawSpeed - speed;
-      CameraServo.cameraYaw.set(CameraServo.yawSpeed);
-    } else {
-      SmartDashboard.putBoolean("Camera Movement Overload Yaw", true);
+      if (CameraServo.yawSpeed < 0) {
+        CameraServo.yawSpeed = 0;
+      } else {
+        CameraServo.cameraYaw.set(CameraServo.yawSpeed);
+      }
     }
-  
+
   }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
