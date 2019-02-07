@@ -40,6 +40,7 @@ public class AutoAlign extends Command {
     if(!warned){
       System.err.println("NOTE: You are not printing debug information from LineTracker.java");
       System.out.println("NOTE: You are not printing debug information from LineTracker.java");
+      warned = true;
     } else if(LineTracker.printInfo) {
       //Creates new line, since all debug info is in print commands (to show what all happens within the same iteration)
       System.out.println();
