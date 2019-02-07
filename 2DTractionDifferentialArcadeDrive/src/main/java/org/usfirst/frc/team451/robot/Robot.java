@@ -8,29 +8,27 @@
 
 package org.usfirst.frc.team451.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team451.robot.subsystems.Claw;
+import org.usfirst.frc.team451.robot.commands.ClimberMove;
+import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
-import org.usfirst.frc.team451.robot.subsystems.LineTracker;
+import org.usfirst.frc.team451.robot.subsystems.Claw;
+import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
+import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
-import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -47,8 +45,8 @@ public class Robot extends TimedRobot {
 	public static Elevator Elevator = new Elevator();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
+	public static Climber Climber = new Climber();
 	Thread m_visionThread;
-	
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();

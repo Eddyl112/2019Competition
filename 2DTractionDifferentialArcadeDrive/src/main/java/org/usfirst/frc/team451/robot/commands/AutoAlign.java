@@ -46,13 +46,14 @@ public class AutoAlign extends Command {
     if(LineTracker.trippedCount > 1){
       double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle())%360;
       if(deltaAngle > Math.PI/18 && deltaAngle < Math.PI){
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" radians");
+      //if(true) {
+        System.out.println("Rotating "+Math.round(deltaAngle*100)/100+" radians");
         //rotate clockwise
       } else if(deltaAngle < 35*Math.PI/18 && deltaAngle > Math.PI) {
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" radians");
-        //rotate counterclockwise
+        System.out.println("Rotating "+Math.round(deltaAngle*100)/100+" radians");
+      //   //rotate counterclockwise
       } else {
-        System.out.print(""+Math.round(deltaAngle*100)/100+" radians was an insufficient rotation.");
+        System.out.println(""+Math.round(deltaAngle*100)/100+" radians was an insufficient rotation.");
         //don't rotate
       }
     }
