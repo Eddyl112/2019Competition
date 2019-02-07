@@ -22,6 +22,10 @@ public class LineTracker extends Subsystem {
   is the sensor in the center, rightLineSensor is the sensor toward the right of the
   bot, and leftLineSensor is the sensor toward the left of the bot. */
 
+  //DEBBUGING VARIABLES
+  //Print information about which methods have been called
+  public static boolean printInfo = true;
+
   //VARIABLES FOR INDIVIDUAL SENSORS
   //sensors
   public static DigitalInput[] Sensors = {new DigitalInput(0),new DigitalInput(1),new DigitalInput(2)};
@@ -58,7 +62,7 @@ public class LineTracker extends Subsystem {
   public static double encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
 
   //METHODS
-  //updates the positions of the sensor, factoring in the "rotation of the robot" (theta)
+  /** Updates the positions of the sensor, factoring in the "rotation of the robot" (botRotation). **/
   public static void updateSensorFieldPositions(double botRotation){
     for(int i=0;i<Sensors.length;i++){
       fieldPos[i][0] = (float)((double) botPos[i][0]*Math.cos(botRotation)-(double) botPos[i][1]*Math.sin(botRotation));
@@ -66,20 +70,30 @@ public class LineTracker extends Subsystem {
     }
   }
 
-  //sets the intital position for delta (initial position of the robot center relative to a point on the line)
+  /**
+  * Sets the intital position for delta (initial position of the robot center relative to a point
+  * on the line).
+  **/
   public static void setInitDelta(int sensorID){
     deltaPosition[0] = -fieldPos[sensorID][0];
     deltaPosition[1] = -fieldPos[sensorID][1];
+    if(printInfo) System.out.print("Initial delta set based on position of the "+SensorLabels[sensorID]+" sensor. ");
   }
 
-  //update the delta position (untested)
+  /** UNTESTED: Records the change in robot position with the DeltaPosition variable. **/
   public static void updateDelta(){
     deltaPosition[0]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.cos(Robot.gyro.getAngle()));
     deltaPosition[1]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.sin(Robot.gyro.getAngle()));
     encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
+    if(printInfo) System.out.print("Delta updated. ");
   }
 
-  //trips sensors if they are active
+  /**
+  * Trips any active sensors, records those trips in LineTracker.tripped[], 
+  * sets the initial delta value after the first trip, and calculates ideal
+  * rotation on subsequent trips. Note that the number of recorded trips can
+  * reset with resetSensorsAndDelta().
+  **/
   public static void tripActiveSensors(){
     for(int i=0;i<Sensors.length;i++){
       if(!Sensors[i].get()) {
@@ -87,12 +101,12 @@ public class LineTracker extends Subsystem {
         if(tripped[i] == false){
           //increase the recorded number of tripped sensors
           trippedCount++;
+          //record that this has launched (for debugging purposes)
+          if(printInfo) System.out.print(SensorLabels[i]+" Sensor tripped ("+trippedCount+" total sensors tripped). ");
           //set the initial delta value when the first sensor is tripped
           if(trippedCount == 1) setInitDelta(i);
           //set the required rotation of the robot when the second sensor is tripped
-          if(trippedCount>2 && idealRotation != 0) setLinePositionsAndRotation();
-          //record that this has launched (for debugging purposes)
-          System.out.println(SensorLabels[i]+" Sensor tripped ("+trippedCount+" total sensors tripped) -- current roation: "+Math.round(Robot.gyro.getAngle()));
+          if(trippedCount >= 2) setLinePositionsAndRotation();
         }
         //record whether or not this specific sensor is tripped
         tripped[i] = true;
@@ -102,15 +116,18 @@ public class LineTracker extends Subsystem {
     }
   }
 
-  //resets tripped sensors (delta is reset during "setInitDelta")
+  /** Resets tripped sensors (delta is reset during "setInitDelta") **/
   public static void resetSensorsAndDelta(){
     trippedCount = 0;
     for(int i=0;i<Sensors.length;i++){
       tripped[i] = false;
     }
+
+    //tell the world what you've done
+    System.out.print("Sensors reset! ");
   }
 
-  //set the calculated points of the line in space (call this after the second sensor is tripped)
+  /** Set the calculated points of the line in space (call this after the second sensor is tripped). **/
   public static void setLinePositionsAndRotation(){
     updateSensorFieldPositions(Robot.gyro.getAngle());
 
@@ -128,6 +145,9 @@ public class LineTracker extends Subsystem {
 
     //set the necessary rotation of the robot
     idealRotation = Math.atan2(LinePoints[1][1]-LinePoints[0][1],LinePoints[1][0]-LinePoints[0][0]);
+
+    //spread your knowledge throughout the galaxy (for debugging purposes)
+    System.out.print("Ideal rotation ("+Math.round(idealRotation*100)/100+" radians) calculated! ");
   }
 
   @Override
