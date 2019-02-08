@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 public class DriveTrain extends Subsystem {
+    public static double countsPerRevolution = 1024;//counts per motor revolution
+    public static double gearReduction = 19.8;//motor revolutions per wheel revolutions
+    public static double WheelDiameter = 8;//inches
+    public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction);
 
 	// Put methods for controlling this subsystem
     // // here. Call these from Commands.
