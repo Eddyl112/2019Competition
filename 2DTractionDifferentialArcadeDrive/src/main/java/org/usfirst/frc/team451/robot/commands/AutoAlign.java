@@ -8,6 +8,7 @@
 package org.usfirst.frc.team451.robot.commands;
 
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -38,7 +39,7 @@ public class AutoAlign extends Command {
   protected void execute() {
     //Warn the user when they are not printing debug information, and create a new line for debug info otherwise
     if(!warned){
-      System.err.println("NOTE: You are not printing debug information from LineTracker.java");
+     // System.err.println("NOTE: You are not printing debug information from LineTracker.java");
       System.out.println("NOTE: You are not printing debug information from LineTracker.java");
       warned = true;
     } else if(LineTracker.printInfo) {
@@ -47,7 +48,7 @@ public class AutoAlign extends Command {
     }
 
     //track encoder values on smartdashboard
-    SmartDashboard.setDefaultNumber("Robot Distance", Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition());
+    SmartDashboard.setDefaultNumber("Robot Distance", DriveTrain.frontLeftMotor.getSelectedSensorPosition());
 
     //HOVER OVER ANY OF THE FOLLOWING METHODS TO SEE WHAT THEY DO
     //call these after one sensor has been tripped (must be done first, since it must be done on the loop when the second sensor is tripped)

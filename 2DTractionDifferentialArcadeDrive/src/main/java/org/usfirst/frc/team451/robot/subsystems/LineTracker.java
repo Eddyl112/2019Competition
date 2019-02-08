@@ -13,6 +13,7 @@ import org.usfirst.frc.team451.robot.commands.AutoAlign;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
 /**
  * INFORM ALEX BEFORE MAKING ANY CHANGES TO THIS DOCUMENT
  */
@@ -59,7 +60,7 @@ public class LineTracker extends Subsystem {
   public static double idealRotation = 0;
 
   //the distance the encoder has traveled between startup and the last turn
-  public static double encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
+  public static double encoderDistance = DriveTrain.frontLeftMotor.getSelectedSensorPosition();
 
   //METHODS
   /** Updates the positions of the sensor, factoring in the "rotation of the robot" (botRotation). **/

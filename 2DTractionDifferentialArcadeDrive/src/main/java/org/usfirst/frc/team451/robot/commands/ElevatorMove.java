@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
 //import com.sun.java.swing.plaf.windows.TMSchema.Control;
 
 import org.usfirst.frc.team451.robot.OI;
@@ -16,7 +16,7 @@ import org.usfirst.frc.team451.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevatorMove extends Command {
-  private static final String Elevator = null;
+  //private static final String Elevator = null;
 
 public ElevatorMove() {
     // Use requires() here to declare subsystem dependencies
