@@ -13,6 +13,7 @@ import org.usfirst.frc.team451.robot.commands.AutoAlign;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
 /**
  * INFORM ALEX BEFORE MAKING ANY CHANGES TO THIS DOCUMENT
  */
@@ -59,7 +60,7 @@ public class LineTracker extends Subsystem {
   public static double idealRotation = 0;
 
   //the distance the encoder has traveled between startup and the last turn
-  public static double encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
+  public static double encoderDistance = DriveTrain.frontLeftMotor.getSelectedSensorPosition();
 
   //METHODS
   /** Updates the positions of the sensor, factoring in the "rotation of the robot" (botRotation). **/
@@ -82,9 +83,9 @@ public class LineTracker extends Subsystem {
 
   /** UNTESTED: Records the change in robot position with the DeltaPosition variable. **/
   public static void updateDelta(){
-    deltaPosition[0]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.cos(Robot.gyro.getAngle()));
-    deltaPosition[1]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.sin(Robot.gyro.getAngle()));
-    encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
+    deltaPosition[0]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.cos(Robot.gyro.getAngle()));
+    deltaPosition[1]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.sin(Robot.gyro.getAngle()));
+    encoderDistance = DriveTrain.frontLeftMotor.getSelectedSensorPosition();
     if(printInfo) System.out.print("Delta updated. ");
   }
 
