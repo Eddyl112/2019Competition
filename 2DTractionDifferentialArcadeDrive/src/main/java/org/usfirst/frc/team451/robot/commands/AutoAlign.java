@@ -20,11 +20,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoAlign extends Command {
 
   public static String Mode = "UN-ACTIVATED";
-  public static boolean warned = LineTracker.printInfo;
 
   public AutoAlign() {
     // Use requires() here to declare subsystem dependencies
-    //requires(Robot.DriveTrain);
+    requires(Robot.DriveTrain);
     requires(Robot.LineTracker);
   }
 
@@ -36,45 +35,25 @@ public class AutoAlign extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Warn the user when they are not printing debug information, and create a new line for debug info otherwise
-    if(!warned){
-      System.err.println("NOTE: You are not printing debug information from LineTracker.java");
-      System.out.println("NOTE: You are not printing debug information from LineTracker.java");
-      warned = true;
-    } else if(LineTracker.printInfo) {
-      //Creates new line, since all debug info is in print commands (to show what all happens within the same iteration)
-      System.out.println();
-    }
-
-    //track encoder values on smartdashboard
-    SmartDashboard.setDefaultNumber("Robot Distance", Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition());
-
-    //HOVER OVER ANY OF THE FOLLOWING METHODS TO SEE WHAT THEY DO
-    //call these after one sensor has been tripped (must be done first, since it must be done on the loop when the second sensor is tripped)
-    if(LineTracker.trippedCount == 1) LineTracker.updateDelta();
-
-    //always call these
     LineTracker.updateSensorFieldPositions(Robot.gyro.getAngle());
     LineTracker.tripActiveSensors();
 
-    //call these when more that one sensor has been tripped
-    if(LineTracker.trippedCount > 1){
-      //e.g., the difference in angle between the robot angle and the angle of the line
-      double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle())%360;
+    if(LineTracker.trippedCount == 1){
+      LineTracker.updateDelta();
+      SmartDashboard.setDefaultNumber("Robot Distance", Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition());
+    }
 
-      //e.g., if the angle is between 10 and 180 degrees
-      if(deltaAngle > Math.PI/18 && deltaAngle < Math.PI){
+    if(LineTracker.trippedCount > 1){
+      double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle())%360;
+      if(deltaAngle > Math.PI/18 && LineTracker.idealRotation < Math.PI){
+        System.out.print("Rotating "+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians");
         //rotate clockwise
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" radians. ");
-      //e.g., if the angle is between 180 and 350 degrees
-      } else if(deltaAngle < 35*Math.PI/18 && deltaAngle > Math.PI) {
+      } else if((LineTracker.idealRotation-Robot.gyro.getAngle())%360  < 35*Math.PI/18 && LineTracker.idealRotation > Math.PI) {
+        System.out.print("Rotating "+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians");
         //rotate counterclockwise
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" radians. ");
-      //e.g., if the angle is between 10 and -10 degrees
       } else {
-        //don't rotate, reset tripped sensors
-        LineTracker.resetSensorsAndDelta();
-        System.out.print(""+Math.round(deltaAngle*100)/100+" radians was an insufficient rotation. ");
+        System.out.print(""+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians was an insufficient rotation.");
+        //don't rotate
       }
     }
   }

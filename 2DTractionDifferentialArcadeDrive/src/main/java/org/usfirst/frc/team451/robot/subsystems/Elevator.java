@@ -14,6 +14,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
 
+	public static double countsPerRevolution = 1024; //counts per motor revolution based on specifications for mag encoder
+	public static double gearReduction = 1; //motor revolutions per wheel revolutions
+	public static double WheelDiameter = 1.7284; //inches
+	public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction); //the amount of inches that are covered in one count
+
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public double pGain = 1.0;
@@ -22,9 +27,8 @@ public class Elevator extends Subsystem {
 	public double fGain = 1.0;
 	
 	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(5);
-    
-
-    
+	
+	
     
     public Elevator() {
         WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {elevatorMotor};
@@ -35,7 +39,8 @@ public class Elevator extends Subsystem {
     		motor.config_kI(0, iGain, 0);
     		motor.config_kD(0, dGain, 0);
             motor.config_kF(0, fGain, 0);
-            
+			
+		
     }
  }
     

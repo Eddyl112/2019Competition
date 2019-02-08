@@ -16,6 +16,7 @@ import org.usfirst.frc.team451.robot.commands.OpenClaw;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DigitalSource;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -27,7 +28,6 @@ import edu.wpi.first.wpilibj.XboxController;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 public class OI {
 	
 	public static Joystick driveStickLeft;
@@ -37,7 +37,6 @@ public class OI {
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button closeClawButton;
-	
 	public static DigitalInput clawSwitch;
 	public static boolean clawActive;
 	
@@ -53,14 +52,9 @@ public class OI {
 		//autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
 		openClawButton = new JoystickButton(mechBox, 3);
 		closeClawButton = new JoystickButton(mechBox, 5);
-		
 		mechBox.getRawAxis(1);
-
-
-
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
-		
 	}
 	
 	
