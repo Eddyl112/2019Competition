@@ -82,8 +82,8 @@ public class LineTracker extends Subsystem {
 
   /** UNTESTED: Records the change in robot position with the DeltaPosition variable. **/
   public static void updateDelta(){
-    deltaPosition[0]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.cos(Robot.gyro.getAngle()));
-    deltaPosition[1]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Math.sin(Robot.gyro.getAngle()));
+    deltaPosition[0]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Robot.DriveTrain.inchesPerCount*Math.cos(Robot.gyro.getAngle()));
+    deltaPosition[1]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Robot.DriveTrain.inchesPerCount*Math.sin(Robot.gyro.getAngle()));
     encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
     if(printInfo) System.out.print("Delta updated. ");
   }

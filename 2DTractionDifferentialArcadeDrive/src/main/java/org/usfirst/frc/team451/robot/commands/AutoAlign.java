@@ -58,6 +58,8 @@ public class AutoAlign extends Command {
     }
   }
 
+  //This code block corrects driving
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
