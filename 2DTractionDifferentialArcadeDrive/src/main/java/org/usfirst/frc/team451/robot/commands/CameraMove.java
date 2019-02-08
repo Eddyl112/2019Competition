@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class CameraMove extends Command {
 
-  public double speed = 0.05;
+  public double speed = 0.04;
 
   public CameraMove() {
     // Use requires() here to declare subsystem dependencies
