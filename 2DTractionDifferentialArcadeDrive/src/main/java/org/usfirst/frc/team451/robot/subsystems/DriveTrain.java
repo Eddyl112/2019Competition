@@ -7,10 +7,9 @@ import org.usfirst.frc.team451.robot.commands.Drive;
 
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.*;
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 
 
@@ -29,24 +28,19 @@ public class DriveTrain extends Subsystem {
 	
     public static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(1);
     //public static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(3);
-    private final static SpeedControllerGroup left = new SpeedControllerGroup(frontLeftMotor);
+    static SpeedControllerGroup Left = new SpeedControllerGroup(frontLeftMotor);
     
     public static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(2);
     //public static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(4);
-    private final static SpeedControllerGroup right = new SpeedControllerGroup(frontRightMotor);
+    static SpeedControllerGroup Right = new SpeedControllerGroup(frontRightMotor);
     
-    public static DifferentialDrive diffDrive = new DifferentialDrive(left, right);
-    
+    //public static DifferentialDrive diffDrive = new DifferentialDrive(Left, Right);
+
     //the rotation of the robot with respect to the player
     public static double rotation = 0;
     
-    public void drive(double left, double right) {
-        System.out.print(left + ":" + right);
-        diffDrive.tankDrive(left, right);
-    }
     
     public DriveTrain() {
-        
         //WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor};
         WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, frontRightMotor};
     	for(WPI_TalonSRX motor : motorArray) {
@@ -62,11 +56,10 @@ public class DriveTrain extends Subsystem {
     
 	@Override
 	protected void initDefaultCommand() {
+		
 		setDefaultCommand(new Drive());
 		
-    }
-    
-    
+	}
 }
 
 	

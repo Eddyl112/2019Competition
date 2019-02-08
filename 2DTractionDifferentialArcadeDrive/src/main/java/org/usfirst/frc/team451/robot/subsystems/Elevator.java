@@ -3,11 +3,11 @@
  *******************************************************************************/
 package org.usfirst.frc.team451.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import org.usfirst.frc.team451.robot.commands.Drive;
 import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
+import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -21,7 +21,10 @@ public class Elevator extends Subsystem {
 	public double dGain = 1.0;
 	public double fGain = 1.0;
 	
-	public final WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(5);
+	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(5);
+    
+
+    
     
     public Elevator() {
         WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {elevatorMotor};

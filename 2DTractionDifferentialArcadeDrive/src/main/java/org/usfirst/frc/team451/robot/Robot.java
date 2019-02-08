@@ -10,9 +10,10 @@ package org.usfirst.frc.team451.robot;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team451.robot.commands.ClimberMove;
+import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
-import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 import org.usfirst.frc.team451.robot.subsystems.LineTracker;
@@ -25,6 +26,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -37,14 +39,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
 	public static DriveTrain DriveTrain = new DriveTrain();
-	public static final Claw Claw = new Claw();
-	public static final LineTracker LineTracker = new LineTracker();
-	public static final CameraServo CameraServo = new CameraServo();
-	public static final Elevator Elevator = new Elevator();
+	public static Claw Claw = new Claw();
+	public static LineTracker LineTracker = new LineTracker();
+	public static CameraServo CameraServo = new CameraServo();
+	public static Elevator Elevator = new Elevator();
 	public static OI oi;
 	public static ADXRS450_Gyro gyro;
-	// public static PigeonIMU gyro = new PigeonIMU(4);
-	public static final Climber Climber = new Climber();
+	public static Climber Climber = new Climber();
 	Thread m_visionThread;
 
 	Command m_autonomousCommand;
