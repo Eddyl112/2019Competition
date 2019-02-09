@@ -42,6 +42,16 @@ public class Drive extends Command {
             } else {
                 DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
             }
+            if (Robot.LineTracker.Sensors[0].get()) {
+                //If the left line sensor is tripped, then increase left wheel speed and decrese right wheel speed by a set proportion
+                DriveTrain.wheelSpeed[0] *= 1.08;
+                DriveTrain.wheelSpeed[1] *= 0.95; 
+            } else if  (Robot.LineTracker.Sensors[1].get()){
+                //If the right line sensor is tripped, then decrease the left wheel speed and increase the right wheel speed by a set proportion
+                DriveTrain.wheelSpeed[0] *= 0.95;
+                DriveTrain.wheelSpeed[1] *= 1.08; 
+
+            }
 
         } else if(Robot.LineTracker.distanceToTravel <= 0) {
             //Rotate in place to get the robot lined up with the line
