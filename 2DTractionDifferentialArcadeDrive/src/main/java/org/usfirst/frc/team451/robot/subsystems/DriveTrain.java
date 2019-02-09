@@ -8,12 +8,15 @@ import org.usfirst.frc.team451.robot.commands.Drive;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 //shshs
 public class DriveTrain extends Subsystem {
+    public static Encoder encoderLeft = new Encoder(0,1);
+    public static Encoder encoderRight = new Encoder(2,3);
     public static double countsPerRevolution = 1024;//counts per motor revolution
     public static double gearReduction = 19.8;//motor revolutions per wheel revolutions
     public static double WheelDiameter = 8;//inches
@@ -41,22 +44,23 @@ public class DriveTrain extends Subsystem {
     
     
     public DriveTrain() {
+        encoderLeft.setDistancePerPulse(inchesPerCount);
+        encoderRight.setDistancePerPulse(inchesPerCount);
         //WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor};
-        WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, frontRightMotor};
-    	for(WPI_TalonSRX motor : motorArray) {
-    		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-    		motor.selectProfileSlot(0, 0);
-    		motor.config_kP(0, pGain, 0);
-    		motor.config_kI(0, iGain, 0);
-    		motor.config_kD(0, dGain, 0);
-            motor.config_kF(0, fGain, 0);
+        // WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {frontLeftMotor, frontRightMotor};
+    	// for(WPI_TalonSRX motor : motorArray) {
+    	// 	motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+    	// 	motor.selectProfileSlot(0, 0);
+    	// 	motor.config_kP(0, pGain, 0);
+    	// 	motor.config_kI(0, iGain, 0);
+    	// 	motor.config_kD(0, dGain, 0);
+        //     motor.config_kF(0, fGain, 0);
             
-        }
+        // }
     }
     
 	@Override
 	protected void initDefaultCommand() {
-		
 		setDefaultCommand(new Drive());
 		
 	}
