@@ -27,16 +27,16 @@ public ElevatorMove() {
   @Override
   protected void initialize() {
   }
-
+ 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if (OI.mechBox.getY() > 0.000) {
      Robot.Elevator.elevatorMotor.set(-1);
-     //System.out.println("Elevator UP");
+     System.out.println("Elevator UP");
     } else if (OI.mechBox.getY() < 0.000) {
       Robot.Elevator.elevatorMotor.set(1);
-      //System.out.println("Elevator DOWN");
+      System.out.println("Elevator DOWN");
     }
   }
 

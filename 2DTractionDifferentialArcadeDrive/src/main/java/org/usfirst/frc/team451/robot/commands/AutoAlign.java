@@ -25,7 +25,7 @@ public class AutoAlign extends Command {
 
   public AutoAlign() {
     // Use requires() here to declare subsystem dependencies
-    //requires(Robot.DriveTrain);
+    requires(Robot.DriveTrain);
     requires(Robot.LineTracker);
   }
 
@@ -57,7 +57,11 @@ public class AutoAlign extends Command {
     LineTracker.updateSensorFieldPositions(Robot.gyro.getAngle());
     LineTracker.tripActiveSensors();
 
-    //call these when more that one sensor has been tripped
+    if(LineTracker.trippedCount == 1){
+      LineTracker.updateDelta();
+      SmartDashboard.setDefaultNumber("Robot Distance", Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition());
+    }
+
     if(LineTracker.trippedCount > 1){
       //e.g., the difference in angle between the robot angle and the angle of the line
       double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle()%360);
@@ -66,16 +70,12 @@ public class AutoAlign extends Command {
       //e.g., if the angle is between 10 and 180 degrees
       if(deltaAngle > Math.PI/18 && deltaAngle < Math.PI){
         //rotate clockwise
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" radians. ");
-      //e.g., if the angle is between 180 and 350 degrees
-      } else if(deltaAngle < 35*Math.PI/18 && deltaAngle > Math.PI) {
+      } else if((LineTracker.idealRotation-Robot.gyro.getAngle())%360  < 35*Math.PI/18 && LineTracker.idealRotation > Math.PI) {
+        System.out.print("Rotating "+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians");
         //rotate counterclockwise
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" radians. ");
-      //e.g., if the angle is between 10 and -10 degrees
       } else {
-        //don't rotate, reset tripped sensors
-        LineTracker.resetSensorsAndDelta();
-        System.out.print(""+Math.round(deltaAngle*100)/100+" radians was an insufficient rotation. ");
+        System.out.print(""+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians was an insufficient rotation.");
+        //don't rotate
       }
     }
   }
