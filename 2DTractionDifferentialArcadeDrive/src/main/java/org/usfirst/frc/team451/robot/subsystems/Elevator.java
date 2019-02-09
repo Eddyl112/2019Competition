@@ -3,6 +3,7 @@
  *******************************************************************************/
 package org.usfirst.frc.team451.robot.subsystems;
 
+import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.commands.Drive;
 import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
@@ -21,28 +22,14 @@ public class Elevator extends Subsystem {
 
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public double pGain = 1.0;
-	public double iGain = 1.0;
-	public double dGain = 1.0;
-	public double fGain = 1.0;
-	
+
 	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(5);
 	
 	
     
     public Elevator() {
-        WPI_TalonSRX[] motorArray = new WPI_TalonSRX[] {elevatorMotor};
-    	for(WPI_TalonSRX motor : motorArray) {
-    		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-    		motor.selectProfileSlot(0, 0);
-    		motor.config_kP(0, pGain, 0);
-    		motor.config_kI(0, iGain, 0);
-    		motor.config_kD(0, dGain, 0);
-            motor.config_kF(0, fGain, 0);
-			
-		
     }
- }
+ 
     
 	@Override
 	protected void initDefaultCommand() {

@@ -39,6 +39,7 @@ public class OI {
 	public static Button closeClawButton;
 	public static DigitalInput clawSwitch;
 	public static boolean clawActive;
+	public static Button topHatch;
 	
 //	public static boolean clawActive = false;
 	
