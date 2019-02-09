@@ -21,6 +21,7 @@ public class AutoAlign extends Command {
 
   public static String Mode = "UN-ACTIVATED";
   public static boolean warned = LineTracker.printInfo;
+  public static int rotateDirection = 0;
 
   public AutoAlign() {
     // Use requires() here to declare subsystem dependencies
@@ -38,7 +39,6 @@ public class AutoAlign extends Command {
   protected void execute() {
     //Warn the user when they are not printing debug information, and create a new line for debug info otherwise
     if(!warned){
-      System.err.println("NOTE: You are not printing debug information from LineTracker.java");
       System.out.println("NOTE: You are not printing debug information from LineTracker.java");
       warned = true;
     } else if(LineTracker.printInfo) {
@@ -60,7 +60,8 @@ public class AutoAlign extends Command {
     //call these when more that one sensor has been tripped
     if(LineTracker.trippedCount > 1){
       //e.g., the difference in angle between the robot angle and the angle of the line
-      double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle())%360;
+      double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle()%360);
+      double angleMargin;
 
       //e.g., if the angle is between 10 and 180 degrees
       if(deltaAngle > Math.PI/18 && deltaAngle < Math.PI){

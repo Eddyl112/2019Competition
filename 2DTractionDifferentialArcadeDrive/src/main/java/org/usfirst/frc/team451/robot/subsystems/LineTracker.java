@@ -61,6 +61,9 @@ public class LineTracker extends Subsystem {
   //the distance the encoder has traveled between startup and the last turn
   public static double encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
 
+  //auto override
+  public static boolean AUTO = false;
+
   //METHODS
   /** Updates the positions of the sensor, factoring in the "rotation of the robot" (botRotation). **/
   public static void updateSensorFieldPositions(double botRotation){
@@ -72,7 +75,7 @@ public class LineTracker extends Subsystem {
 
   /**
   * Sets the intital position for delta (initial position of the robot center relative to a point
-  * on the line).
+  * on the line). 
   **/
   public static void setInitDelta(int sensorID){
     deltaPosition[0] = -fieldPos[sensorID][0];
@@ -123,6 +126,8 @@ public class LineTracker extends Subsystem {
       tripped[i] = false;
     }
 
+    AUTO = false;
+
     //tell the world what you've done
     System.out.print("Sensors reset! ");
   }
@@ -145,6 +150,9 @@ public class LineTracker extends Subsystem {
 
     //set the necessary rotation of the robot
     idealRotation = Math.atan2(LinePoints[1][1]-LinePoints[0][1],LinePoints[1][0]-LinePoints[0][0]);
+
+    //set auto to true
+    AUTO = true;
 
     //spread your knowledge throughout the galaxy (for debugging purposes)
     System.out.print("Ideal rotation ("+Math.round(idealRotation*100)/100+" radians) calculated! ");
