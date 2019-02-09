@@ -40,6 +40,7 @@ public class OI {
 	public static DigitalInput clawSwitch;
 	public static boolean clawActive;
 	public static Button topHatch;
+	public static Button override;
 	
 //	public static boolean clawActive = false;
 	
@@ -56,6 +57,7 @@ public class OI {
 		mechBox.getRawAxis(1);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
+		
 	}
 	
 	

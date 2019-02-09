@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
+import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
@@ -55,12 +56,17 @@ public class AutoAlign extends Command {
     LineTracker.updateSensorFieldPositions(Robot.gyro.getAngle());
     LineTracker.tripActiveSensors();
 
+    if(OI.driveStickRight.getRawButton(1)) {
+      LineTracker.AUTO = false;
+      LineTracker.resetSensorsAndDelta();
+    }
+
     if(LineTracker.trippedCount > 1){
       //e.g., the difference in angle between the robot angle and the angle of the line
       double deltaAngle = LineTracker.idealRotation-Robot.gyro.getAngle();
       while(deltaAngle<0) deltaAngle+=360;
       while(deltaAngle>360) deltaAngle-=360;
-      double angleMargin = 5;
+      double angleMargin = 1;
 
       //e.g., if the angle is between 10 and 180 degrees
       if(LineTracker.distanceToTravel <= 0){

@@ -30,7 +30,7 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-        if(!Robot.LineTracker.AUTO){
+        
             if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
                 DriveTrain.wheelSpeed[0] = 0;
             } else {
@@ -44,26 +44,26 @@ public class Drive extends Command {
             }
             if (Robot.LineTracker.Sensors[0].get()) {
                 //If the left line sensor is tripped, then increase left wheel speed and decrese right wheel speed by a set proportion
-                DriveTrain.wheelSpeed[0] *= 1.08;
-                DriveTrain.wheelSpeed[1] *= 0.92; 
-            } else if  (Robot.LineTracker.Sensors[1].get()){
+                DriveTrain.wheelSpeed[0] += 0.03;
+                System.out.println("Correcting left");
+            } else if  (Robot.LineTracker.Sensors[2].get()){
                 //If the right line sensor is tripped, then decrease the left wheel speed and increase the right wheel speed by a set proportion
-                DriveTrain.wheelSpeed[0] *= 0.92;
-                DriveTrain.wheelSpeed[1] *= 1.08; 
+                DriveTrain.wheelSpeed[1] += 0.03;
+                System.out.println("Correcting right");
 
             }
-
-        } else if(Robot.LineTracker.distanceToTravel <= 0) {
+/*
+        if(Robot.LineTracker.AUTO && Robot.LineTracker.rotateDirection != 0){
             //Rotate in place to get the robot lined up with the line
             DriveTrain.wheelSpeed[0] = Robot.LineTracker.rotateDirection;
             DriveTrain.wheelSpeed[1] = Robot.LineTracker.rotateDirection;
 
-        } else if(Robot.LineTracker.distanceToTravel > 0) {
+        //} else if(Robot.LineTracker.distanceToTravel > 0) {
             //Drive Forward
-            DriveTrain.wheelSpeed [1] = 1;
-            DriveTrain.wheelSpeed[0] = -1;
+            //DriveTrain.wheelSpeed [1] = -0.5;
+            //DriveTrain.wheelSpeed[0] = 0.5;
 
-        }
+        }*/
 
 
         DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);

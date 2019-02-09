@@ -37,7 +37,7 @@ public class LineTracker extends Subsystem {
   public static boolean[] tripped = new boolean[3];
 
   //sensor position on bot (position on the intitial position of the bot)(robot facing forward)(0=x, 1=y)
-  public static final float[][] botPos = new float[3][2];
+  public static final double[][] botPos = {{-1,8},{0,8},{1,8}};
 
   //location of the sensor relative to the user (if the user was standing on the robot, given the robots current rotation relative to the field)(0=x,1=y)
   public static float[][] fieldPos = new float[3][2];
@@ -105,7 +105,7 @@ public class LineTracker extends Subsystem {
   **/
   public static void tripActiveSensors(){
     for(int i=0;i<Sensors.length;i++){
-      if(!Sensors[i].get()) {
+      if(Sensors[i].get()) {
         //only run the first time this is tripped
         if(tripped[i] == false){
           //increase the recorded number of tripped sensors

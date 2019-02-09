@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 		new Thread(() -> {
 			UsbCamera USBcamera = CameraServer.getInstance().startAutomaticCapture();
-			USBcamera.setResolution(640, 480);
+			USBcamera.setResolution(426, 240);
 			//AxisCamera axisCamera = CameraServer.getInstance().addAxisCamera("axis-camera.local");
 			// Set the resolution
 			//axisCamera.setResolution(640, 480);
