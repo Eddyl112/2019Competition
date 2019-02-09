@@ -23,6 +23,8 @@ public class DriveTrain extends Subsystem {
     public static double WheelDiameter = 8;//inches
     public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction);
 
+    public static double[] wheelSpeed = {0,0};
+
 	// Put methods for controlling this subsystem
     // // here. Call these from Commands.
 	public double pGain = 1.0;
@@ -39,10 +41,6 @@ public class DriveTrain extends Subsystem {
     static SpeedControllerGroup Right = new SpeedControllerGroup(frontRightMotor);
     
     //public static DifferentialDrive diffDrive = new DifferentialDrive(Left, Right);
-
-    //the rotation of the robot with respect to the player
-    public static double rotation = 0;
-    
     
     public DriveTrain() {
         SmartDashboard.putNumber("Encoder Left", encoderLeft.getDistance());

@@ -30,17 +30,44 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-        if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
-           DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0);
-        } else {
-            DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, -OI.driveStickLeft.getY());
+        if(!Robot.LineTracker.AUTO){
+            if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
+                DriveTrain.wheelSpeed[0] = 0;
+            } else {
+                DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
+            }
+
+            if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
+                DriveTrain.wheelSpeed[1] = 0;
+            } else {
+                DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
+            }
+            if (Robot.LineTracker.Sensors[0].get()) {
+                //If the left line sensor is tripped, then increase left wheel speed and decrese right wheel speed by a set proportion
+                DriveTrain.wheelSpeed[0] *= 1.08;
+                DriveTrain.wheelSpeed[1] *= 0.95; 
+            } else if  (Robot.LineTracker.Sensors[1].get()){
+                //If the right line sensor is tripped, then decrease the left wheel speed and increase the right wheel speed by a set proportion
+                DriveTrain.wheelSpeed[0] *= 0.95;
+                DriveTrain.wheelSpeed[1] *= 1.08; 
+
+            }
+
+        } else if(Robot.LineTracker.distanceToTravel <= 0) {
+            //Rotate in place to get the robot lined up with the line
+            DriveTrain.wheelSpeed[0] = Robot.LineTracker.rotateDirection;
+            DriveTrain.wheelSpeed[1] = Robot.LineTracker.rotateDirection;
+
+        } else if(Robot.LineTracker.distanceToTravel > 0) {
+            //Drive Forward
+            DriveTrain.wheelSpeed [1] = 1;
+            DriveTrain.wheelSpeed[0] = -1;
+
         }
 
-        if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
-           DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0);
-        } else {
-            DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStickRight.getY());
-        }
+
+        DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);
+        DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[1]);
     }
     
 
