@@ -21,7 +21,6 @@ public class AutoAlign extends Command {
 
   public static String Mode = "UN-ACTIVATED";
   public static boolean warned = LineTracker.printInfo;
-  public static int rotateDirection = 0;
 
   public AutoAlign() {
     // Use requires() here to declare subsystem dependencies
@@ -64,18 +63,21 @@ public class AutoAlign extends Command {
 
     if(LineTracker.trippedCount > 1){
       //e.g., the difference in angle between the robot angle and the angle of the line
-      double deltaAngle = (LineTracker.idealRotation-Robot.gyro.getAngle()%360);
-      double angleMargin;
+      double deltaAngle = LineTracker.idealRotation-Robot.gyro.getAngle();
+      while(deltaAngle<0) deltaAngle+=360;
+      while(deltaAngle>360) deltaAngle-=360;
+      double angleMargin = 5;
 
       //e.g., if the angle is between 10 and 180 degrees
-      if(deltaAngle > Math.PI/18 && deltaAngle < Math.PI){
-        //rotate clockwise
-      } else if((LineTracker.idealRotation-Robot.gyro.getAngle())%360  < 35*Math.PI/18 && LineTracker.idealRotation > Math.PI) {
-        System.out.print("Rotating "+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians");
-        //rotate counterclockwise
+      if(deltaAngle > angleMargin && deltaAngle < 180){
+        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" degrees. ");
+        LineTracker.rotateDirection = -1;
+      } else if(deltaAngle < 360-angleMargin && deltaAngle > 180) {
+        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" degrees. ");
+        LineTracker.rotateDirection = 1;
       } else {
-        System.out.print(""+Math.round(((LineTracker.idealRotation-Robot.gyro.getAngle())%360)*100)/100+" radians was an insufficient rotation.");
-        //don't rotate
+        System.out.print(Math.round(deltaAngle*100)/100+" degrees was an insufficient rotation. ");
+        LineTracker.resetSensorsAndDelta();
       }
     }
   }

@@ -64,6 +64,9 @@ public class LineTracker extends Subsystem {
   //auto override
   public static boolean AUTO = false;
 
+  //direction the robot needs to rotate
+  public static int rotateDirection = 0;
+
   //METHODS
   /** Updates the positions of the sensor, factoring in the "rotation of the robot" (botRotation). **/
   public static void updateSensorFieldPositions(double botRotation){
@@ -127,9 +130,10 @@ public class LineTracker extends Subsystem {
     }
 
     AUTO = false;
+    rotateDirection = 0;
 
     //tell the world what you've done
-    System.out.print("Sensors reset! ");
+    System.out.print("Sensors, auto mode, and rotateDirection reset! ");
   }
 
   /** Set the calculated points of the line in space (call this after the second sensor is tripped). **/
