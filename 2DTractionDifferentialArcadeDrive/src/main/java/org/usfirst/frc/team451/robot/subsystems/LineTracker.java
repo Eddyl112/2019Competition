@@ -144,10 +144,10 @@ public class LineTracker extends Subsystem {
     updateSensorFieldPositions(Robot.gyro.getAngle());
 
     //point 1, x-value
-    LinePoints[0][0] = 0;
+    LinePoints[0][0] = -fieldPos[ActiveSensorID][0];
 
     //point 1, y-value
-    LinePoints[0][0] = 0;
+    LinePoints[0][0] = -fieldPos[ActiveSensorID][1];
 
     //point 2, x-value
     LinePoints[1][0] = deltaPosition[0];
@@ -158,11 +158,14 @@ public class LineTracker extends Subsystem {
     //set the necessary rotation of the robot
     idealRotation = Math.atan2(LinePoints[1][1]-LinePoints[0][1],LinePoints[1][0]-LinePoints[0][0]);
 
+    //set the distance the robot needs to travel over the line
+    distanceToTravel = botPos[ActiveSensorID][1]-(botPos[ActiveSensorID][0]*Math.tan(idealRotation));
+
     //set auto to true
     AUTO = true;
 
     //spread your knowledge throughout the galaxy (for debugging purposes)
-    System.out.print("Ideal rotation ("+Math.round(idealRotation*100)/100+" radians) calculated! ");
+    System.out.print("Ideal rotation ("+Math.round(idealRotation*100)/100+" radians) calculated! Distance to line: "+distanceToTravel+". ");
   }
 
   @Override

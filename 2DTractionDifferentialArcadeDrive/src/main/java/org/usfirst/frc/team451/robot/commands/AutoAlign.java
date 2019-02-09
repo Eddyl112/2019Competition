@@ -55,11 +55,6 @@ public class AutoAlign extends Command {
     LineTracker.updateSensorFieldPositions(Robot.gyro.getAngle());
     LineTracker.tripActiveSensors();
 
-    if(LineTracker.trippedCount == 1){
-      LineTracker.updateDelta();
-      SmartDashboard.setDefaultNumber("Robot Distance", Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition());
-    }
-
     if(LineTracker.trippedCount > 1){
       //e.g., the difference in angle between the robot angle and the angle of the line
       double deltaAngle = LineTracker.idealRotation-Robot.gyro.getAngle();
@@ -68,15 +63,20 @@ public class AutoAlign extends Command {
       double angleMargin = 5;
 
       //e.g., if the angle is between 10 and 180 degrees
-      if(deltaAngle > angleMargin && deltaAngle < 180){
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" degrees. ");
-        LineTracker.rotateDirection = -1;
-      } else if(deltaAngle < 360-angleMargin && deltaAngle > 180) {
-        System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" degrees. ");
-        LineTracker.rotateDirection = 1;
+      if(LineTracker.distanceToTravel <= 0){
+        if(deltaAngle > angleMargin && deltaAngle < 180){
+          System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" degrees. ");
+          LineTracker.rotateDirection = -1;
+        } else if(deltaAngle < 360-angleMargin && deltaAngle > 180) {
+          System.out.print("Rotating "+Math.round(deltaAngle*100)/100+" degrees. ");
+          LineTracker.rotateDirection = 1;
+        } else {
+          System.out.print(Math.round(deltaAngle*100)/100+" degrees was an insufficient rotation. ");
+          LineTracker.resetSensorsAndDelta();
+        }
       } else {
-        System.out.print(Math.round(deltaAngle*100)/100+" degrees was an insufficient rotation. ");
-        LineTracker.resetSensorsAndDelta();
+        LineTracker.distanceToTravel -= (Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-LineTracker.encoderDistance);
+        System.out.print("Distace to line: "+LineTracker.distanceToTravel);
       }
     }
   }

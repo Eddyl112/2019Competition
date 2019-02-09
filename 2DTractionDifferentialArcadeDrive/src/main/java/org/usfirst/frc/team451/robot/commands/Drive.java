@@ -45,10 +45,10 @@ public class Drive extends Command {
             if (Robot.LineTracker.Sensors[0].get()) {
                 //If the left line sensor is tripped, then increase left wheel speed and decrese right wheel speed by a set proportion
                 DriveTrain.wheelSpeed[0] *= 1.08;
-                DriveTrain.wheelSpeed[1] *= 0.95; 
+                DriveTrain.wheelSpeed[1] *= 0.92; 
             } else if  (Robot.LineTracker.Sensors[1].get()){
                 //If the right line sensor is tripped, then decrease the left wheel speed and increase the right wheel speed by a set proportion
-                DriveTrain.wheelSpeed[0] *= 0.95;
+                DriveTrain.wheelSpeed[0] *= 0.92;
                 DriveTrain.wheelSpeed[1] *= 1.08; 
 
             }
