@@ -30,17 +30,24 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-        if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
-           DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, 0);
+        if(!Robot.LineTracker.AUTO){
+            if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
+                DriveTrain.wheelSpeed[0] = 0;
+            } else {
+                DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
+            }
+
+            if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
+                DriveTrain.wheelSpeed[1] = 0;
+            } else {
+                DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
+            }
         } else {
-            DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, -OI.driveStickLeft.getY());
+            
         }
 
-        if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
-           DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, 0);
-        } else {
-            DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, OI.driveStickRight.getY());
-        }
+        DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);
+        DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[1]);
     }
     
 
