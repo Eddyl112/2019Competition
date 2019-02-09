@@ -64,6 +64,9 @@ public class LineTracker extends Subsystem {
   //auto override
   public static boolean AUTO = false;
 
+  //distance to travel to correct for the fact that without this variable, the robot would not be exactly on the line
+  public static double distanceToTravel = 0.0;
+
   //direction the robot needs to rotate
   public static int rotateDirection = 0;
 

@@ -42,9 +42,19 @@ public class Drive extends Command {
             } else {
                 DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
             }
-        } else {
-            
+
+        } else if(Robot.LineTracker.distanceToTravel <= 0) {
+            //Rotate in place to get the robot lined up with the line
+            DriveTrain.wheelSpeed[0] = Robot.LineTracker.rotateDirection;
+            DriveTrain.wheelSpeed[1] = Robot.LineTracker.rotateDirection;
+
+        } else if(Robot.LineTracker.distanceToTravel > 0) {
+            //Drive Forward
+            DriveTrain.wheelSpeed [1] = 1;
+            DriveTrain.wheelSpeed[0] = -1;
+
         }
+
 
         DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);
         DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[1]);
