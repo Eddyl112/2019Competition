@@ -24,6 +24,7 @@ public class DriveTrain extends Subsystem {
     public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction);
 
     public static double[] wheelSpeed = {0,0};
+    public static boolean userAssistEnabled = false;
 
 	// Put methods for controlling this subsystem
     // // here. Call these from Commands.

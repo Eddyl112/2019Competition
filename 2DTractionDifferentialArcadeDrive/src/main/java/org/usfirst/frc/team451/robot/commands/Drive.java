@@ -12,6 +12,7 @@ import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends Command {
     public Double deadzone = 0.25; //Could be issue, would test
@@ -30,28 +31,49 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
+         //Register user imput from left drive stick   
+        if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
+            DriveTrain.wheelSpeed[0] = 0;
+        } else {
+            DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
+        }
+
+        //register input from right drive stick
+        if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
+            DriveTrain.wheelSpeed[1] = 0;
+        } else {
+            DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
+        }
+
+        //register user input from joystick trigger to enable user assist
+        if(OI.driveStickRight.getRawButton(1)) {
+            DriveTrain.userAssistEnabled = true;
+            //set the left side motion equal to the right side when driving straight forward
+            DriveTrain.wheelSpeed[0] = - DriveTrain.wheelSpeed[1];
+        } else DriveTrain.userAssistEnabled = false;
+
+        SmartDashboard.putBoolean("User Assist",DriveTrain.userAssistEnabled);
+
+        //Modify user input to keep the bot on the line during user assist
+        if(DriveTrain.userAssistEnabled){
+            if(!Robot.LineTracker.Sensors[0].get()) {
+                //If the left line sensor is tripped, then increase left wheel speed
+                DriveTrain.wheelSpeed[0] += 0.05;
+                System.out.println("Correcting right: "+DriveTrain.wheelSpeed[0]);
+            }
+            if(!Robot.LineTracker.Sensors[2].get()){
+                //If the right line sensor is tripped, then increase the right wheel speed
+                DriveTrain.wheelSpeed[1] -= 0.05;
+                System.out.println("Correcting left: "+DriveTrain.wheelSpeed[1]);
+
+            }
+        }
         
-            if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
-                DriveTrain.wheelSpeed[0] = 0;
-            } else {
-                DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
-            }
+        //Normally, run left motor based on left motor input (equal to modified right side durin user assist)
+        DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);
 
-            if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
-                DriveTrain.wheelSpeed[1] = 0;
-            } else {
-                DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
-            }
-            if (Robot.LineTracker.Sensors[0].get()) {
-                //If the left line sensor is tripped, then increase left wheel speed and decrese right wheel speed by a set proportion
-                DriveTrain.wheelSpeed[0] += 0.03;
-                System.out.println("Correcting left");
-            } else if  (Robot.LineTracker.Sensors[2].get()){
-                //If the right line sensor is tripped, then decrease the left wheel speed and increase the right wheel speed by a set proportion
-                DriveTrain.wheelSpeed[1] += 0.03;
-                System.out.println("Correcting right");
-
-            }
+        //Always run the right motor based on right motor input
+        DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[1]);
 /*
         if(Robot.LineTracker.AUTO && Robot.LineTracker.rotateDirection != 0){
             //Rotate in place to get the robot lined up with the line
@@ -66,8 +88,7 @@ public class Drive extends Command {
         }*/
 
 
-        DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);
-        DriveTrain.frontRightMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[1]);
+        
     }
     
 
