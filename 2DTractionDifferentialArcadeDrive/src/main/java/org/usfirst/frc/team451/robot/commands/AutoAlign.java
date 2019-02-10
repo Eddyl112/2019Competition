@@ -36,6 +36,7 @@ public class AutoAlign extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    /*
     //Warn the user when they are not printing debug information, and create a new line for debug info otherwise
     if(!warned){
       System.out.println("NOTE: You are not printing debug information from LineTracker.java");
@@ -84,10 +85,8 @@ public class AutoAlign extends Command {
         LineTracker.distanceToTravel -= (Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-LineTracker.encoderDistance);
         System.out.print("Distace to line: "+LineTracker.distanceToTravel);
       }
-    }
+    }*/
   }
-
-  //This code block corrects driving
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
