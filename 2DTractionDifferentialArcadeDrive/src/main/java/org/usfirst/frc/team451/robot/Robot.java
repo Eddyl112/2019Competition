@@ -71,8 +71,8 @@ public class Robot extends TimedRobot {
 			// Set the resolution
 			//axisCamera.setResolution(640, 480);
 			CvSink cvSink = CameraServer.getInstance().getVideo();
-			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640,
-			480);
+			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 426,
+			240);
 			Mat source = new Mat();
 			Mat output = new Mat();
 			while(true) {
