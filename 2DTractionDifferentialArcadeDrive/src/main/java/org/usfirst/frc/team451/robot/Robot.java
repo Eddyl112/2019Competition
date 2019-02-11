@@ -23,6 +23,7 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -38,6 +39,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+	//Mechanisms and the like
 	public static DriveTrain DriveTrain = new DriveTrain();
 	public static Claw Claw = new Claw();
 	public static LineTracker LineTracker = new LineTracker();
@@ -48,6 +50,11 @@ public class Robot extends TimedRobot {
 	public static Climber Climber = new Climber();
 	Thread m_visionThread;
 
+	//SmartDashboard Editable variables
+	Preferences prefs;
+	public static double UserAssistCorrectionSpeed;
+
+	//Autonomous
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -57,9 +64,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		//Initialize gyro and OI
 		gyro = new ADXRS450_Gyro();
 		oi = new OI();
 		OI.init();
+
+		//SmartDashboard editable variables
+		prefs = Preferences.getInstance();
+		UserAssistCorrectionSpeed = prefs.getDouble("UserAssistCorrectionSpeed (%)", 3);
 		
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
