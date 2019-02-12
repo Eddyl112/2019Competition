@@ -7,16 +7,17 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
 //import com.sun.java.swing.plaf.windows.TMSchema.Control;
 
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevatorMove extends Command {
-  private static final String Elevator = null;
+  //private static final String Elevator = null;
 
 public ElevatorMove() {
     // Use requires() here to declare subsystem dependencies
@@ -31,30 +32,11 @@ public ElevatorMove() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.mechBox.getY() > 0.000) {
-     Robot.Elevator.elevatorMotor.set(-1);
-     System.out.println("Elevator UP");
-    } else if (OI.mechBox.getY() < 0.000) {
-      Robot.Elevator.elevatorMotor.set(1);
-      System.out.println("Elevator DOWN");
-    }
+    //Go to the preset (run first so it does not override the user override)
+    Elevator.MoveTowards(0, false);
 
-
-    /*Preset elevator levels on dpad. This is the ONLY PLACE where any dpad code is; there is 
-    NONE in OI because the XBOX dpad is very unique. 0 is UP, 90 is RIGHT, 180 is DOWN, and 270 
-    is LEFT. You can also get intermediates at each 45 degree interval between those numbers, 
-    we're not going to to leave some dead zones for the mech driver + it's not applicable here
-    anyway. */
-    if (OI.mechBox.getPOV() == 0) {
-
-    } else if (OI.mechBox.getPOV() == 90) {
-
-    } else if (OI.mechBox.getPOV() == 180) {
-
-    } else if (OI.mechBox.getPOV() == 270) {
-
-    }
-
+    //Only run this method when the user is trying to override
+    if(Math.abs(OI.mechBox.getY()) > 0) Elevator.RunUserOverride(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
