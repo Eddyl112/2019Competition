@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team451.robot.OI;
-import org.usfirst.frc.team451.robot.commands.CloseClaw;
+//import org.usfirst.frc.team451.robot.commands.CloseClaw;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.

@@ -59,7 +59,7 @@ public class LineTracker extends Subsystem {
   public static double idealRotation = 0;
 
   //the distance the encoder has traveled between startup and the last turn
-  public static double encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
+  public static double encoderDistance = DriveTrain.frontLeftMotor.getSelectedSensorPosition();
 
   //auto override
   public static boolean AUTO = false;
@@ -91,9 +91,9 @@ public class LineTracker extends Subsystem {
 
   /** UNTESTED: Records the change in robot position with the DeltaPosition variable. **/
   public static void updateDelta(){
-    deltaPosition[0]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Robot.DriveTrain.inchesPerCount*Math.cos(Robot.gyro.getAngle()));
-    deltaPosition[1]+=((Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*Robot.DriveTrain.inchesPerCount*Math.sin(Robot.gyro.getAngle()));
-    encoderDistance = Robot.DriveTrain.frontLeftMotor.getSelectedSensorPosition();
+    deltaPosition[0]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*DriveTrain.inchesPerCount*Math.cos(Robot.gyro.getAngle()));
+    deltaPosition[1]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*DriveTrain.inchesPerCount*Math.sin(Robot.gyro.getAngle()));
+    encoderDistance = DriveTrain.frontLeftMotor.getSelectedSensorPosition();
     if(printInfo) System.out.print("Delta updated. ");
   }
 

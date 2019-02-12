@@ -6,10 +6,11 @@ package org.usfirst.frc.team451.robot.commands;
 import org.usfirst.frc.team451.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
+//import com.ctre.phoenix.motorcontrol.DemandType;
 
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -56,12 +57,12 @@ public class Drive extends Command {
 
         //Modify user input to keep the bot on the line during user assist
         if(DriveTrain.userAssistEnabled){
-            if(!Robot.LineTracker.Sensors[0].get()) {
+            if(!LineTracker.Sensors[0].get()) {
                 //If the left line sensor is tripped, then increase left wheel speed
                 DriveTrain.wheelSpeed[0] += Robot.UserAssistCorrectionSpeed/100;
                 System.out.println("Correcting right: "+DriveTrain.wheelSpeed[0]);
             }
-            if(!Robot.LineTracker.Sensors[2].get()){
+            if(!LineTracker.Sensors[2].get()){
                 //If the right line sensor is tripped, then increase the right wheel speed
                 DriveTrain.wheelSpeed[1] -= Robot.UserAssistCorrectionSpeed/100;
                 System.out.println("Correcting left: "+DriveTrain.wheelSpeed[1]);
