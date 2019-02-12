@@ -16,6 +16,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 	public static double elevatorHeightMargin = 0.5;//in inches
 
+	//heights for the center of the hatch panel spots on the rocket
+	static double firstHatchHeight = 12+7;//19 inches
+	static double distancebetweenH = 2*12+4;//28 inches
+	public static double[] HatchHeights = {firstHatchHeight,firstHatchHeight+distancebetweenH,firstHatchHeight+2*distancebetweenH};
+
+	//heights for the center of the cargo spots
+	static double firstPortHeight = 2*12+3.5;//27.5 inches
+	static double distancebetweenP = 2*12+4;//28 inches
+	public static double[] PortHeights = {firstPortHeight, firstPortHeight+distancebetweenP, firstPortHeight+2*distancebetweenP};
+
+	public static double TargetHeight = HatchHeights[0];
+
 	public static double countsPerRevolution = 1024; //counts per motor revolution based on specifications for mag encoder
 	public static double gearReduction = 1; //motor revolutions per wheel revolutions
 	public static double WheelDiameter = 1.7284; //inches

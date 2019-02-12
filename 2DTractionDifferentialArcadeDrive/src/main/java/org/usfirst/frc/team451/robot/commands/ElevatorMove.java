@@ -14,6 +14,7 @@ import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevatorMove extends Command {
@@ -32,11 +33,15 @@ public ElevatorMove() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(OI.mechBox.getYButton()) Elevator.TargetHeight = Elevator.HatchHeights[2];
+    if(OI.mechBox.getXButton() || OI.mechBox.getBButton()) Elevator.TargetHeight = Elevator.HatchHeights[1];
+    if(OI.mechBox.getAButton()) Elevator.TargetHeight = Elevator.HatchHeights[0];
+
     //Go to the preset (run first so it does not override the user override)
-    Elevator.MoveTowards(0, false);
+    Elevator.MoveTowards(Elevator.TargetHeight, false);
 
     //Only run this method when the user is trying to override
-    if(Math.abs(OI.mechBox.getY()) > 0) Elevator.RunUserOverride(false);
+    if(Math.abs(OI.mechBox.getY(Hand.kLeft)) > Robot.ElevatorUserOverrideDeadzone/100) Elevator.RunUserOverride(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()

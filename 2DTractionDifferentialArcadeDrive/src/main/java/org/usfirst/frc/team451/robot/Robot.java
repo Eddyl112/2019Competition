@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
 	//SmartDashboard Editable variables
 	Preferences prefs;
 	public static double UserAssistCorrectionSpeed;
+	public static double ElevatorUserOverrideDeadzone;
 
 	//Autonomous
 	Command m_autonomousCommand;
@@ -72,6 +73,7 @@ public class Robot extends TimedRobot {
 		//SmartDashboard editable variables
 		prefs = Preferences.getInstance();
 		UserAssistCorrectionSpeed = prefs.getDouble("UserAssistCorrectionSpeed (%)", 3);
+		ElevatorUserOverrideDeadzone = prefs.getDouble("Deadzone for X-Box Elevator User Override (%)", 3);
 		
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
