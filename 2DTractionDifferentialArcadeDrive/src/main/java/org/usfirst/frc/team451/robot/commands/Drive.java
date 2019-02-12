@@ -4,6 +4,7 @@
 package org.usfirst.frc.team451.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.DemandType;
 
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
@@ -58,12 +59,12 @@ public class Drive extends Command {
         if(DriveTrain.userAssistEnabled){
             if(!LineTracker.Sensors[0].get()) {
                 //If the left line sensor is tripped, then increase left wheel speed
-                DriveTrain.wheelSpeed[0] += 0.05;
+                DriveTrain.wheelSpeed[0] += Robot.UserAssistCorrectionSpeed/100;
                 System.out.println("Correcting right: "+DriveTrain.wheelSpeed[0]);
             }
             if(!LineTracker.Sensors[2].get()){
                 //If the right line sensor is tripped, then increase the right wheel speed
-                DriveTrain.wheelSpeed[1] -= 0.05;
+                DriveTrain.wheelSpeed[1] -= Robot.UserAssistCorrectionSpeed/100;
                 System.out.println("Correcting left: "+DriveTrain.wheelSpeed[1]);
 
             }
