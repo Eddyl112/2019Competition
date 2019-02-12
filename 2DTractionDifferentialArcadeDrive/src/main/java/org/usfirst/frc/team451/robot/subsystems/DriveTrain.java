@@ -3,16 +3,15 @@
  *******************************************************************************/
 package org.usfirst.frc.team451.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import org.usfirst.frc.team451.robot.commands.Drive;
 
-import com.ctre.phoenix.motorcontrol.can.*;
-import com.ctre.phoenix.motorcontrol.*;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //shshs
 public class DriveTrain extends Subsystem {
@@ -35,13 +34,13 @@ public class DriveTrain extends Subsystem {
 	
     public static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(1);
     //public static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(3);
-    static SpeedControllerGroup Left = new SpeedControllerGroup(frontLeftMotor);
+    private final static SpeedControllerGroup left = new SpeedControllerGroup(frontLeftMotor);
     
     public static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(2);
     //public static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(4);
-    static SpeedControllerGroup Right = new SpeedControllerGroup(frontRightMotor);
+    private final static SpeedControllerGroup right = new SpeedControllerGroup(frontRightMotor);
     
-    //public static DifferentialDrive diffDrive = new DifferentialDrive(Left, Right);
+    public static DifferentialDrive diffDrive = new DifferentialDrive(left, right);
     
     public DriveTrain() {
         SmartDashboard.putNumber("Encoder Left", encoderLeft.getDistance());
@@ -66,7 +65,11 @@ public class DriveTrain extends Subsystem {
 	protected void initDefaultCommand() {
 		setDefaultCommand(new Drive());
 		
-	}
+    }
+    
+    public static void drive(double left, double right) {
+        diffDrive.tankDrive(left, right);
+    }
 }
 
 	

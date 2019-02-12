@@ -7,18 +7,21 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import org.usfirst.frc.team451.robot.OI;
-import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.CameraServo;
+import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
+import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ClimberMove extends Command {
-  public ClimberMove() {
+public class SystemCheck extends Command {
+  
+  int delay = 5;
+
+  public SystemCheck() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.Climber);
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
@@ -29,22 +32,41 @@ public class ClimberMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // if(OI.mechBox.getRawAxis(0) > 0) {
-    //   Climber.climber0.set(ControlMode.Position, OI.mechBox.getRawAxis(0));
-    //   Climber.climber1.set(ControlMode.Position, -OI.mechBox.getRawAxis(0));
-    // } else if (OI.mechBox.getRawAxis(0) < 0) {
-    //   Climber.climber0.set(ControlMode.Position, -OI.mechBox.getRawAxis(0));
-    //   Climber.climber1.set(ControlMode.Position, OI.mechBox.getRawAxis(0));
-    // } else if (OI.mechBox.getRawAxis(0) == 0) {
-    //   Climber.climber0.set(ControlMode.Position, 0);
-    //   Climber.climber1.set(ControlMode.Position, 0);
-    // }
+    DriveTrain.drive(100, 100);
+    Timer.delay(delay);
+    DriveTrain.drive(-100, -100);
+    Timer.delay(delay);
+    DriveTrain.drive(-100, 100);
+    Timer.delay(delay);
+    DriveTrain.drive(100, -100);
+    Timer.delay(delay);
+    Claw.clawSolenoid.set(true);
+    Timer.delay(delay);
+    Claw.clawSolenoid.set(false);
+    Timer.delay(delay);
+    Climber.climb(1);
+    Timer.delay(0.5);
+    Climber.climb(-1);
+    Timer.delay(0.5);
+
     
-    if(OI.mechBox.getRawAxis(0) > 0 || OI.mechBox.getRawAxis(0) < 0) {
-      Climber.climb(OI.mechBox.getRawAxis(0));
-    } else if (OI.mechBox.getRawAxis(0) == 0) {
-      Climber.climb(0);
-    }
+    
+    
+    
+    
+    
+    
+    
+    CameraServo.cameraPitch.set(0);
+    Timer.delay(1);
+    CameraServo.cameraPitch.set(1);
+    Timer.delay(1);
+    CameraServo.cameraYaw.set(0);
+    Timer.delay(1);
+    CameraServo.cameraYaw.set(1);
+    Timer.delay(1);
+    CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
+    CameraServo.cameraYaw.set(CameraServo.yawSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -63,6 +85,4 @@ public class ClimberMove extends Command {
   @Override
   protected void interrupted() {
   }
-
-  
 }

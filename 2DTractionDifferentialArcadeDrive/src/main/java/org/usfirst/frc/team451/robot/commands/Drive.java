@@ -3,19 +3,18 @@
  *******************************************************************************/
 package org.usfirst.frc.team451.robot.commands;
 
-import org.usfirst.frc.team451.robot.Robot;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 
 import org.usfirst.frc.team451.robot.OI;
+import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends Command {
-    public Double deadzone = 0.25; //Could be issue, would test
+    public Double deadzone = 0.25; // Could be issue, would test
 
     public Drive() {
 
@@ -31,19 +30,20 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
+        DriveTrain.drive(-OI.driveStickLeft.getY(), -OI.driveStickRight.getY());
          //Register user imput from left drive stick   
-        if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
-            DriveTrain.wheelSpeed[0] = 0;
-        } else {
-            DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
-        }
+        // if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
+        //     DriveTrain.wheelSpeed[0] = 0;
+        // } else {
+        //     DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
+        // }
 
-        //register input from right drive stick
-        if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
-            DriveTrain.wheelSpeed[1] = 0;
-        } else {
-            DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
-        }
+        // //register input from right drive stick
+        // if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
+        //     DriveTrain.wheelSpeed[1] = 0;
+        // } else {
+        //     DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
+        // }
 
         //register user input from joystick trigger to enable user assist
         if(OI.driveStickRight.getRawButton(1)) {
@@ -56,12 +56,12 @@ public class Drive extends Command {
 
         //Modify user input to keep the bot on the line during user assist
         if(DriveTrain.userAssistEnabled){
-            if(!Robot.LineTracker.Sensors[0].get()) {
+            if(!LineTracker.Sensors[0].get()) {
                 //If the left line sensor is tripped, then increase left wheel speed
                 DriveTrain.wheelSpeed[0] += 0.05;
                 System.out.println("Correcting right: "+DriveTrain.wheelSpeed[0]);
             }
-            if(!Robot.LineTracker.Sensors[2].get()){
+            if(!LineTracker.Sensors[2].get()){
                 //If the right line sensor is tripped, then increase the right wheel speed
                 DriveTrain.wheelSpeed[1] -= 0.05;
                 System.out.println("Correcting left: "+DriveTrain.wheelSpeed[1]);

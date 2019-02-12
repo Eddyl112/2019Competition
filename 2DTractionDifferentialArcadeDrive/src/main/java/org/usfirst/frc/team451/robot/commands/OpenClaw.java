@@ -9,6 +9,8 @@ package org.usfirst.frc.team451.robot.commands;
 
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.Claw;
+
 import edu.wpi.first.wpilibj.command.Command;
 /**
  * An example command.  You can replace me with your own command.
@@ -30,7 +32,7 @@ public class OpenClaw extends Command {
   protected void execute() {
     System.out.println("open claw");
     OI.clawActive = true;
-    Robot.Claw.claw();
+    Claw.claw();
   }
 
   // Make this return true when this Command no longer needs to run execute()
