@@ -33,9 +33,24 @@ public ElevatorMove() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //Set hatch presets
     if(OI.mechBox.getYButton()) Elevator.TargetHeight = Elevator.HatchHeights[2];
     if(OI.mechBox.getXButton() || OI.mechBox.getBButton()) Elevator.TargetHeight = Elevator.HatchHeights[1];
     if(OI.mechBox.getAButton()) Elevator.TargetHeight = Elevator.HatchHeights[0];
+
+    //set port presets
+    /*Preset elevator levels on dpad. This is the ONLY PLACE where any dpad code is; there is 
+    NONE in OI because the XBOX dpad is very unique. 0 is UP, 90 is RIGHT, 180 is DOWN, and 270 
+    is LEFT. You can also get intermediates at each 45 degree interval between those numbers, 
+    we're not going to to leave some dead zones for the mech driver + it's not applicable here
+    anyway. */
+    if (OI.mechBox.getPOV() == 0) {
+      Elevator.TargetHeight = Elevator.PortHeights[2];
+    } else if (OI.mechBox.getPOV() == 90 || OI.mechBox.getPOV() == 270) {
+      Elevator.TargetHeight = Elevator.PortHeights[1];
+    } else if (OI.mechBox.getPOV() == 180) {
+      Elevator.TargetHeight = Elevator.PortHeights[0];
+    }
 
     //Go to the preset (run first so it does not override the user override)
     Elevator.MoveTowards(Elevator.TargetHeight, false);
