@@ -7,13 +7,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
-import org.usfirst.frc.team451.robot.OI;
+//import org.usfirst.frc.team451.robot.OI;
 //import org.usfirst.frc.team451.robot.commands.Drive;
-import org.usfirst.frc.team451.robot.commands.ElevatorMove;
+import org.usfirst.frc.team451.robot.Robot;
+//import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
-import com.ctre.phoenix.motorcontrol.can.*;
+//import com.ctre.phoenix.motorcontrol.can.*;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+//import edu.wpi.first.wpilibj.GenericHID.Hand;
 //import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -48,11 +49,11 @@ public class Elevator extends Subsystem {
 	/** Runs the user override commands from the x-box controller. PrintMethodData prints 
 	 * information to the console.
 	 */
-	public static void RunUserOverride(boolean PrintMethodData){
-		if (OI.mechBox.getY(Hand.kLeft) > 0.000) {
+	public static void RunUserOverride(double UserInput, boolean PrintMethodData){
+		if (UserInput > Robot.ElevatorUserOverrideDeadzone/100) {
 			elevatorMotor.set(-1);
 			if(PrintMethodData) System.out.println("Elevator UP (user)");
-		   } else if (OI.mechBox.getY(Hand.kLeft) < 0.000) {
+		   } else if (UserInput < -Robot.ElevatorUserOverrideDeadzone/100) {
 			 elevatorMotor.set(1);
 			 if(PrintMethodData) System.out.println("Elevator DOWN (user)");
 		   }

@@ -56,7 +56,7 @@ public ElevatorMove() {
     Elevator.MoveTowards(Elevator.TargetHeight, false);
 
     //Only run this method when the user is trying to override
-    if(Math.abs(OI.mechBox.getY(Hand.kLeft)) > Robot.ElevatorUserOverrideDeadzone/100) Elevator.RunUserOverride(false);
+    Elevator.RunUserOverride(OI.mechBox.getY(Hand.kRight), false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
