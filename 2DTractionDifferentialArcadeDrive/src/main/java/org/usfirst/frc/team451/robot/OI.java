@@ -39,17 +39,8 @@ public class OI {
 	public static Button closeClawButton;
 	public static DigitalInput clawSwitch;
 	public static boolean clawActive;
-	public static Button topHatchY;
-	public static Button midHatchB;
-	public static Button midHatchX;
-	public static Button bottomHatchA;
-	public static Button topCargoUp;
-	public static Button midCargoLeft;
-	public static Button midCargoRight;
-	public static Button bottomCargoDown;
-
+	public static Button topHatch;
 	public static Button override;
-	
 	
 //	public static boolean clawActive = false;
 	
@@ -61,23 +52,11 @@ public class OI {
 		mechBox = new XboxController(2);
 		
 		//autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
-
-		//Buttons for opening and closing the claw
-		openClawButton = new JoystickButton(mechBox, 5);
-		closeClawButton = new JoystickButton(mechBox, 6);
+		openClawButton = new JoystickButton(mechBox, 3);
+		closeClawButton = new JoystickButton(mechBox, 5);
+		mechBox.getRawAxis(1);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());
-
-		//Left joystick on the XBOX controller up and down (y-axis) for elevator
-		mechBox.getRawAxis(1);
-
-		//Preset elevator heights using ABXY and dpad on the XBOX Controller
-		topHatchY = new JoystickButton(mechBox, 4);
-		midHatchB = new JoystickButton(mechBox, 2);
-		midHatchX = new JoystickButton(mechBox, 3);
-		bottomHatchA = new JoystickButton(mechBox, 1);
-		
-
 		
 	}
 	
