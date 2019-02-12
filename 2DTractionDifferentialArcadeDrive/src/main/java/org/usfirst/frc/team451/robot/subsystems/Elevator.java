@@ -8,6 +8,8 @@ import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
 import com.ctre.phoenix.motorcontrol.can.*;
+
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 //import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -45,10 +47,10 @@ public class Elevator extends Subsystem {
 	 * information to the console.
 	 */
 	public static void RunUserOverride(boolean PrintMethodData){
-		if (OI.mechBox.getY() > 0.000) {
+		if (OI.mechBox.getY(Hand.kLeft) > 0.000) {
 			elevatorMotor.set(-1);
 			if(PrintMethodData) System.out.println("Elevator UP (user)");
-		   } else if (OI.mechBox.getY() < 0.000) {
+		   } else if (OI.mechBox.getY(Hand.kLeft) < 0.000) {
 			 elevatorMotor.set(1);
 			 if(PrintMethodData) System.out.println("Elevator DOWN (user)");
 		   }
