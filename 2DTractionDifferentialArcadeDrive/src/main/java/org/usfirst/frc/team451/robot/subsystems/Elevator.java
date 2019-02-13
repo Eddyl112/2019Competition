@@ -21,6 +21,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 	public static double elevatorHeightMargin = 0.5;//in inches
 
+	//lowest position of the elevator
+	public static double minHeight = 19;//inches
+
 	//heights for the center of the hatch panel spots on the rocket
 	static double firstHatchHeight = 12+7;//19 inches
 	static double distancebetweenH = 2*12+4;//28 inches
@@ -63,12 +66,12 @@ public class Elevator extends Subsystem {
 	 * information to the console.
 	 */
 	public static void MoveTowards(double TargetHeight, boolean PrintMethodData){
-		if(elevatorMotor.getSelectedSensorPosition() > (TargetHeight+elevatorHeightMargin)/inchesPerCount){
+		if(elevatorMotor.getSelectedSensorPosition() > (TargetHeight+elevatorHeightMargin-minHeight)/inchesPerCount){
 			elevatorMotor.set(1);
 			if(PrintMethodData) System.out.println("Elevator DOWN (preset)");
 		}
 
-		if(elevatorMotor.getSelectedSensorPosition() < (TargetHeight-elevatorHeightMargin)/inchesPerCount){
+		if(elevatorMotor.getSelectedSensorPosition() < (TargetHeight-elevatorHeightMargin-minHeight)/inchesPerCount){
 			elevatorMotor.set(-1);
 			if(PrintMethodData) System.out.println("Elevator UP (preset)");
 		}
