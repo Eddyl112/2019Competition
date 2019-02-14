@@ -61,12 +61,12 @@ public class SystemCheck extends Command {
     Timer.delay(1);
     CameraServo.cameraPitch.set(1);
     Timer.delay(1);
-    CameraServo.cameraYaw.set(0);
+    //CameraServo.cameraYaw.set(0);
     Timer.delay(1);
-    CameraServo.cameraYaw.set(1);
+    //CameraServo.cameraYaw.set(1);
     Timer.delay(1);
     CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
-    CameraServo.cameraYaw.set(CameraServo.yawSpeed);
+    //CameraServo.cameraYaw.set(CameraServo.yawSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

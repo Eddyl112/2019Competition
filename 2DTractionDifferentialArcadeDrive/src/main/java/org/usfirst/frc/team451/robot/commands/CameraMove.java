@@ -26,7 +26,7 @@ public class CameraMove extends Command {
   @Override
   protected void initialize() {
     CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
-    CameraServo.cameraYaw.set(CameraServo.yawSpeed);
+    //CameraServo.cameraYaw.set(CameraServo.yawSpeed);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -48,7 +48,7 @@ public class CameraMove extends Command {
       }
     }
 
-    if (OI.driveStickLeft.getPOV() == 90) {
+    /*if (OI.driveStickLeft.getPOV() == 90) {
       CameraServo.yawSpeed = CameraServo.yawSpeed + speed;
       if (CameraServo.yawSpeed > 1) {
         CameraServo.yawSpeed = 1;
@@ -62,7 +62,7 @@ public class CameraMove extends Command {
       } else {
         CameraServo.cameraYaw.set(CameraServo.yawSpeed);
       }
-    }
+    }*/
 
   }
 

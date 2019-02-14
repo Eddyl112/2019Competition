@@ -19,9 +19,9 @@ public class CameraServo extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static Servo cameraPitch = new Servo(0);
-  public static Servo cameraYaw = new Servo(1);
+  //public static Servo cameraYaw = new Servo(1);
   public static double pitchSpeed = 0.65;
-  public static double yawSpeed = 0.65;
+  //public static double yawSpeed = 0.65;
 
   @Override
   public void initDefaultCommand() {
