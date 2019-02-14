@@ -5,11 +5,11 @@ package org.usfirst.frc.team451.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import org.usfirst.frc.team451.robot.OI;
+//import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import org.usfirst.frc.team451.robot.commands.ElevatorMove;
+//import edu.wpi.first.wpilibj.GenericHID.Hand;
+//import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
 //import org.usfirst.frc.team451.robot.OI;
 //import org.usfirst.frc.team451.robot.commands.Drive;
@@ -46,7 +46,11 @@ public class Elevator extends Subsystem {
 	public static double WheelDiameter = 1.7284; //inches
 	public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction); //the amount of inches that are covered in one count
 
+	//talon
 	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(5);
+
+	//is the elevator at the right height? Only set to false when the user has set input
+	public static boolean atProperHeight = false;
 
     public Elevator() {
     }
@@ -60,9 +64,11 @@ public class Elevator extends Subsystem {
 	public static void RunUserOverride(double UserInput, boolean PrintMethodData){
 		if (UserInput > Robot.ElevatorUserOverrideDeadzone/100) {
 			elevatorMotor.set(-1);
+			TargetHeight=inchesPerCount*elevatorMotor.getSelectedSensorPosition();
 			if(PrintMethodData) System.out.println("Elevator UP (user)");
 		   } else if (UserInput < -Robot.ElevatorUserOverrideDeadzone/100) {
 			 elevatorMotor.set(1);
+			 TargetHeight=inchesPerCount*elevatorMotor.getSelectedSensorPosition();
 			 if(PrintMethodData) System.out.println("Elevator DOWN (user)");
 		   }
 	}
