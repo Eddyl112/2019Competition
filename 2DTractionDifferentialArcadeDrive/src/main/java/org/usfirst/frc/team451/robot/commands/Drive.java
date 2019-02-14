@@ -31,7 +31,7 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-        DriveTrain.drive(-OI.driveStickLeft.getY(), -OI.driveStickRight.getY());
+        
          //Register user imput from left drive stick   
         // if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
         //     DriveTrain.wheelSpeed[0] = 0;
@@ -70,6 +70,9 @@ public class Drive extends Command {
             }
         }
         
+        DriveTrain.drive(-DriveTrain.wheelSpeed[0], -DriveTrain.wheelSpeed[1]);
+
+        /*
         //Normally, run left motor based on left motor input (equal to modified right side durin user assist)
         DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);
 

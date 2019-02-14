@@ -9,11 +9,24 @@ import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import org.usfirst.frc.team451.robot.commands.ElevatorMove;
+
+//import org.usfirst.frc.team451.robot.OI;
+//import org.usfirst.frc.team451.robot.commands.Drive;
+import org.usfirst.frc.team451.robot.Robot;
+//import org.usfirst.frc.team451.robot.commands.ElevatorMove;
+
+//import com.ctre.phoenix.motorcontrol.can.*;
+
+//import edu.wpi.first.wpilibj.GenericHID.Hand;
 //import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
 	public static double elevatorHeightMargin = 0.5;// in inches
+
+	//lowest position of the elevator
+	public static double minHeight = 19;//inches
 
 	//heights for the center of the hatch panel spots on the rocket
 	static double firstHatchHeight = 12 + 7;// 19 inches
@@ -44,11 +57,11 @@ public class Elevator extends Subsystem {
 	/** Runs the user override commands from the x-box controller. PrintMethodData prints 
 	 * information to the console.
 	 */
-	public static void RunUserOverride(boolean PrintMethodData){
-		if (OI.mechBox.getY(Hand.kLeft) > 0.000) {
+	public static void RunUserOverride(double UserInput, boolean PrintMethodData){
+		if (UserInput > Robot.ElevatorUserOverrideDeadzone/100) {
 			elevatorMotor.set(-1);
 			if(PrintMethodData) System.out.println("Elevator UP (user)");
-		   } else if (OI.mechBox.getY(Hand.kLeft) < 0.000) {
+		   } else if (UserInput < -Robot.ElevatorUserOverrideDeadzone/100) {
 			 elevatorMotor.set(1);
 			 if(PrintMethodData) System.out.println("Elevator DOWN (user)");
 		   }
@@ -58,12 +71,12 @@ public class Elevator extends Subsystem {
 	 * information to the console.
 	 */
 	public static void MoveTowards(double TargetHeight, boolean PrintMethodData){
-		if(elevatorMotor.getSelectedSensorPosition() > (TargetHeight+elevatorHeightMargin)/inchesPerCount){
+		if(elevatorMotor.getSelectedSensorPosition() > (TargetHeight+elevatorHeightMargin-minHeight)/inchesPerCount){
 			elevatorMotor.set(1);
 			if(PrintMethodData) System.out.println("Elevator DOWN (preset)");
 		}
 
-		if(elevatorMotor.getSelectedSensorPosition() < (TargetHeight-elevatorHeightMargin)/inchesPerCount){
+		if(elevatorMotor.getSelectedSensorPosition() < (TargetHeight-elevatorHeightMargin-minHeight)/inchesPerCount){
 			elevatorMotor.set(-1);
 			if(PrintMethodData) System.out.println("Elevator UP (preset)");
 		}
@@ -78,69 +91,5 @@ public class Elevator extends Subsystem {
 		
 	}
 }
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//ignore this
-//	Spark frontLeftMotor = new Spark(RobotMap.frontLeftMotor);
-//	Spark frontRightMotor = new Spark(RobotMap.frontRightMotor);
-//	Spark backLeftMotor = new Spark(RobotMap.backLeftMotor);
-//	Spark backRightMotor = new Spark(RobotMap.backRightMotor);
-
-//	MecanumDrive Drive = new MecanumDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
-//	
-//	public void driveCartesian(double y, double x, double z, double gyroAngle) {
-//	    Vector2d input = new Vector2d(y, x);
-//	    input.rotate(-gyroAngle);
-//
-//	    double[] wheelSpeeds = new double[4];
-//	    wheelSpeeds[MotorType.kFrontLeft.value] = input.x + input.y + z;
-//	    wheelSpeeds[MotorType.kFrontRight.value] = input.x - input.y + z;
-//	    wheelSpeeds[MotorType.kRearLeft.value] = -input.x + input.y + z;
-//	    wheelSpeeds[MotorType.kRearRight.value] = -input.x - input.y + z;
-//
-//	    normalize(wheelSpeeds);
-//
-//	    frontLeftMotor.set(wheelSpeeds[MotorType.kFrontLeft.value] * maxOutput);
-//	    frontRightMotor.set(wheelSpeeds[MotorType.kFrontRight.value] * maxOutput);
-//	    backLeftMotor.set(wheelSpeeds[MotorType.kRearLeft.value] * maxOutput);
-//	    backRightMotor.set(wheelSpeeds[MotorType.kRearRight.value] * maxOutput);
-//		
-//	}
-//	
-//	protected static void normalize(double[] wheelSpeeds) {
-//	    double maxMagnitude = Math.abs(wheelSpeeds[0]);
-//	    for (int i = 1; i < wheelSpeeds.length; i++) {
-//	      double temp = Math.abs(wheelSpeeds[i]);
-//	      if (maxMagnitude < temp) {
-//	        maxMagnitude = temp;
-//	      }
-//	    }
-//	    if (maxMagnitude > 1.0) {
-//	      for (int i = 0; i < wheelSpeeds.length; i++) {
-//	        wheelSpeeds[i] = wheelSpeeds[i] / maxMagnitude;
-//	      }
-//	    }
-//	  }
-//	
-//    public void initDefaultCommand() {
-//        //setDefaultCommand(new MySpecialCommand());
-//    	setDefaultCommand(new Drive());
-//    }
-
-	    
+ 
 
