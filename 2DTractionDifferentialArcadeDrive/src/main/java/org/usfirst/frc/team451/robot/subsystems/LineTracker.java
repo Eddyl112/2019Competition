@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team451.robot.subsystems;
 
+import com.ctre.phoenix.sensors.PigeonIMU;
+import com.ctre.phoenix.sensors.PigeonIMU.FusionStatus;
+
 import org.usfirst.frc.team451.robot.Robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -20,6 +23,8 @@ public class LineTracker extends Subsystem {
   not actually normal line sensors, but more like on/off switches. centerLineSensor 
   is the sensor in the center, rightLineSensor is the sensor toward the right of the
   bot, and leftLineSensor is the sensor toward the left of the bot. */
+
+  public static PigeonIMU.FusionStatus fusionStatus = new PigeonIMU.FusionStatus();
 
   //DEBBUGING VARIABLES
   //Print information about which methods have been called
@@ -69,6 +74,8 @@ public class LineTracker extends Subsystem {
   //direction the robot needs to rotate
   public static int rotateDirection = 0;
 
+  public static double[]  xyz_dps;
+
   //METHODS
   /** Updates the positions of the sensor, factoring in the "rotation of the robot" (botRotation). **/
   public static void updateSensorFieldPositions(double botRotation){
@@ -90,8 +97,8 @@ public class LineTracker extends Subsystem {
 
   /** UNTESTED: Records the change in robot position with the DeltaPosition variable. **/
   public static void updateDelta(){
-    deltaPosition[0]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*DriveTrain.inchesPerCount*Math.cos(Robot.gyro.getAngle()));
-    deltaPosition[1]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*DriveTrain.inchesPerCount*Math.sin(Robot.gyro.getAngle()));
+    // deltaPosition[0]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*DriveTrain.inchesPerCount*Math.cos(Robot.myGyro.getFusedHeading(fusionStatus)));
+    // deltaPosition[1]+=((DriveTrain.frontLeftMotor.getSelectedSensorPosition()-encoderDistance)*DriveTrain.inchesPerCount*Math.sin(Robot.myGyro.getFusedHeading(fusionStatus)));
     encoderDistance = DriveTrain.frontLeftMotor.getSelectedSensorPosition();
     if(printInfo) System.out.print("Delta updated. ");
   }
@@ -140,7 +147,7 @@ public class LineTracker extends Subsystem {
 
   /** Set the calculated points of the line in space (call this after the second sensor is tripped). **/
   public static void setLinePositionsAndRotation(){
-    updateSensorFieldPositions(Robot.gyro.getAngle());
+    //updateSensorFieldPositions(Robot.myGyro.getFusedHeading(fusionStatus));
 
     //point 1, x-value
     LinePoints[0][0] = -fieldPos[ActiveSensorID][0];

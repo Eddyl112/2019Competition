@@ -12,16 +12,12 @@ import org.usfirst.frc.team451.robot.OI;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team451.robot.OI;
-//import org.usfirst.frc.team451.robot.commands.CloseClaw;
-
 /**
- * An example subsystem. You can replace me with your own Subsystem.
+ * Creates claw and sets solenoids
  */
 public class Claw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-//creates buttons, joystick and solinoide
 public static Solenoid clawSolenoid = new Solenoid(1);
 
 

@@ -19,7 +19,7 @@ import org.usfirst.frc.team451.robot.subsystems.Claw;
 public class CloseClaw extends Command {
   public CloseClaw() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.Claw);
+    requires(Robot.myClaw);
   }
 
  //Called just before this Command runs the first time

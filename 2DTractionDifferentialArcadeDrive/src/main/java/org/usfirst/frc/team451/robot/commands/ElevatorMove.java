@@ -22,7 +22,7 @@ public class ElevatorMove extends Command {
 
 public ElevatorMove() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.Elevator);
+    requires(Robot.myElevator);
   }
 
   // Called just before this Command runs the first time

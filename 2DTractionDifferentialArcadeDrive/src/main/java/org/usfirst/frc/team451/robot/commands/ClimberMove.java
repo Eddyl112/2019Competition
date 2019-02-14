@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ClimberMove extends Command {
   public ClimberMove() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.Climber);
+    requires(Robot.myClimber);
   }
 
   // Called just before this Command runs the first time

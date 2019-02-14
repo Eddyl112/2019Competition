@@ -8,6 +8,8 @@
 
 package org.usfirst.frc.team451.robot;
 
+import com.ctre.phoenix.sensors.PigeonIMU;
+
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
@@ -16,6 +18,7 @@ import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 import org.usfirst.frc.team451.robot.subsystems.LineTracker;
+import org.usfirst.frc.team451.robot.subsystems.LEDs;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -37,15 +40,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	//Mechanisms and the like
-	public static DriveTrain DriveTrain = new DriveTrain();
-	public static Claw Claw = new Claw();
-	public static LineTracker LineTracker = new LineTracker();
-	public static CameraServo CameraServo = new CameraServo();
-	public static Elevator Elevator = new Elevator();
-	public static OI oi;
-	public static ADXRS450_Gyro gyro;
-	public static Climber Climber = new Climber();
+	public static DriveTrain myDriveTrain = new DriveTrain();
+	public static Claw myClaw = new Claw();
+	public static LineTracker myLineTracker = new LineTracker();
+	public static CameraServo myCameraServo = new CameraServo();
+	public static Elevator myElevator = new Elevator();
+	public static OI myOI;
+	//public static ADXRS450_Gyro myGyro;
+	public static PigeonIMU myGyro;
+	public static Climber myClimber = new Climber();
+	public static LEDs myLeds = new LEDs();
 	
 	Thread m_visionThread;
 
@@ -65,8 +69,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		//Initialize gyro and OI
-		gyro = new ADXRS450_Gyro();
-		oi = new OI();
+		//myGyro = new ADXRS450_Gyro();
+		myGyro = new PigeonIMU(1);
+		myOI = new OI();
 		OI.init();
 
 		//SmartDashboard editable variables
@@ -135,11 +140,13 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		LEDs.disabled();
 
 	}
 
 	@Override
 	public void disabledPeriodic() {
+		LEDs.disabled();
 		Scheduler.getInstance().run();
 	}
 
@@ -195,6 +202,13 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		short[] data = new short[3]; 
+		myGyro.getBiasedAccelerometer(data);
+		if(data[0] > 5 || data[1] > 5 || data[2] > 5) {
+			LEDs.crash();
+		} else {
+			LEDs.enabled();
+		}
 		Scheduler.getInstance().run();
 
 	}

@@ -19,7 +19,7 @@ public class CameraMove extends Command {
   public CameraMove() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.CameraServo);
+    requires(Robot.myCameraServo);
   }
 
   // Called just before this Command runs the first time

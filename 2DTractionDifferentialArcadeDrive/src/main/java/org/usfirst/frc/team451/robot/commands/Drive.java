@@ -19,7 +19,7 @@ public class Drive extends Command {
 
     public Drive() {
 
-        requires(Robot.DriveTrain);
+        requires(Robot.myDriveTrain);
         // Use requires() here to declare subsystem dependencies
     }
 

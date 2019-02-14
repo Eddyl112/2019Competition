@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class OpenClaw extends Command {
   public OpenClaw() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.Claw);
+    requires(Robot.myClaw);
   }
 
  //Called just before this Command runs the first time

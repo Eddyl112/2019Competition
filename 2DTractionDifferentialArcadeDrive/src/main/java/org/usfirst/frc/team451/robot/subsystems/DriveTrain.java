@@ -7,20 +7,20 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc.team451.robot.commands.Drive;
 
-import com.ctre.phoenix.motorcontrol.can.*;
-//import com.ctre.phoenix.motorcontrol.*;
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+//import com.ctre.phoenix.motorcontrol.*;
+//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-//shshs
+/**
+ * Creates drivetrain and autoassist
+ */
 public class DriveTrain extends Subsystem {
-    public static Encoder encoderLeft = new Encoder(8,9);
-    public static Encoder encoderRight = new Encoder(6,7);
+    public static Encoder encoderLeft = new Encoder(8, 9);
+    public static Encoder encoderRight = new Encoder(6, 7);
     public static double countsPerRevolution = 1024;//counts per motor revolution
     public static double gearReduction = 19.8;//motor revolutions per wheel revolutions
     public static double WheelDiameter = 8;//inches
