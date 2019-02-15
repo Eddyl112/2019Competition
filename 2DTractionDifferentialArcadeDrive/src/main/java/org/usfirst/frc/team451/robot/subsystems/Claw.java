@@ -19,6 +19,9 @@ public class Claw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 public static Solenoid clawSolenoid = new Solenoid(1);
+public static Solenoid PushSolenoid = new Solenoid(2);
+
+public static boolean retracted = false;
 
 
 public static void claw() {

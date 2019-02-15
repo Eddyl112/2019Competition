@@ -34,6 +34,7 @@ public class CloseClaw extends Command {
     System.out.println("close claw");
     OI.clawActive = false;
     Claw.claw();
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
