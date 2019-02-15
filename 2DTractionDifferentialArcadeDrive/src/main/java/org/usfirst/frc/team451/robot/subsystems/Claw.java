@@ -26,7 +26,9 @@ public static boolean retracted = false;
 
 public static void claw() {
     System.out.println("claw sub");
+    PushSolenoid.set(true);
     clawSolenoid.set(OI.clawActive);
+    PushSolenoid.set(false);
 }
 
   @Override
