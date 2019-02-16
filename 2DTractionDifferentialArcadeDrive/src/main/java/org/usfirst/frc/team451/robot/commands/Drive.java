@@ -55,6 +55,8 @@ public class Drive extends Command {
 
         SmartDashboard.putBoolean("User Assist",DriveTrain.userAssistEnabled);
 
+
+        
         //Modify user input to keep the bot on the line during user assist
         if(DriveTrain.userAssistEnabled){
             if(!LineTracker.Sensors[0].get()) {
@@ -71,7 +73,7 @@ public class Drive extends Command {
         }
         
         DriveTrain.drive(-DriveTrain.wheelSpeed[0], -DriveTrain.wheelSpeed[1]);
-
+        DriveTrain.crawlMotor.set(OI.driveStickRight.getY());
         /*
         //Normally, run left motor based on left motor input (equal to modified right side durin user assist)
         DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);

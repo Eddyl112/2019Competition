@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import org.usfirst.frc.team451.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -25,6 +26,7 @@ public class DriveTrain extends Subsystem {
     public static double gearReduction = 19.8;//motor revolutions per wheel revolutions
     public static double WheelDiameter = 8;//inches
     public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction);
+    
 
     public static double[] wheelSpeed = {0,0};
     public static boolean userAssistEnabled = false;
@@ -43,6 +45,9 @@ public class DriveTrain extends Subsystem {
     public static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(2);
     //public static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(4);
     private final static SpeedControllerGroup right = new SpeedControllerGroup(frontRightMotor);
+
+    //The crawlmotor uses a spark, not a talon, except we don't use the encoder but this is still necessary anyway :/
+    public static Spark crawlMotor = new Spark(1);
     
     public static DifferentialDrive diffDrive = new DifferentialDrive(left, right);
     
