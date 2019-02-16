@@ -68,8 +68,8 @@ public class Elevator extends Subsystem {
 			if(PrintMethodData) System.out.println("Elevator UP (user)");
 		   } else if (UserInput < -Robot.ElevatorUserOverrideDeadzone/100) {
 			 elevatorMotor.set(1);
-			 TargetHeight=inchesPerCount*elevatorMotor.getSelectedSensorPosition();
-			 if(PrintMethodData) System.out.println("Elevator DOWN (user)");
+			 TargetHeight = inchesPerCount*elevatorMotor.getSelectedSensorPosition();
+    			if(PrintMethodData) System.out.println("Elevator DOWN (user)");
 		   }
 	}
 

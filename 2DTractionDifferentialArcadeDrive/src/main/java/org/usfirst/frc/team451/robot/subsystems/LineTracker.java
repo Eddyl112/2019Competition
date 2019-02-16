@@ -8,9 +8,6 @@
 package org.usfirst.frc.team451.robot.subsystems;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
-import com.ctre.phoenix.sensors.PigeonIMU.FusionStatus;
-
-import org.usfirst.frc.team451.robot.Robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;

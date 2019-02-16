@@ -17,14 +17,13 @@ import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
-import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 import org.usfirst.frc.team451.robot.subsystems.LEDs;
+import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;

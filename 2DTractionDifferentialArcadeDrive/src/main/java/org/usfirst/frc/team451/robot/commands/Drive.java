@@ -3,9 +3,6 @@
  *******************************************************************************/
 package org.usfirst.frc.team451.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.ctre.phoenix.motorcontrol.DemandType;
-
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;

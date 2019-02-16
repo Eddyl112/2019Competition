@@ -7,8 +7,6 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
@@ -40,11 +38,18 @@ public class ClimberMove extends Command {
     //   Climber.climber1.set(ControlMode.Position, 0);
     // }
     
-    if(OI.mechBox.getRawAxis(0) > 0 || OI.mechBox.getRawAxis(0) < 0) {
-      Climber.climb(OI.mechBox.getRawAxis(0));
-    } else if (OI.mechBox.getRawAxis(0) == 0) {
+    // if(OI.mechBox.getRawAxis(0) > 0 || OI.mechBox.getRawAxis(0) < 0) {
+    //   Climber.climb(OI.mechBox.getRawAxis(0));
+    // } else if (OI.mechBox.getRawAxis(0) == 0) {
+    //   Climber.climb(0);
+    // }
+    if(OI.driveStickLeft.getRawAxis(3) > 0) {
+      Climber.climb(OI.driveStickLeft.getRawAxis(3));
+    } else {
       Climber.climb(0);
     }
+    
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
