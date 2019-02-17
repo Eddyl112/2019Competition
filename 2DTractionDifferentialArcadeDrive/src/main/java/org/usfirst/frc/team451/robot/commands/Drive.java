@@ -30,18 +30,18 @@ public class Drive extends Command {
 
         
          //Register user imput from left drive stick   
-        // if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
-        //     DriveTrain.wheelSpeed[0] = 0;
-        // } else {
-        //     DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
-        // }
+        if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
+            DriveTrain.wheelSpeed[0] = 0;
+        } else {
+            DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
+        }
 
         // //register input from right drive stick
-        // if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
-        //     DriveTrain.wheelSpeed[1] = 0;
-        // } else {
-        //     DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
-        // }
+        if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
+            DriveTrain.wheelSpeed[1] = 0;
+        } else {
+            DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
+        }
 
         //register user input from joystick trigger to enable user assist
         if(OI.driveStickRight.getRawButton(1)) {
@@ -69,7 +69,7 @@ public class Drive extends Command {
             }
         }
         
-        DriveTrain.drive(-DriveTrain.wheelSpeed[0], -DriveTrain.wheelSpeed[1]);
+        DriveTrain.drive(DriveTrain.wheelSpeed[0], -DriveTrain.wheelSpeed[1]);
         DriveTrain.crawlMotor.set(OI.driveStickRight.getY());
         /*
         //Normally, run left motor based on left motor input (equal to modified right side durin user assist)
