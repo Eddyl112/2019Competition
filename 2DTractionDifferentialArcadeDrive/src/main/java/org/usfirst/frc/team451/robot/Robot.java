@@ -16,10 +16,10 @@ import org.usfirst.frc.team451.robot.commands.SystemCheck;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
-//import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 import org.usfirst.frc.team451.robot.subsystems.LEDs;
-//import org.usfirst.frc.team451.robot.subsystems.LineTracker;
+import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -40,9 +40,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	//public static DriveTrain myDriveTrain = new DriveTrain();
+	public static DriveTrain myDriveTrain = new DriveTrain();
 	public static Claw myClaw = new Claw();
-	//public static LineTracker myLineTracker = new LineTracker();
+	public static LineTracker myLineTracker = new LineTracker();
 	public static CameraServo myCameraServo = new CameraServo();
 	public static Elevator myElevator = new Elevator();
 	public static OI myOI;
