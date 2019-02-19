@@ -10,7 +10,7 @@ package org.usfirst.frc.team451.robot.commands;
 import org.usfirst.frc.team451.robot.subsystems.CameraServo;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
-import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
+//import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,13 +32,13 @@ public class SystemCheck extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    DriveTrain.drive(100, 100);
+    //DriveTrain.drive(100, 100);
     Timer.delay(delay);
-    DriveTrain.drive(-100, -100);
+    //DriveTrain.drive(-100, -100);
     Timer.delay(delay);
-    DriveTrain.drive(-100, 100);
+    //DriveTrain.drive(-100, 100);
     Timer.delay(delay);
-    DriveTrain.drive(100, -100);
+    //DriveTrain.drive(100, -100);
     Timer.delay(delay);
     Claw.clawSolenoid.set(true);
     Timer.delay(delay);
