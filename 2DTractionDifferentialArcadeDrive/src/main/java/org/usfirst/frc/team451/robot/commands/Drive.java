@@ -3,6 +3,8 @@
  *******************************************************************************/
 package org.usfirst.frc.team451.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
@@ -12,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends Command {
-    //public Double deadzone = 0.25; // Could be issue, would test
+    public Double deadzone = 0.25; // Could be issue, would test
 
     public Drive() {
 
@@ -22,8 +24,6 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-            DriveTrain.wheelSpeed[0] = 0;
-            DriveTrain.wheelSpeed[1] = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,46 +34,53 @@ public class Drive extends Command {
         // if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
         //     DriveTrain.wheelSpeed[0] = 0;
         // } else {
-            //DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
+            DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
         //}
 
-        // //register input from right drive stick
+        //register input from right drive stick
         // if (OI.driveStickRight.getY() < deadzone && OI.driveStickRight.getY() > -deadzone) {
         //     DriveTrain.wheelSpeed[1] = 0;
         // } else {
-            //DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
-            System.out.println(DriveTrain.wheelSpeed[0]);
-            System.out.println(DriveTrain.wheelSpeed[1]);
-        // }
+            DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
+         //}
 
         //register user input from joystick trigger to enable user assist
-        // if(OI.driveStickRight.getRawButton(1)) {
-        //     DriveTrain.userAssistEnabled = true;
-        //     //set the left side motion equal to the right side when driving straight forward
-        //     DriveTrain.wheelSpeed[0] = - DriveTrain.wheelSpeed[1];
-        // } else DriveTrain.userAssistEnabled = false;
+        if(OI.driveStickRight.getRawButton(1)) {
+            DriveTrain.userAssistEnabled = true;
+            //set the left side motion equal to the right side when driving straight forward
+            DriveTrain.wheelSpeed[0] = - DriveTrain.wheelSpeed[1];
+        } else DriveTrain.userAssistEnabled = false;
 
         SmartDashboard.putBoolean("User Assist",DriveTrain.userAssistEnabled);
 
 
         
         //Modify user input to keep the bot on the line during user assist
-        // if(DriveTrain.userAssistEnabled){
-        //     if(LineTracker.Sensors[0].get()) {
-        //         //If the left line sensor is tripped, then increase left wheel speed
-        //         DriveTrain.wheelSpeed[0] += Robot.UserAssistCorrectionSpeed/100;
-        //         System.out.println("Correcting right: "+DriveTrain.wheelSpeed[0]);
-        //     }
-        //     if(LineTracker.Sensors[2].get()){
-        //         //If the right line sensor is tripped, then increase the right wheel speed
-        //         DriveTrain.wheelSpeed[1] -= Robot.UserAssistCorrectionSpeed/100;
-        //         System.out.println("Correcting left: "+DriveTrain.wheelSpeed[1]);
+        if(DriveTrain.userAssistEnabled){
+            if(LineTracker.Sensors[0].get()) {
+                //If the left line sensor is tripped, then increase left wheel speed
+                DriveTrain.wheelSpeed[0] += Robot.UserAssistCorrectionSpeed/100;
+                System.out.println("Correcting right: "+DriveTrain.wheelSpeed[0]);
+            }
+            if(LineTracker.Sensors[2].get()){
+                //If the right line sensor is tripped, then increase the right wheel speed
+                DriveTrain.wheelSpeed[1] -= Robot.UserAssistCorrectionSpeed/100;
+                System.out.println("Correcting left: "+DriveTrain.wheelSpeed[1]);
 
-        //     }
-        // }
-        
+            }
+        }
+        if (!OI.driveStickLeft.getRawButton(1)) {
         DriveTrain.drive(DriveTrain.wheelSpeed[0], -DriveTrain.wheelSpeed[1]);
-        DriveTrain.crawlMotor.set(OI.driveStickRight.getY());
+        } else {
+            DriveTrain.drive(0,0);
+        }
+        
+        if(OI.driveStickLeft.getRawButton(5)) {
+            DriveTrain.crawlMotor.set(0.2);
+        } else if (OI.driveStickLeft.getRawButton(6)) {
+            DriveTrain.crawlMotor.set(-0.2);
+        }
+        
         /*
         //Normally, run left motor based on left motor input (equal to modified right side durin user assist)
         DriveTrain.frontLeftMotor.set(ControlMode.PercentOutput, DriveTrain.wheelSpeed[0]);

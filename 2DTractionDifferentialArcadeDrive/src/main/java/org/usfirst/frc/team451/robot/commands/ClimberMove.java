@@ -10,6 +10,7 @@ package org.usfirst.frc.team451.robot.commands;
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
+import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -43,8 +44,19 @@ public class ClimberMove extends Command {
     // } else if (OI.mechBox.getRawAxis(0) == 0) {
     //   Climber.climb(0);
     // }
-    if(OI.driveStickLeft.getRawAxis(3) > 0) {
-      Climber.climb(OI.driveStickLeft.getRawAxis(3));
+
+    // if(OI.driveStickLeft.getRawAxis(3) > 0.7) {
+    //   Climber.climb(0.3);
+    //   //this is towards the red
+    // } else if (OI.driveStickLeft.getRawAxis(3) < 0.3) {
+    //   Climber.climb(-0.3);
+    //   //this is towards the white
+    // } else {
+    //   Climber.climb(0);
+    // }
+
+    if(OI.driveStickLeft.getRawButton(1)) {
+      Climber.climb(OI.driveStickLeft.getY());
     } else {
       Climber.climb(0);
     }

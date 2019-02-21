@@ -47,7 +47,7 @@ public class Elevator extends Subsystem {
 	public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction); //the amount of inches that are covered in one count
 
 	//talon
-	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(5);
+	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(3);
 
 	//is the elevator at the right height? Only set to false when the user has set input
 	public static boolean atProperHeight = false;
