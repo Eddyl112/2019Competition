@@ -3,6 +3,9 @@
  *******************************************************************************/
 package org.usfirst.frc.team451.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 //import org.usfirst.frc.team451.robot.OI;
@@ -23,6 +26,7 @@ import org.usfirst.frc.team451.robot.Robot;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
+
 	public static double elevatorHeightMargin = 0.5;// in inches
 
 	//lowest position of the elevator
@@ -52,7 +56,14 @@ public class Elevator extends Subsystem {
 	//is the elevator at the right height? Only set to false when the user has set input
 	public static boolean atProperHeight = false;
 
+	
     public Elevator() {
+		elevatorMotor.setSelectedSensorPosition(0, 0, 30);
+		elevatorMotor.config_kP(0, 1.1);
+		elevatorMotor.config_kD(0, 1);
+		elevatorMotor.config_kF(0, 0.2);
+		elevatorMotor.config_kI(0, 0);
+		elevatorMotor.config_IntegralZone(0, 0);
     }
  
 	// Put methods for controlling this subsystem
@@ -73,20 +84,26 @@ public class Elevator extends Subsystem {
 		   }
 	}
 
+	// public static void speedControl() {
+		
+	// 	elevatorMotor.set(ControlMode.MotionMagic, 4096*2);
+	// 	//this runs the motor at 102.4 ticks per 100ms in velocity control mode
+	// }
+
 	/** Moves elevator based on TargetHeight (inches). PrintMethodData prints 
 	 * information to the console.
 	 */
-	public static void MoveTowards(double TargetHeight, boolean PrintMethodData){
-		if(elevatorMotor.getSelectedSensorPosition() > (TargetHeight+elevatorHeightMargin-minHeight)/inchesPerCount){
-			elevatorMotor.set(1);
-			if(PrintMethodData) System.out.println("Elevator DOWN (preset)");
-		}
+	// public static void MoveTowards(double TargetHeight, boolean PrintMethodData){
+	// 	if(elevatorMotor.getSelectedSensorPosition() > (TargetHeight+elevatorHeightMargin-minHeight)/inchesPerCount){
+	// 		elevatorMotor.set(1);
+	// 		if(PrintMethodData) System.out.println("Elevator DOWN (preset)");
+	// 	}
 
-		if(elevatorMotor.getSelectedSensorPosition() < (TargetHeight-elevatorHeightMargin-minHeight)/inchesPerCount){
-			elevatorMotor.set(-1);
-			if(PrintMethodData) System.out.println("Elevator UP (preset)");
-		}
-	}
+	// 	if(elevatorMotor.getSelectedSensorPosition() < (TargetHeight-elevatorHeightMargin-minHeight)/inchesPerCount){
+	// 		elevatorMotor.set(-1);
+	// 		if(PrintMethodData) System.out.println("Elevator UP (preset)");
+	// 	}
+	// }
 
 
     
@@ -95,6 +112,10 @@ public class Elevator extends Subsystem {
 		
 		setDefaultCommand(new ElevatorMove());
 		
+	}
+
+	public static void moveToPosition(double position) {
+		elevatorMotor.set(ControlMode.MotionMagic, position);
 	}
 }
  

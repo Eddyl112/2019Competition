@@ -28,6 +28,7 @@ public ElevatorMove() {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Elevator.elevatorMotor.setSelectedSensorPosition(0);
   }
  
   // Called repeatedly when this Command is scheduled to run
@@ -52,11 +53,18 @@ public ElevatorMove() {
       Elevator.TargetHeight = Elevator.PortHeights[0];
     }
 
+    if (OI.mechBox.getRawButtonPressed(7)) {
+      Elevator.elevatorMotor.setSelectedSensorPosition(0);
+    }
+
     //Go to the preset (run first so it does not override the user override)
-    Elevator.MoveTowards(Elevator.TargetHeight, false);
+    //Elevator.MoveTowards(Elevator.TargetHeight, false);
+    Elevator.moveToPosition(Elevator.TargetHeight);
 
     //Only run this method when the user is trying to override
     Elevator.RunUserOverride(OI.mechBox.getY(Hand.kRight), false);
+
+    //Elevator.speedControl();
   }
 
   // Make this return true when this Command no longer needs to run execute()

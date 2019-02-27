@@ -11,6 +11,7 @@ package org.usfirst.frc.team451.robot;
 
 import org.usfirst.frc.team451.robot.commands.CloseClaw;
 import org.usfirst.frc.team451.robot.commands.OpenClaw;
+import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
@@ -35,6 +36,7 @@ public class OI {
 	public static boolean clawActive;
 	public static Button topHatch;
 	public static Button override;
+	public static Button elevatorReset;
 	
 //	public static boolean clawActive = false;
 	
@@ -44,6 +46,7 @@ public class OI {
 		driveStickLeft = new Joystick(0); 
 		driveStickRight = new Joystick(1);
 		mechBox = new XboxController(2);
+		elevatorReset = new JoystickButton(mechBox, 7);
 		
 		//autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
 		openClawButton = new JoystickButton(mechBox, 3);

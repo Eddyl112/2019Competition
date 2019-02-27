@@ -28,23 +28,6 @@ public class ClimberMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // if(OI.mechBox.getRawAxis(0) > 0) {
-    //   Climber.climber0.set(ControlMode.Position, OI.mechBox.getRawAxis(0));
-    //   Climber.climber1.set(ControlMode.Position, -OI.mechBox.getRawAxis(0));
-    // } else if (OI.mechBox.getRawAxis(0) < 0) {
-    //   Climber.climber0.set(ControlMode.Position, -OI.mechBox.getRawAxis(0));
-    //   Climber.climber1.set(ControlMode.Position, OI.mechBox.getRawAxis(0));
-    // } else if (OI.mechBox.getRawAxis(0) == 0) {
-    //   Climber.climber0.set(ControlMode.Position, 0);
-    //   Climber.climber1.set(ControlMode.Position, 0);
-    // }
-    
-    // if(OI.mechBox.getRawAxis(0) > 0 || OI.mechBox.getRawAxis(0) < 0) {
-    //   Climber.climb(OI.mechBox.getRawAxis(0));
-    // } else if (OI.mechBox.getRawAxis(0) == 0) {
-    //   Climber.climb(0);
-    // }
-
     // if(OI.driveStickLeft.getRawAxis(3) > 0.7) {
     //   Climber.climb(0.3);
     //   //this is towards the red
@@ -54,12 +37,11 @@ public class ClimberMove extends Command {
     // } else {
     //   Climber.climb(0);
     // }
-
-    if(OI.driveStickLeft.getRawButton(1)) {
-      Climber.climb(OI.driveStickLeft.getY());
-    } else {
-      Climber.climb(0);
-    }
+    // if(OI.driveStickLeft.getRawButton(1)) {
+    //   Climber.climb(OI.driveStickLeft.getY());
+    // } else {
+    //   Climber.climb(0);
+    // }
     
 
   }

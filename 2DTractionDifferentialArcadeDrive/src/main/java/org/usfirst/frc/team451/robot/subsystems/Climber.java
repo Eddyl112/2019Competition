@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team451.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -21,18 +22,40 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
   public static WPI_TalonSRX climber0 = new WPI_TalonSRX(1);
   public static WPI_TalonSRX climber1 = new WPI_TalonSRX(2);
-  
+  public static double targetVelocity = 5.0;
 
   
   //TEST THIS MAKE SURE MOTORS SPIN IN THE SAME DIRECTION BECAUSE OF LINE 32
 
+
   
   public Climber() {
     climber0.setInverted(true);
-    climber0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-    climber1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+    // climber0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.PIDLoopIdx, Constants.timeoutMS);
+    // climber1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.PIDLoopIdx, Constants.timeoutMS);
+    // climber0.setSensorPhase(true);
+    // climber1.setSensorPhase(true);
+    // climber0.configNominalOutputForward(1, Constants.timeoutMS);
+    // climber0.configNominalOutputReverse(-1, Constants.timeoutMS);
+    // climber1.configNominalOutputForward(1, Constants.timeoutMS);
+    // climber1.configNominalOutputReverse(-1, Constants.timeoutMS);
+
+    // climber0.config_kP(Constants.kPIDLoopIdx, Constants.gainsVelocity.P, Constants.timeoutMS);
+    // climber0.config_kI(Constants.kPIDLoopIdx, Constants.gainsVelocity.I, Constants.timeoutMS);
+    // climber0.config_kD(Constants.kPIDLoopIdx, Constants.gainsVelocity.D, Constants.timeoutMS);
+    // climber0.config_kF(Constants.kPIDLoopIdx, Constants.gainsVelocity.F, Constants.timeoutMS);
+
+    
+    // climber1.config_kP(Constants.PIDLoopIdx, Constants.gainsVelocity.P, Constants.timeoutMS);
+    // climber1.config_kI(Constants.PIDLoopIdx, Constants.gainsVelocity.I, Constants.timeoutMS);
+    // climber1.config_kD(Constants.PIDLoopIdx, Constants.gainsVelocity.D, Constants.timeoutMS);
+    // climber1.config_kF(Constants.PIDLoopIdx, Constants.gainsVelocity.F, Constants.timeoutMS);
+
+
+    
     //set soft limit and postitions for 0. climber starts at 0 so should be easy
   }
 
@@ -47,10 +70,12 @@ public class Climber extends Subsystem {
   }
 
   public static void climb(double speed) {
-    climber0.set(speed);
-    climber1.set(speed);
+    climber0.set(ControlMode.Velocity, targetVelocity);    
+    climber1.set(ControlMode.Velocity, targetVelocity);
+    
   }
 
 
 }
   
+ 
