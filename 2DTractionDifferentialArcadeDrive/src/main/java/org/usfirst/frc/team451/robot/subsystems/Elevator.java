@@ -43,12 +43,13 @@ public class Elevator extends Subsystem {
 	static double distancebetweenP = 2*12+4;//28 inches
 	public static double[] PortHeights = {firstPortHeight, firstPortHeight+distancebetweenP, firstPortHeight+2*distancebetweenP};
 
-	public static double TargetHeight = HatchHeights[0];
-
 	public static double countsPerRevolution = 1024; //counts per motor revolution based on specifications for mag encoder
 	public static double gearReduction = 1; //motor revolutions per wheel revolutions
 	public static double WheelDiameter = 1.7284; //inches
 	public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction); //the amount of inches that are covered in one count
+
+	public static double TargetHeightInInches = HatchHeights[0];
+	public static double TargetHeightInTicks = (TargetHeightInInches-minHeight)/(inchesPerCount);
 
 	//talon
 	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(3);
@@ -68,10 +69,12 @@ public class Elevator extends Subsystem {
  
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
+	//NO METHODS USED -- CHECK ElevatorMove.java FOR COMMAND CODE
 	
 	/** Runs the user override commands from the x-box controller. PrintMethodData prints 
 	 * information to the console.
 	 */
+	/*
 	public static void RunUserOverride(double UserInput, boolean PrintMethodData){
 		if (UserInput > Robot.ElevatorUserOverrideDeadzone/100) {
 			elevatorMotor.set(-1);
