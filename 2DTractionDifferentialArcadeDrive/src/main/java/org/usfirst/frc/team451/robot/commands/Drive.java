@@ -34,7 +34,7 @@ public class Drive extends Command {
         // if (OI.driveStickLeft.getY() < deadzone && OI.driveStickLeft.getY() > -deadzone) {
         //     DriveTrain.wheelSpeed[0] = 0;
         // } else {
-            DriveTrain.wheelSpeed[0] = -OI.driveStickLeft.getY();
+            DriveTrain.wheelSpeed[0] = OI.driveStickLeft.getY();
         //}
 
         //register input from right drive stick
@@ -48,7 +48,8 @@ public class Drive extends Command {
         if(OI.driveStickRight.getRawButton(1)) {
             DriveTrain.userAssistEnabled = true;
             //set the left side motion equal to the right side when driving straight forward
-            DriveTrain.wheelSpeed[0] = - DriveTrain.wheelSpeed[1];
+            //DriveTrain.wheelSpeed[0] = - DriveTrain.wheelSpeed[1];
+            DriveTrain.wheelSpeed[0] = DriveTrain.wheelSpeed[1];
         } else DriveTrain.userAssistEnabled = false;
 
         SmartDashboard.putBoolean("User Assist",DriveTrain.userAssistEnabled);

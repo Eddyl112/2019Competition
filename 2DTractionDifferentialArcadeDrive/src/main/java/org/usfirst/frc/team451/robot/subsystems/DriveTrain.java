@@ -52,6 +52,7 @@ public class DriveTrain extends Subsystem {
     public static DifferentialDrive diffDrive = new DifferentialDrive(left,right);
     
     public DriveTrain() {
+        right.setInverted(true);
         SmartDashboard.putNumber("Encoder Left", encoderLeft.getDistance());
         SmartDashboard.putNumber("Encoder Right", encoderRight.getDistance());
         

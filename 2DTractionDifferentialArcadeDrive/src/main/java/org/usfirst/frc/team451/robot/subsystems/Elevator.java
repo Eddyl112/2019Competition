@@ -19,6 +19,8 @@ import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 import org.usfirst.frc.team451.robot.Robot;
 //import org.usfirst.frc.team451.robot.commands.ElevatorMove;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+
 //import com.ctre.phoenix.motorcontrol.can.*;
 
 //import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -50,6 +52,9 @@ public class Elevator extends Subsystem {
 
 	public static double TargetHeightInInches = HatchHeights[0];
 	public static double TargetHeightInTicks = (TargetHeightInInches-minHeight)/(inchesPerCount);
+
+	public static double[] ypr = new double[3];
+	public static DigitalInput elevatorZero = new DigitalInput(3);
 
 	//talon
 	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(3);
