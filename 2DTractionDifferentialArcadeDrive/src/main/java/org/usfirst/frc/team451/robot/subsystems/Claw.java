@@ -21,14 +21,14 @@ public class Claw extends Subsystem {
 public static Solenoid clawSolenoid = new Solenoid(1);
 public static Solenoid PushSolenoid = new Solenoid(2);
 
-public static boolean retracted = false;
+//public static boolean retracted = false;
 
 
 public static void claw() {
-    System.out.println("claw sub");
-    PushSolenoid.set(true);
-    clawSolenoid.set(OI.clawActive);
-    PushSolenoid.set(false);
+    // System.out.println("claw sub");
+    // PushSolenoid.set(true);
+    // clawSolenoid.set(OI.clawActive);
+    // PushSolenoid.set(false);
 }
 
   @Override

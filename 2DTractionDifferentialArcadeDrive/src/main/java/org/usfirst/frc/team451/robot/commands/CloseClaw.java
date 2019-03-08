@@ -31,16 +31,20 @@ public class CloseClaw extends Command {
   @Override
   //turns off solenoid
   protected void execute() {
-    System.out.println("close claw");
-    OI.clawActive = false;
-    Claw.claw();
-    
+    // System.out.println("close claw");
+    // OI.clawActive = false;
+    // Claw.claw();
+    Claw.clawSolenoid.set(true);
+    Claw.PushSolenoid.set(true);
+    Claw.clawSolenoid.set(false);
+    Claw.PushSolenoid.set(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    //return false;
+    return true;
   }
 
   // Called once after isFinished returns true

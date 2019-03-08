@@ -38,7 +38,7 @@ public class OI {
 	public static Button override;
 	public static Button elevatorReset;
 	
-//	public static boolean clawActive = false;
+	//public static boolean clawActive = false;
 	
 	
 
@@ -49,8 +49,8 @@ public class OI {
 		elevatorReset = new JoystickButton(mechBox, 7);
 		
 		//autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
-		openClawButton = new JoystickButton(mechBox, 3);
-		closeClawButton = new JoystickButton(mechBox, 5);
+		openClawButton = new JoystickButton(mechBox, 5);
+		closeClawButton = new JoystickButton(mechBox, 6);
 		mechBox.getRawAxis(1);
 		openClawButton.whenPressed(new OpenClaw());
 		closeClawButton.whenPressed(new CloseClaw());

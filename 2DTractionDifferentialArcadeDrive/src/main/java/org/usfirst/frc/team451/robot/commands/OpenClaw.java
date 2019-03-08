@@ -30,15 +30,20 @@ public class OpenClaw extends Command {
   @Override
   //turns pneumatics on 
   protected void execute() {
-    System.out.println("open claw");
-    OI.clawActive = true;
-    Claw.claw();
+    // System.out.println("open claw");
+    // OI.clawActive = true;
+    // Claw.claw();
+    Claw.clawSolenoid.set(false);
+    Claw.PushSolenoid.set(true);
+    Claw.clawSolenoid.set(true);
+    Claw.PushSolenoid.set(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    //return false;
+    return true;
   }
 
   // Called once after isFinished returns true
