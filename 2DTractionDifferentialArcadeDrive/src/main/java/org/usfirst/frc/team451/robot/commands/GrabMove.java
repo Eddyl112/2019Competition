@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -7,44 +7,38 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
-/**
- * An example command.  You can replace me with your own command.
- */
-//extends command class with close claw
-public class CloseClaw extends Command {
-  public CloseClaw() {
+
+import edu.wpi.first.wpilibj.command.Command;
+
+public class GrabMove extends Command {
+  public GrabMove() {
     // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
     requires(Robot.myClaw);
   }
 
- //Called just before this Command runs the first time
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  //turns off solenoid
   protected void execute() {
-    // System.out.println("close claw");
-    // OI.clawActive = false;
-    // Claw.claw();
-    Claw.clawSolenoid.set(true);
-    Claw.PushSolenoid.set(true);
-    Claw.clawSolenoid.set(false);
-    Claw.PushSolenoid.set(false);
+    if (OI.clawActive) {
+      Claw.clawSolenoid.set(true);
+    } else {
+      Claw.clawSolenoid.set(false);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //return false;
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
@@ -56,5 +50,5 @@ public class CloseClaw extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  };
+  }
 }

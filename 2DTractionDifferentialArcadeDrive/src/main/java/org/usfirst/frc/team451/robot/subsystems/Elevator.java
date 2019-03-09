@@ -64,6 +64,7 @@ public class Elevator extends Subsystem {
 
 	
     public Elevator() {
+		elevatorMotor.setInverted(true);
 		elevatorMotor.setSelectedSensorPosition(0, 0, 30);
 		elevatorMotor.config_kP(0, 1.1);
 		elevatorMotor.config_kD(0, 1);

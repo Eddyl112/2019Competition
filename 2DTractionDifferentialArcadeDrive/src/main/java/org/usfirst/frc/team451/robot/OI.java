@@ -9,8 +9,9 @@
 package org.usfirst.frc.team451.robot;
 
 
-import org.usfirst.frc.team451.robot.commands.CloseClaw;
-import org.usfirst.frc.team451.robot.commands.OpenClaw;
+//import org.usfirst.frc.team451.robot.commands.CloseClaw;
+//import org.usfirst.frc.team451.robot.commands.OpenClaw;
+import org.usfirst.frc.team451.robot.commands.SystemCheck;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -31,14 +32,16 @@ public class OI {
 
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
-	public static Button closeClawButton;
+	//public static Button closeClawButton;
+	public static Button extendButton;
 	public static DigitalInput clawSwitch;
-	public static boolean clawActive;
+	//public static boolean clawActive;
 	public static Button topHatch;
 	public static Button override;
 	public static Button elevatorReset;
 	
-	//public static boolean clawActive = false;
+	public static boolean clawActive = false;
+	public static boolean extendActive = false;
 	
 	
 
@@ -49,11 +52,29 @@ public class OI {
 		elevatorReset = new JoystickButton(mechBox, 7);
 		
 		//autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
+		// openClawButton = new JoystickButton(mechBox, 5);
+		// closeClawButton = new JoystickButton(mechBox, 6);
 		openClawButton = new JoystickButton(mechBox, 5);
-		closeClawButton = new JoystickButton(mechBox, 6);
+		//extendButton = new JoystickButton(mechBox, 6);
 		mechBox.getRawAxis(1);
-		openClawButton.whenPressed(new OpenClaw());
-		closeClawButton.whenPressed(new CloseClaw());
+		//openClawButton.whenPressed(new SystemCheck());
+		//openClawButton.whenPressed(new OpenClaw());
+		//closeClawButton.whenPressed(new CloseClaw());
+		if (openClawButton.get()) {
+			if (clawActive) {
+				clawActive = false;
+			} else if (!clawActive) {
+				clawActive = true;
+			}
+		}
+
+		// if (extendButton.get()) {
+		// 	if(extendActive) {
+		// 		extendActive = false;
+		// 	} else if(!extendActive) {
+		// 		extendActive = true;
+		// 	}
+		// }
 		
 	}
 	

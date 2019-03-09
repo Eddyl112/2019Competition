@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
-import org.usfirst.frc.team451.robot.subsystems.CameraServo;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
 //import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
@@ -17,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class SystemCheck extends Command {
   
-  int delay = 5;
+  int delay = 3;
 
   public SystemCheck() {
     // Use requires() here to declare subsystem dependencies
@@ -32,41 +31,27 @@ public class SystemCheck extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //DriveTrain.drive(100, 100);
+    // //DriveTrain.drive(100, 100);
+    // Timer.delay(delay);
+    // //DriveTrain.drive(-100, -100);
+    // Timer.delay(delay);
+    // //DriveTrain.drive(-100, 100);
+    // Timer.delay(delay);
+    // //DriveTrain.drive(100, -100);
+    // Timer.delay(delay);
+    // Climber.climb(1);
+    // Timer.delay(0.5);
+    // Climber.climb(-1);
+    // Timer.delay(0.5);
+    Claw.pushSolenoid.set(true);
     Timer.delay(delay);
-    //DriveTrain.drive(-100, -100);
-    Timer.delay(delay);
-    //DriveTrain.drive(-100, 100);
-    Timer.delay(delay);
-    //DriveTrain.drive(100, -100);
+    Claw.pushSolenoid.set(false);
     Timer.delay(delay);
     Claw.clawSolenoid.set(true);
     Timer.delay(delay);
     Claw.clawSolenoid.set(false);
     Timer.delay(delay);
-    Climber.climb(1);
-    Timer.delay(0.5);
-    Climber.climb(-1);
-    Timer.delay(0.5);
 
-    
-    
-    
-    
-    
-    
-    
-    
-    CameraServo.cameraPitch.set(0);
-    Timer.delay(1);
-    CameraServo.cameraPitch.set(1);
-    Timer.delay(1);
-    //CameraServo.cameraYaw.set(0);
-    Timer.delay(1);
-    //CameraServo.cameraYaw.set(1);
-    Timer.delay(1);
-    CameraServo.cameraPitch.set(CameraServo.pitchSpeed);
-    //CameraServo.cameraYaw.set(CameraServo.yawSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

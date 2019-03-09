@@ -11,6 +11,7 @@ import org.usfirst.frc.team451.robot.OI;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Creates claw and sets solenoids
@@ -19,16 +20,18 @@ public class Claw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 public static Solenoid clawSolenoid = new Solenoid(1);
-public static Solenoid PushSolenoid = new Solenoid(2);
+public static Solenoid pushSolenoid = new Solenoid(2);
 
 //public static boolean retracted = false;
 
 
 public static void claw() {
+    clawSolenoid.set(SmartDashboard.getBoolean("Claw Status", true));
+    pushSolenoid.set(SmartDashboard.getBoolean("Claw Extend", false));
     // System.out.println("claw sub");
-    // PushSolenoid.set(true);
+    // pushSolenoid.set(true);
     // clawSolenoid.set(OI.clawActive);
-    // PushSolenoid.set(false);
+    // pushSolenoid.set(false);
 }
 
   @Override

@@ -33,10 +33,10 @@ public class DriveTrain extends Subsystem {
 
 	// Put methods for controlling this subsystem
     // // here. Call these from Commands.
-	public double pGain = 1.0;
-	public double iGain = 1.0;
-	public double dGain = 1.0;
-	public double fGain = 1.0;
+	// public double pGain = 1.0;
+	// public double iGain = 1.0;
+	// public double dGain = 1.0;
+	// public double fGain = 1.0;
 	
     public static WPI_TalonSRX leftDrive0 = new WPI_TalonSRX(4);
     public static WPI_TalonSRX leftDrive1 = new WPI_TalonSRX(5);
@@ -52,7 +52,7 @@ public class DriveTrain extends Subsystem {
     public static DifferentialDrive diffDrive = new DifferentialDrive(left,right);
     
     public DriveTrain() {
-        right.setInverted(true);
+        left.setInverted(true);
         SmartDashboard.putNumber("Encoder Left", encoderLeft.getDistance());
         SmartDashboard.putNumber("Encoder Right", encoderRight.getDistance());
         

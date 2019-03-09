@@ -53,8 +53,6 @@ public class Drive extends Command {
         } else DriveTrain.userAssistEnabled = false;
 
         SmartDashboard.putBoolean("User Assist",DriveTrain.userAssistEnabled);
-
-
         
         //Modify user input to keep the bot on the line during user assist
         if(DriveTrain.userAssistEnabled){

@@ -37,25 +37,9 @@ public ElevatorMove() {
   @Override
   protected void execute() {
 
-    if (Elevator.elevatorZero.get()) {
-      Elevator.elevatorMotor.setSelectedSensorPosition(0);
-    }
-
     //SET ELEVATOR TARGET POSITION
     //Hatch Presets
-    if(OI.mechBox.getYButton()) {
-      Elevator.TargetHeightInInches = Elevator.HatchHeights[2];
-      Elevator.TargetHeightInTicks = (Elevator.TargetHeightInInches-Elevator.minHeight)/(Elevator.inchesPerCount);
-    }
-    if(OI.mechBox.getXButton() || OI.mechBox.getBButton()) {
-      Elevator.TargetHeightInInches = Elevator.HatchHeights[1];
-      Elevator.TargetHeightInTicks = (Elevator.TargetHeightInInches-Elevator.minHeight)/(Elevator.inchesPerCount);
-    }
-    if(OI.mechBox.getAButton()) {
-      Elevator.TargetHeightInInches = Elevator.HatchHeights[0];
-      Elevator.TargetHeightInTicks = (Elevator.TargetHeightInInches-Elevator.minHeight)/(Elevator.inchesPerCount);
-    }
-
+    
     if (Elevator.ypr[1] > 20 || Elevator.ypr[1] < -20) {
       Elevator.moveToPosition(0);
     } else if (Elevator.ypr[2] > 20 || Elevator.ypr[2] < -20) {
@@ -77,6 +61,19 @@ public ElevatorMove() {
         Elevator.TargetHeightInInches = Elevator.PortHeights[0];
         Elevator.TargetHeightInTicks = (Elevator.TargetHeightInInches-Elevator.minHeight)/(Elevator.inchesPerCount);
       }
+
+      if(OI.mechBox.getYButton()) {
+        Elevator.TargetHeightInInches = Elevator.HatchHeights[2];
+        Elevator.TargetHeightInTicks = (Elevator.TargetHeightInInches-Elevator.minHeight)/(Elevator.inchesPerCount);
+      }
+      if(OI.mechBox.getXButton() || OI.mechBox.getBButton()) {
+        Elevator.TargetHeightInInches = Elevator.HatchHeights[1];
+        Elevator.TargetHeightInTicks = (Elevator.TargetHeightInInches-Elevator.minHeight)/(Elevator.inchesPerCount);
+      }
+      if(OI.mechBox.getAButton()) {
+        Elevator.TargetHeightInInches = Elevator.HatchHeights[0];
+        Elevator.TargetHeightInTicks = (Elevator.TargetHeightInInches-Elevator.minHeight)/(Elevator.inchesPerCount);
+      }
   
       //RESETS ENCODER POSITION TO ZERO
       // if (OI.mechBox.getRawButtonPressed(7)) {
@@ -84,15 +81,31 @@ public ElevatorMove() {
       // }
   
       //RUN ELEVATOR MOTION
-      if(OI.mechBox.getY(Hand.kRight) > 0.03){
-        //Control motors directly when user is overriding
-        Elevator.elevatorMotor.set(ControlMode.PercentOutput, OI.mechBox.getY(Hand.kRight));
-        //Set the target height in ticks equal to current height so it doesn't try to move back when you stop overriding
-        Elevator.TargetHeightInTicks = Elevator.elevatorMotor.getSelectedSensorPosition();
+      if (Elevator.elevatorZero.get() == true) {
+        System.out.println("---------------------------------LIMIT SWITCH ACTIVAITED-------------------------------------");
+        Elevator.elevatorMotor.setSelectedSensorPosition(0);
+        if(OI.mechBox.getY(Hand.kRight) > 0.01){
+          //Control motors directly when user is overriding
+          Elevator.elevatorMotor.set(ControlMode.PercentOutput, OI.mechBox.getY(Hand.kRight));
+          //Set the target height in ticks equal to current height so it doesn't try to move back when you stop overriding
+          Elevator.TargetHeightInTicks = Elevator.elevatorMotor.getSelectedSensorPosition();
+        } else {
+          //uses motion magic to get to the proper height when user is not overriding
+          Elevator.moveToPosition(Elevator.TargetHeightInTicks);
+        }
       } else {
-        //uses motion magic to get to the proper height when user is not overriding
-        Elevator.moveToPosition(Elevator.TargetHeightInTicks);
+        if(OI.mechBox.getY(Hand.kRight) > 0.01 || OI.mechBox.getY(Hand.kRight) < -0.01){
+          //Control motors directly when user is overriding
+          Elevator.elevatorMotor.set(ControlMode.PercentOutput, OI.mechBox.getY(Hand.kRight));
+          //Set the target height in ticks equal to current height so it doesn't try to move back when you stop overriding
+          Elevator.TargetHeightInTicks = Elevator.elevatorMotor.getSelectedSensorPosition();
+        } else {
+          //uses motion magic to get to the proper height when user is not overriding
+          Elevator.moveToPosition(Elevator.TargetHeightInTicks);
+        }
+          
       }
+      
     }
 
     
