@@ -43,10 +43,6 @@ public class SystemCheck extends Command {
     // Timer.delay(0.5);
     // Climber.climb(-1);
     // Timer.delay(0.5);
-    Claw.pushSolenoid.set(true);
-    Timer.delay(delay);
-    Claw.pushSolenoid.set(false);
-    Timer.delay(delay);
     Claw.clawSolenoid.set(true);
     Timer.delay(delay);
     Claw.clawSolenoid.set(false);

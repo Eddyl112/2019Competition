@@ -52,7 +52,7 @@ public class Drive extends Command {
             DriveTrain.wheelSpeed[0] = DriveTrain.wheelSpeed[1];
         } else DriveTrain.userAssistEnabled = false;
 
-        SmartDashboard.putBoolean("User Assist",DriveTrain.userAssistEnabled);
+        //SmartDashboard.putBoolean("User Assist",DriveTrain.userAssistEnabled);
         
         //Modify user input to keep the bot on the line during user assist
         if(DriveTrain.userAssistEnabled){
@@ -68,17 +68,17 @@ public class Drive extends Command {
 
             }
         }
-        if (!OI.driveStickLeft.getRawButton(1)) {
-        DriveTrain.drive(DriveTrain.wheelSpeed[0], -DriveTrain.wheelSpeed[1]);
-        } else {
-            DriveTrain.drive(0,0);
+
+        if (OI.driveStickLeft.getRawButton(1)) {
+            DriveTrain.drive(1.0, 1.0);
         }
+
+        // if (OI.driveStickLeft.getRawButton(1)) {
+        // DriveTrain.drive(DriveTrain.wheelSpeed[0], -DriveTrain.wheelSpeed[1]);
+        // } else {
+        //     DriveTrain.drive(0,0);
+        // }
         
-        if(OI.driveStickLeft.getRawButton(5)) {
-            DriveTrain.crawlMotor.set(0.2);
-        } else if (OI.driveStickLeft.getRawButton(6)) {
-            DriveTrain.crawlMotor.set(-0.2);
-        }
         
         /*
         //Normally, run left motor based on left motor input (equal to modified right side durin user assist)

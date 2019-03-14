@@ -94,7 +94,7 @@ public ElevatorMove() {
           Elevator.moveToPosition(Elevator.TargetHeightInTicks);
         }
       } else {
-        if(OI.mechBox.getY(Hand.kRight) > 0.01 || OI.mechBox.getY(Hand.kRight) < -0.01){
+        if(-OI.mechBox.getY(Hand.kRight) > -0.01 || -OI.mechBox.getY(Hand.kRight) < 0.01){
           //Control motors directly when user is overriding
           Elevator.elevatorMotor.set(ControlMode.PercentOutput, OI.mechBox.getY(Hand.kRight));
           //Set the target height in ticks equal to current height so it doesn't try to move back when you stop overriding

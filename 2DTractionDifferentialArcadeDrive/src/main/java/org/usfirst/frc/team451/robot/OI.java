@@ -33,6 +33,7 @@ public class OI {
 	public static Button autoAlignOverrideButton;
 	public static Button openClawButton;
 	public static Button climberPistonButton;
+	public static Button climberStickthingButton;
 	//public static Button closeClawButton;
 	public static Button extendButton;
 	public static DigitalInput clawSwitch;
@@ -44,6 +45,7 @@ public class OI {
 	public static boolean clawActive = false;
 	public static boolean extendActive = false;
 	public static boolean ClimberPistonActive = false;
+	public static boolean ClimberStickthingActive = false;
 	
 	
 
@@ -58,18 +60,10 @@ public class OI {
 		// closeClawButton = new JoystickButton(mechBox, 6);
 		openClawButton = new JoystickButton(mechBox, 5);
 		climberPistonButton = new JoystickButton(driveStickRight, 2);
+		climberStickthingButton = new JoystickButton(driveStickRight, 4);
 		//extendButton = new JoystickButton(mechBox, 6);
 		mechBox.getRawAxis(1);
 		//openClawButton.whenPressed(new SystemCheck());
-		//openClawButton.whenPressed(new OpenClaw());
-		//closeClawButton.whenPressed(new CloseClaw());
-		if (openClawButton.get()) {
-			if (clawActive) {
-				clawActive = false;
-			} else if (!clawActive) {
-				clawActive = true;
-			}
-		}
 
 		if (climberPistonButton.get()){
 			if(ClimberPistonActive) {
@@ -78,6 +72,13 @@ public class OI {
 				ClimberPistonActive = true;
 			}
 		}
+
+		if(climberStickthingButton.get())
+			if (ClimberStickthingActive) {
+				ClimberStickthingActive = false;
+			} else if (!ClimberStickthingActive) {
+				ClimberStickthingActive = true;
+			}
 
 		// if (extendButton.get()) {
 		// 	if(extendActive) {
