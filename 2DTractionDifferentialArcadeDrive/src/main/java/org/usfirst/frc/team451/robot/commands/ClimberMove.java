@@ -28,20 +28,20 @@ public class ClimberMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // if(OI.driveStickLeft.getRawAxis(3) > 0.7) {
-    //   Climber.climb(0.3);
-    //   //this is towards the red
-    // } else if (OI.driveStickLeft.getRawAxis(3) < 0.3) {
-    //   Climber.climb(-0.3);
-    //   //this is towards the white
-    // } else {
-    //   Climber.climb(0);
-    // }
-    // if(OI.driveStickLeft.getRawButton(1)) {
-    //   Climber.climb(OI.driveStickLeft.getY());
-    // } else {
-    //   Climber.climb(0);
-    // }
+    if (OI.ClimberPistonActive) {
+      Climber.leftClimberSolenoid.set(true);
+      Climber.rightClimberSolenoid.set(true);
+    } else {
+      Climber.leftClimberSolenoid.set(false);
+      Climber.rightClimberSolenoid.set(false);
+    }
+
+    if(OI.driveStickRight.getRawButton(4)) {
+       Climber.climb(0.5);
+       //this is towards the red
+     } else {
+       Climber.climb(0);
+     }
     
 
   }

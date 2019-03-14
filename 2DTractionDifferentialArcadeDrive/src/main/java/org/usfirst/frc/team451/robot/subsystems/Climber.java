@@ -25,8 +25,7 @@ public class Climber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public static WPI_TalonSRX climber0 = new WPI_TalonSRX(1);
-  public static WPI_TalonSRX climber1 = new WPI_TalonSRX(2);
+  public static WPI_TalonSRX climber = new WPI_TalonSRX(1);
   public static double targetVelocity = 5.0;
 
   public static Solenoid leftClimberSolenoid = new Solenoid(3);
@@ -38,7 +37,6 @@ public class Climber extends Subsystem {
 
   
   public Climber() {
-    climber0.setInverted(true);
     leftClimberSolenoid.set(SmartDashboard.getBoolean("Left Climber Solenoid", false));
     rightClimberSolenoid.set(SmartDashboard.getBoolean("Right Climber Solenoid", false));
     // climber0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.PIDLoopIdx, Constants.timeoutMS);
@@ -77,8 +75,7 @@ public class Climber extends Subsystem {
   }
 
   public static void climb(double speed) {
-    climber0.set(ControlMode.Velocity, targetVelocity);    
-    climber1.set(ControlMode.Velocity, targetVelocity);
+    climber.set(ControlMode.Velocity,speed);
     
   }
 
