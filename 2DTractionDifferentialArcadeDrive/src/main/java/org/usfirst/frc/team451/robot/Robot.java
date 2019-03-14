@@ -83,55 +83,26 @@ public class Robot extends TimedRobot {
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		new Thread(() -> {
-			UsbCamera USBcamera = CameraServer.getInstance().startAutomaticCapture();
-			USBcamera.setResolution(426, 240);
-			//AxisCamera axisCamera = CameraServer.getInstance().addAxisCamera("axis-camera.local");
-			// Set the resolution
-			//axisCamera.setResolution(640, 480);
-			CvSink cvSink = CameraServer.getInstance().getVideo();
-			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 426,
-			240);
-			Mat source = new Mat();
-			Mat output = new Mat();
-			while(true) {
-			cvSink.grabFrame(source);
-			Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-			outputStream.putFrame(output);
-			}
-			}).start();
-		// m_visionThread = new Thread(() -> {
-		// 	// Get the Axis camera from CameraServer
-		// 	
-	  
-		// 	// Get a CvSink. This will capture Mats from the camera
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setResolution(320, 240);
+	
+		// new Thread(() -> {
+		// 	UsbCamera USBcamera = CameraServer.getInstance().startAutomaticCapture();
+		// 	USBcamera.setResolution(426, 240);
+		// 	//AxisCamera axisCamera = CameraServer.getInstance().addAxisCamera("axis-camera.local");
+		// 	// Set the resolution
+		// 	//axisCamera.setResolution(640, 480);
 		// 	CvSink cvSink = CameraServer.getInstance().getVideo();
-		// 	// Setup a CvSource. This will send images back to the Dashboard
-		// 	CvSource outputStream
-		// 		= CameraServer.getInstance().putVideo("Rectangle", 640, 480);
-	  
-		// 	// Mats are very memory expensive. Lets reuse this Mat.
-		// 	Mat mat = new Mat();
-	  
-		// 	// This cannot be 'true'. The program will never exit if it is. This
-		// 	// lets the robot stop this thread when restarting robot code or
-		// 	// deploying.
-		// 	while (!Thread.interrupted()) {
-		// 	  // Tell the CvSink to grab a frame from the camera and put it
-		// 	  // in the source mat.  If there is an error notify the output.
-		// 	  if (cvSink.grabFrame(mat) == 0) {
-		// 		// Send the output the error.
-		// 		outputStream.notifyError(cvSink.getError());
-		// 		// skip the rest of the current iteration
-		// 		continue;
-		// 	  }
-		// 	  // Put a rectangle on the image
-		// 	  Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
-		// 		  new Scalar(255, 255, 255), 5);
-		// 	  // Give the output stream a new image to display
-		// 	  outputStream.putFrame(mat);
+		// 	CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 426,
+		// 	240);
+		// 	Mat source = new Mat();
+		// 	Mat output = new Mat();
+		// 	while(true) {
+		// 	cvSink.grabFrame(source);
+		// 	Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+		// 	outputStream.putFrame(output);
 		// 	}
-		//   });
+		// 	}).start();
 		}
 
 	/**

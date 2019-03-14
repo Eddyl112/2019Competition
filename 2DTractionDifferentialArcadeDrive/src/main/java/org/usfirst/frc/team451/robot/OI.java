@@ -9,9 +9,11 @@
 package org.usfirst.frc.team451.robot;
 
 
+import org.usfirst.frc.team451.robot.commands.GrabMove;
 //import org.usfirst.frc.team451.robot.commands.CloseClaw;
 //import org.usfirst.frc.team451.robot.commands.OpenClaw;
 import org.usfirst.frc.team451.robot.commands.SystemCheck;
+import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -40,8 +42,7 @@ public class OI {
 	public static Button override;
 	public static Button elevatorReset;
 	
-	public static boolean clawActive = false;
-	public static boolean extendActive = false;
+	//public static boolean extendActive = false;
 	
 	
 
@@ -58,15 +59,7 @@ public class OI {
 		//extendButton = new JoystickButton(mechBox, 6);
 		mechBox.getRawAxis(1);
 		//openClawButton.whenPressed(new SystemCheck());
-		//openClawButton.whenPressed(new OpenClaw());
-		//closeClawButton.whenPressed(new CloseClaw());
-		if (openClawButton.get()) {
-			if (clawActive) {
-				clawActive = false;
-			} else if (!clawActive) {
-				clawActive = true;
-			}
-		}
+		openClawButton.whenPressed(new GrabMove());
 
 		// if (extendButton.get()) {
 		// 	if(extendActive) {
