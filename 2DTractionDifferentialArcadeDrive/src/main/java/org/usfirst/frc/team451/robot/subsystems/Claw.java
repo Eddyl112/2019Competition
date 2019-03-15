@@ -30,10 +30,10 @@ public static void claw() {
     clawSolenoid.set(SmartDashboard.getBoolean("Claw Status", true));
     //pushSolenoid.set(SmartDashboard.getBoolean("Claw Extend", false));
     
-    if (Claw.clawActive) {
+    if (clawActive) {
       Claw.clawSolenoid.set(true);
       System.out.println("true");
-    } else if (Claw.clawActive == false) {
+    } else if (!clawActive) {
       Claw.clawSolenoid.set(false);
       System.out.println("false");
     }

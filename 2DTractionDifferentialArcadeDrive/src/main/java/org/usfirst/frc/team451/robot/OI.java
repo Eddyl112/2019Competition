@@ -42,10 +42,8 @@ public class OI {
 	public static Button override;
 	public static Button elevatorReset;
 	
-	public static boolean clawActive = false;
+	//public static boolean clawActive = false;
 	public static boolean extendActive = false;
-	public static boolean ClimberPistonActive = false;
-	public static boolean ClimberStickthingActive = false;
 	
 	
 
@@ -54,31 +52,11 @@ public class OI {
 		driveStickRight = new Joystick(1);
 		mechBox = new XboxController(2);
 		elevatorReset = new JoystickButton(mechBox, 7);
-		
-		//autoAlignOverrideButton = new JoystickButton(driveStickLeft, 2);
-		// openClawButton = new JoystickButton(mechBox, 5);
-		// closeClawButton = new JoystickButton(mechBox, 6);
+
 		openClawButton = new JoystickButton(mechBox, 5);
 		climberPistonButton = new JoystickButton(driveStickRight, 2);
 		climberStickthingButton = new JoystickButton(driveStickRight, 4);
 		//extendButton = new JoystickButton(mechBox, 6);
-		mechBox.getRawAxis(1);
-		//openClawButton.whenPressed(new SystemCheck());
-
-		if (climberPistonButton.get()){
-			if(ClimberPistonActive) {
-				ClimberPistonActive = false;
-			} else if (!ClimberPistonActive){
-				ClimberPistonActive = true;
-			}
-		}
-
-		if(climberStickthingButton.get())
-			if (ClimberStickthingActive) {
-				ClimberStickthingActive = false;
-			} else if (!ClimberStickthingActive) {
-				ClimberStickthingActive = true;
-			}
 
 		// if (extendButton.get()) {
 		// 	if(extendActive) {

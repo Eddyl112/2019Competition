@@ -31,37 +31,24 @@ public class Climber extends Subsystem {
   public static Solenoid leftClimberSolenoid = new Solenoid(3);
   public static Solenoid rightClimberSolenoid = new Solenoid(4);
 
+	public static boolean ClimberPistonActive = false;
+	public static boolean ClimberStickthingActive = false;
   
   //TEST THIS MAKE SURE MOTORS SPIN IN THE SAME DIRECTION BECAUSE OF LINE 32
 
 
   
-  public Climber() {
+  public static void climber() {
     leftClimberSolenoid.set(SmartDashboard.getBoolean("Left Climber Solenoid", false));
     rightClimberSolenoid.set(SmartDashboard.getBoolean("Right Climber Solenoid", false));
-    // climber0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.PIDLoopIdx, Constants.timeoutMS);
-    // climber1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.PIDLoopIdx, Constants.timeoutMS);
-    // climber0.setSensorPhase(true);
-    // climber1.setSensorPhase(true);
-    // climber0.configNominalOutputForward(1, Constants.timeoutMS);
-    // climber0.configNominalOutputReverse(-1, Constants.timeoutMS);
-    // climber1.configNominalOutputForward(1, Constants.timeoutMS);
-    // climber1.configNominalOutputReverse(-1, Constants.timeoutMS);
-
-    // climber0.config_kP(Constants.kPIDLoopIdx, Constants.gainsVelocity.P, Constants.timeoutMS);
-    // climber0.config_kI(Constants.kPIDLoopIdx, Constants.gainsVelocity.I, Constants.timeoutMS);
-    // climber0.config_kD(Constants.kPIDLoopIdx, Constants.gainsVelocity.D, Constants.timeoutMS);
-    // climber0.config_kF(Constants.kPIDLoopIdx, Constants.gainsVelocity.F, Constants.timeoutMS);
-
     
-    // climber1.config_kP(Constants.PIDLoopIdx, Constants.gainsVelocity.P, Constants.timeoutMS);
-    // climber1.config_kI(Constants.PIDLoopIdx, Constants.gainsVelocity.I, Constants.timeoutMS);
-    // climber1.config_kD(Constants.PIDLoopIdx, Constants.gainsVelocity.D, Constants.timeoutMS);
-    // climber1.config_kF(Constants.PIDLoopIdx, Constants.gainsVelocity.F, Constants.timeoutMS);
-
-
-    
-    //set soft limit and postitions for 0. climber starts at 0 so should be easy
+    if (ClimberPistonActive) {
+      Climber.leftClimberSolenoid.set(true);
+      Climber.rightClimberSolenoid.set(true);
+    } else if(!ClimberPistonActive) {
+      Climber.leftClimberSolenoid.set(false);
+      Climber.rightClimberSolenoid.set(false);
+    }
   }
 
   public void stop() {

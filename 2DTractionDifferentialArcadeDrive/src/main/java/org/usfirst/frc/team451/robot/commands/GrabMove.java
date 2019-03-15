@@ -29,7 +29,7 @@ public class GrabMove extends Command {
   @Override
   protected void execute() {
     if (OI.openClawButton.get()) {
-			if (Claw.clawActive == true) {
+			if (Claw.clawActive) {
         Claw.clawActive = false;
         Claw.claw();
 			} else if (!Claw.clawActive) {
