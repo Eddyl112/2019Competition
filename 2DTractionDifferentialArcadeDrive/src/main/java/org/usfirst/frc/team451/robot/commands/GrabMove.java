@@ -28,15 +28,18 @@ public class GrabMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.openClawButton.get()) {
+    //if (OI.openClawButton.get()) {
 			if (Claw.clawActive) {
+        System.out.println("claw active");
         Claw.clawActive = false;
         Claw.claw();
 			} else if (!Claw.clawActive) {
+        System.out.println("claw inactive");
         Claw.clawActive = true;
         Claw.claw();
-			}
-		}
+      }
+    //}
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

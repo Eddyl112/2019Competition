@@ -81,7 +81,7 @@ public ElevatorMove() {
       // }
   
       //RUN ELEVATOR MOTION
-      if (Elevator.elevatorZero.get() == true) {
+      if (Elevator.elevatorZero.get() == false) {
         System.out.println("---------------------------------LIMIT SWITCH ACTIVAITED-------------------------------------");
         Elevator.elevatorMotor.setSelectedSensorPosition(0);
         if(OI.mechBox.getY(Hand.kRight) > 0.01){

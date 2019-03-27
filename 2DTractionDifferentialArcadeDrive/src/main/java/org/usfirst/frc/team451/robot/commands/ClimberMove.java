@@ -30,9 +30,7 @@ public class ClimberMove extends Command {
   protected void execute() {
     
 
-      /*if(OI.driveStickLeft.getRawAxis(4)) {
-
-      }*/
+      Climber.climb(OI.driveStickLeft.getThrottle());
 
      if (OI.climberPistonButton.get()){
 			if(Climber.ClimberPistonActive) {

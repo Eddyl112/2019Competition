@@ -8,10 +8,8 @@
 
 package org.usfirst.frc.team451.robot;
 
-
-//import org.usfirst.frc.team451.robot.commands.CloseClaw;
-//import org.usfirst.frc.team451.robot.commands.OpenClaw;
-import org.usfirst.frc.team451.robot.commands.SystemCheck;
+import org.usfirst.frc.team451.robot.commands.ExtendMove;
+import org.usfirst.frc.team451.robot.commands.GrabMove;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -34,16 +32,11 @@ public class OI {
 	public static Button openClawButton;
 	public static Button climberPistonButton;
 	public static Button climberStickthingButton;
-	//public static Button closeClawButton;
 	public static Button extendButton;
 	public static DigitalInput clawSwitch;
-	//public static boolean clawActive;
 	public static Button topHatch;
 	public static Button override;
 	public static Button elevatorReset;
-	
-	//public static boolean clawActive = false;
-	public static boolean extendActive = false;
 	
 	
 
@@ -52,19 +45,15 @@ public class OI {
 		driveStickRight = new Joystick(1);
 		mechBox = new XboxController(2);
 		elevatorReset = new JoystickButton(mechBox, 7);
-
-		openClawButton = new JoystickButton(mechBox, 5);
 		climberPistonButton = new JoystickButton(driveStickRight, 2);
 		climberStickthingButton = new JoystickButton(driveStickRight, 4);
-		//extendButton = new JoystickButton(mechBox, 6);
+		openClawButton = new JoystickButton(mechBox, 5);
+		extendButton = new JoystickButton(mechBox, 6);
 
-		// if (extendButton.get()) {
-		// 	if(extendActive) {
-		// 		extendActive = false;
-		// 	} else if(!extendActive) {
-		// 		extendActive = true;
-		// 	}
-		// }
+		openClawButton.whenPressed(new GrabMove());
+		extendButton.whenPressed(new ExtendMove());
+		
+
 		
 	}
 	

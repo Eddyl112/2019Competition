@@ -46,9 +46,6 @@ public class DriveTrain extends Subsystem {
     public static WPI_TalonSRX rightDrive1 = new WPI_TalonSRX(7);
     private final static SpeedControllerGroup right = new SpeedControllerGroup(rightDrive0, rightDrive1);
 
-    //The crawlmotor uses a spark, not a talon, except we don't use the encoder but this is still necessary anyway :/
-    public static Spark crawlMotor = new Spark(7);
-    
     public static DifferentialDrive diffDrive = new DifferentialDrive(left,right);
     
     public DriveTrain() {

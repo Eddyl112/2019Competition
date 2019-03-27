@@ -9,6 +9,7 @@ package org.usfirst.frc.team451.robot.subsystems;
 
 import org.usfirst.frc.team451.robot.OI;
 //import org.usfirst.frc.team451.robot.commands.GrabMove;
+import org.usfirst.frc.team451.robot.commands.GrabMove;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,31 +22,30 @@ public class Claw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 public static Solenoid clawSolenoid = new Solenoid(2);
-//public static Solenoid pushSolenoid = new Solenoid(2);
+public static Solenoid pushSolenoid = new Solenoid(1);
 public static boolean clawActive = false;
-//public static boolean retracted = false;
+public static boolean retracted = false;
 
 
 public static void claw() {
-    clawSolenoid.set(SmartDashboard.getBoolean("Claw Status", true));
+    //clawSolenoid.set(SmartDashboard.getBoolean("Claw Status", true));
     //pushSolenoid.set(SmartDashboard.getBoolean("Claw Extend", false));
     
     if (clawActive) {
-      Claw.clawSolenoid.set(true);
-      System.out.println("true");
-    } else if (!clawActive) {
       Claw.clawSolenoid.set(false);
-      System.out.println("false");
+    } else if (!clawActive) {
+      Claw.clawSolenoid.set(true);
     }
 
-    // System.out.println("claw sub");
-    // pushSolenoid.set(true);
-    // clawSolenoid.set(OI.clawActive);
-    // pushSolenoid.set(false);
+    if (retracted) {
+      Claw.pushSolenoid.set(false);
+    } else if (!retracted) {
+      Claw.pushSolenoid.set(true);
+    }
 }
 
   @Override
   protected void initDefaultCommand() {
-    //setDefaultCommand(new GrabMove());
+    // setDefaultCommand(new GrabMove());
   }
 }

@@ -12,8 +12,6 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team451.robot.commands.SystemCheck;
-//import org.usfirst.frc.team451.robot.subsystems.CameraServo;
 import org.usfirst.frc.team451.robot.subsystems.Claw;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
@@ -24,6 +22,7 @@ import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -43,14 +42,11 @@ public class Robot extends TimedRobot {
 	public static DriveTrain myDriveTrain = new DriveTrain();
 	public static Claw myClaw = new Claw();
 	public static LineTracker myLineTracker = new LineTracker();
-	//public static CameraServo myCameraServo = new CameraServo();
 	public static Elevator myElevator = new Elevator();
 	public static OI myOI;
-	//public static ADXRS450_Gyro myGyro;
 	public static PigeonIMU myGyro;
 	public static Climber myClimber = new Climber();
 	public static LEDs myLeds = new LEDs();
-	//public static SystemCheck mySystemCheck;
 	
 	Thread m_visionThread;
 
@@ -83,9 +79,22 @@ public class Robot extends TimedRobot {
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		// camera.setResolution(426, 240);
+		// camera.setFPS(50);
+		new Thread(() -> {
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(320, 240);
-	
+		CvSink cvSink = CameraServer.getInstance().getVideo();
+		CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 240, 240);
+		Mat source = new Mat();
+		Mat output = new Mat();
+		while(true) {
+		cvSink.grabFrame(source);
+		Imgproc.cvtColor(source, output, Imgproc.COLOR_RGB2GRAY);
+		outputStream.putFrame(output);
+		}
+		}).start();
+
 		// new Thread(() -> {
 		// 	UsbCamera USBcamera = CameraServer.getInstance().startAutomaticCapture();
 		// 	USBcamera.setResolution(426, 240);

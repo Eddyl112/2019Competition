@@ -9,6 +9,8 @@ package org.usfirst.frc.team451.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.FollowerType;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc.team451.robot.commands.ClimberMove;
@@ -27,8 +29,7 @@ public class Climber extends Subsystem {
 
   public static WPI_TalonSRX climber0 = new WPI_TalonSRX(1);
   public static WPI_TalonSRX climber1 = new WPI_TalonSRX(2);
-  //public static double targetVelocity = 5.0;
-
+  
   public static Solenoid leftClimberSolenoid = new Solenoid(3);
   public static Solenoid rightClimberSolenoid = new Solenoid(4);
 
@@ -41,7 +42,7 @@ public class Climber extends Subsystem {
   public static void climber() {
     leftClimberSolenoid.set(SmartDashboard.getBoolean("Left Climber Solenoid", false));
     rightClimberSolenoid.set(SmartDashboard.getBoolean("Right Climber Solenoid", false));
-    
+
     if (ClimberPistonActive) {
       Climber.leftClimberSolenoid.set(true);
       Climber.rightClimberSolenoid.set(true);
@@ -62,9 +63,11 @@ public class Climber extends Subsystem {
   }
 
   public static void climb(double speed) {
-    climber0.set(ControlMode.Velocity, speed);
-    climber1.set(ControlMode.Velocity, -speed);
-    
+    //climber0.set(speed);
+    //climber1.set(-speed);
+    climber0.set(speed/10);
+    climber1.follow(climber0);
+    climber1.setInverted(true);
   }
 
 
