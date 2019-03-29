@@ -30,8 +30,8 @@ public class Climber extends Subsystem {
   public static WPI_TalonSRX climber0 = new WPI_TalonSRX(1);
   public static WPI_TalonSRX climber1 = new WPI_TalonSRX(2);
   
-  public static Solenoid leftClimberSolenoid = new Solenoid(3);
-  public static Solenoid rightClimberSolenoid = new Solenoid(4);
+  public static Solenoid leftClimberSolenoid = new Solenoid(4);
+  public static Solenoid rightClimberSolenoid = new Solenoid(5);
 
 	public static boolean ClimberPistonActive = false;
   
@@ -50,24 +50,20 @@ public class Climber extends Subsystem {
       Climber.leftClimberSolenoid.set(false);
       Climber.rightClimberSolenoid.set(false);
     }
-  }
-
-  public void stop() {
-  }
+   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new ClimberMove());
+    //setDefaultCommand(new ClimberMove());
   }
 
   public static void climb(double speed) {
-    //climber0.set(speed);
-    //climber1.set(-speed);
-    climber0.set(speed/10);
-    climber1.follow(climber0);
-    climber1.setInverted(true);
+    climber0.set(speed*0.5);
+    climber1.set(-speed*0.626);
+    // climber0.set(speed/10);
+    // climber1.follow(climber0);
+    // climber1.setInverted(true);
   }
 
 

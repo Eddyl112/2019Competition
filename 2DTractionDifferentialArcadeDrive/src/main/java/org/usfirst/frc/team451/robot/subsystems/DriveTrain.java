@@ -26,7 +26,7 @@ public class DriveTrain extends Subsystem {
     public static double gearReduction = 19.8;//motor revolutions per wheel revolutions
     public static double WheelDiameter = 8;//inches
     public static double inchesPerCount = (Math.PI*WheelDiameter)/(countsPerRevolution*gearReduction);
-    
+    public static boolean speedy = true;
 
     public static double[] wheelSpeed = {0,0};
     public static boolean userAssistEnabled = false;

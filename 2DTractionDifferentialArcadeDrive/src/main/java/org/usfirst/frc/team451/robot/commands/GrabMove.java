@@ -28,7 +28,7 @@ public class GrabMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //if (OI.openClawButton.get()) {
+    if (OI.openClawButton.get()) {
 			if (Claw.clawActive) {
         System.out.println("claw active");
         Claw.clawActive = false;
@@ -38,7 +38,7 @@ public class GrabMove extends Command {
         Claw.clawActive = true;
         Claw.claw();
       }
-    //}
+    }
     
   }
 

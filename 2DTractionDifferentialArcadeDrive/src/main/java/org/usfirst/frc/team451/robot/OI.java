@@ -8,6 +8,7 @@
 
 package org.usfirst.frc.team451.robot;
 
+import org.usfirst.frc.team451.robot.commands.ClimberMove;
 import org.usfirst.frc.team451.robot.commands.ExtendMove;
 import org.usfirst.frc.team451.robot.commands.GrabMove;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
@@ -33,23 +34,27 @@ public class OI {
 	public static Button climberPistonButton;
 	public static Button climberStickthingButton;
 	public static Button extendButton;
-	public static DigitalInput clawSwitch;
-	public static Button topHatch;
-	public static Button override;
+	//public static DigitalInput clawSwitch;
+	//public static Button topHatch;
+	//public static Button override;
 	public static Button elevatorReset;
+	public static Button speedyButton;
 	
 	
 
 	public static void init() {
 		driveStickLeft = new Joystick(0); 
 		driveStickRight = new Joystick(1);
-		mechBox = new XboxController(2);
-		elevatorReset = new JoystickButton(mechBox, 7);
 		climberPistonButton = new JoystickButton(driveStickRight, 2);
 		climberStickthingButton = new JoystickButton(driveStickRight, 4);
+		speedyButton = new JoystickButton(driveStickLeft, 3);
+
+		mechBox = new XboxController(2);
+		elevatorReset = new JoystickButton(mechBox, 7);
 		openClawButton = new JoystickButton(mechBox, 5);
 		extendButton = new JoystickButton(mechBox, 6);
 
+		climberPistonButton.whenPressed(new ClimberMove());
 		openClawButton.whenPressed(new GrabMove());
 		extendButton.whenPressed(new ExtendMove());
 		

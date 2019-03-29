@@ -35,7 +35,8 @@ public class Drive extends Command {
         // DriveTrain.wheelSpeed[1] = OI.driveStickRight.getY();
 
         // References drive method in Drivetrain class
-        DriveTrain.drive(OI.driveStickLeft.getY(), -OI.driveStickRight.getY());
+
+        
 
         // register user input from joystick trigger to enable user assist
         if (OI.driveStickRight.getRawButton(1)) {
@@ -63,11 +64,26 @@ public class Drive extends Command {
 
             }
         }
+        
+
+        if (OI.speedyButton.get()) {
+            if (DriveTrain.speedy) {
+                DriveTrain.speedy = false;
+            } else if (!DriveTrain.speedy) {
+                DriveTrain.speedy = true;
+            }
+        }
+
+        if (DriveTrain.speedy) {
+            DriveTrain.drive(OI.driveStickLeft.getY(), -OI.driveStickRight.getY());
+        } else if (!DriveTrain.speedy) {
+            DriveTrain.drive(OI.driveStickLeft.getY()*0.50, -OI.driveStickRight.getY()*0.50);
+        }
 
         if (OI.driveStickLeft.getRawButton(1)) {
-            double kPgain = 0.04;
-            double kDgain = 0.0004;
-            double kMaxCorrectionRatio = 0.3;
+            //double kPgain = 0.04;
+            //double kDgain = 0.0004;
+            //double kMaxCorrectionRatio = 0.3;
             PigeonIMU.GeneralStatus genStatus = new PigeonIMU.GeneralStatus();
             PigeonIMU.FusionStatus fusionStatus = new PigeonIMU.FusionStatus();
             double [] xyz_dps = new double [3];
@@ -80,10 +96,17 @@ public class Drive extends Command {
             double rightMultiplier = 1.0;
             double speed = 0;
             do {
-                
+                if (currentAngle-targetAngle < 0 ) {
+                    rightMultiplier = 0.8;
+                } else if (currentAngle-targetAngle > 0) {
+                    leftMultiplier = 0.8;
+                } else if (currentAngle-targetAngle == 0) {
+                    rightMultiplier = 1.0;
+                    leftMultiplier = 1.0;
+                }
                 speed = speed + 0.005;
                 DriveTrain.drive(-speed*leftMultiplier, speed*rightMultiplier);
-                System.out.print("sdaf");
+                //System.out.print("sdaf");
             } while (OI.driveStickLeft.getRawButton(1));
         }
 

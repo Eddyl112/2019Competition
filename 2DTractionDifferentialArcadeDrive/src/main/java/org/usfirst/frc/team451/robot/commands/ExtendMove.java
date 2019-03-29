@@ -29,7 +29,7 @@ public class ExtendMove extends Command {
   @Override
   protected void execute() {
       
-    //if (OI.extendButton.get()) { 
+    if (OI.extendButton.get()) { 
         if (Claw.retracted) {
             System.out.println("retracted");
             Claw.retracted = false;
@@ -39,7 +39,7 @@ public class ExtendMove extends Command {
             Claw.retracted = true;
             Claw.claw();
         }
-      //}
+      }
   }
 
     // Make this return true when this Command no longer needs to run execute()
