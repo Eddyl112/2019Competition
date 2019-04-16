@@ -8,9 +8,12 @@
 
 package org.usfirst.frc.team451.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.usfirst.frc.team451.robot.commands.ClimberMove;
 import org.usfirst.frc.team451.robot.commands.ExtendMove;
 import org.usfirst.frc.team451.robot.commands.GrabMove;
+import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -47,8 +50,10 @@ public class OI {
 		driveStickRight = new Joystick(1);
 		climberPistonButton = new JoystickButton(driveStickRight, 2);
 		climberStickthingButton = new JoystickButton(driveStickRight, 4);
-		speedyButton = new JoystickButton(driveStickLeft, 3);
+		//speedyButton = new JoystickButton(driveStickLeft, 3);
 
+
+		
 		mechBox = new XboxController(2);
 		elevatorReset = new JoystickButton(mechBox, 7);
 		openClawButton = new JoystickButton(mechBox, 5);
@@ -58,6 +63,12 @@ public class OI {
 		openClawButton.whenPressed(new GrabMove());
 		extendButton.whenPressed(new ExtendMove());
 		
+		// if (OI.mechBox.getRawButton(7)) {
+		// 	//Climber.climber0.setSelectedSensorPosition(0);
+		// 	//Climber.climber0.setSelectedSensorPosition(1);
+			
+		// 	System.out.println("sasbdsafd");
+		//    }
 
 		
 	}

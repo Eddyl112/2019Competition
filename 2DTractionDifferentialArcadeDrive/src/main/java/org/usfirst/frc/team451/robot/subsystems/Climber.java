@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.commands.ClimberMove;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -40,8 +41,19 @@ public class Climber extends Subsystem {
 
   
   public static void climber() {
+    //Climber.climber0.setSelectedSensorPosition(0, 0, 30);
     leftClimberSolenoid.set(SmartDashboard.getBoolean("Left Climber Solenoid", false));
     rightClimberSolenoid.set(SmartDashboard.getBoolean("Right Climber Solenoid", false));
+    //Climber.climber0.set(ControlMode.Position, 0);
+    
+    
+    Climber.climber0.configForwardSoftLimitEnable(true);
+    Climber.climber0.configReverseSoftLimitEnable(true);
+    Climber.climber0.configForwardSoftLimitThreshold(4000, 10); 
+    Climber.climber0.configReverseSoftLimitThreshold(-4000, 10); 
+    Climber.climber0.configPeakCurrentLimit(40, 10);
+    Climber.climber1.configPeakCurrentLimit(40, 10);
+    
 
     if (ClimberPistonActive) {
       Climber.leftClimberSolenoid.set(true);
@@ -59,11 +71,11 @@ public class Climber extends Subsystem {
   }
 
   public static void climb(double speed) {
-    climber0.set(speed*0.5);
-    climber1.set(-speed*0.626);
-    // climber0.set(speed/10);
-    // climber1.follow(climber0);
-    // climber1.setInverted(true);
+    // climber0.set(speed*0.5);
+    // climber1.set(-speed*0.626);
+    climber0.set(speed);
+    climber1.follow(climber0);
+    climber1.setInverted(true);
   }
 
 

@@ -8,6 +8,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
+import org.usfirst.frc.team451.robot.subsystems.Climber;
 import org.usfirst.frc.team451.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team451.robot.subsystems.LineTracker;
 
@@ -66,21 +67,25 @@ public class Drive extends Command {
         }
         
 
-        if (OI.speedyButton.get()) {
-            if (DriveTrain.speedy) {
-                DriveTrain.speedy = false;
-            } else if (!DriveTrain.speedy) {
-                DriveTrain.speedy = true;
-            }
-        }
+        // if (OI.speedyButton.get()) {
+        //     if (DriveTrain.speedy) {
+        //         DriveTrain.speedy = false;
+        //     } else if (!DriveTrain.speedy) {
+        //         DriveTrain.speedy = true;
+        //     }
+        // }
 
-        if (DriveTrain.speedy) {
-            DriveTrain.drive(OI.driveStickLeft.getY(), -OI.driveStickRight.getY());
-        } else if (!DriveTrain.speedy) {
-            DriveTrain.drive(OI.driveStickLeft.getY()*0.50, -OI.driveStickRight.getY()*0.50);
-        }
+        // if (DriveTrain.speedy) {
+        //     DriveTrain.drive(OI.driveStickLeft.getY(), -OI.driveStickRight.getY());
+        // } else if (!DriveTrain.speedy) {
+        //     DriveTrain.drive(OI.driveStickLeft.getY()*0.50, -OI.driveStickRight.getY()*0.50);
+        // }
 
-        if (OI.driveStickLeft.getRawButton(1)) {
+        Climber.climb(OI.driveStickLeft.getThrottle()/2);
+        
+        DriveTrain.drive(-OI.driveStickRight.getZ(), OI.driveStickLeft.getY());
+
+        if (OI.driveStickLeft.getRawButton(3)) {
             //double kPgain = 0.04;
             //double kDgain = 0.0004;
             //double kMaxCorrectionRatio = 0.3;

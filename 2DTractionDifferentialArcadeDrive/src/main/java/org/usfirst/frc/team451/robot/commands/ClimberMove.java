@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team451.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.Robot;
 import org.usfirst.frc.team451.robot.subsystems.Climber;
@@ -23,16 +25,16 @@ public class ClimberMove extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Climber.climber0.setSelectedSensorPosition(0);
+    //Climber.climber0.set(ControlMode.Position, 0);
+    //Climber.climber0.setSelectedSensorPosition(0, 0, 30);
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-
-      Climber.climb(OI.driveStickLeft.getThrottle());
-
-     if (OI.climberPistonButton.get()){
+    if (OI.climberPistonButton.get()){
 			if(Climber.ClimberPistonActive) {
         Climber.ClimberPistonActive = false;
         Climber.climber();
@@ -41,8 +43,8 @@ public class ClimberMove extends Command {
         Climber.climber();
 			}
 		}
-
     
+
 
   }
 

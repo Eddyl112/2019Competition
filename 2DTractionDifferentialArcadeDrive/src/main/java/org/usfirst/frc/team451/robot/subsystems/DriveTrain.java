@@ -5,6 +5,7 @@ package org.usfirst.frc.team451.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import org.usfirst.frc.team451.robot.OI;
 import org.usfirst.frc.team451.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -75,7 +76,8 @@ public class DriveTrain extends Subsystem {
     }
     
     public static void drive(double left, double right) {
-        diffDrive.tankDrive(left, right);
+        //diffDrive.tankDrive(left, right);
+        diffDrive.curvatureDrive(left, right, OI.driveStickLeft.getRawButton(1));
     }
 }
 
